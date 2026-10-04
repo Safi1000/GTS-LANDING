@@ -4,14 +4,15 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { GtsLevelsChart } from "@/components/charts/GtsLevelsChart";
 
 /**
- * Sizes the GTS Levels chart to its box. On desktop the box is stretched to the
- * height of the step list beside it; on phones it has a fixed aspect ratio.
+ * Sizes the GTS Levels chart to its box. In "Anatomy of a setup" the box is
+ * stretched to the height of the step list beside it (fixed aspect on phones);
+ * elsewhere (terminal page) pass a className that gives it an aspect ratio.
  * The chart is drawn at the box's real pixel size (no scaling), so it fills the
  * box exactly and the text stays crisp. Server render uses a default size; the
  * client re-measures after mount. Re-renders keep the same DOM nodes, so the
  * scrub's imperative opacity changes on them survive.
  */
-export function AnatomyChart({ label }: { label: string }) {
+export function AnatomyChart({ label, className = "" }: { label: string; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ w: 720, h: 460 });
 
@@ -27,7 +28,7 @@ export function AnatomyChart({ label }: { label: string }) {
   }, []);
 
   return (
-    <div className="anat-chart" ref={ref}>
+    <div className={`anat-chart ${className}`.trim()} ref={ref}>
       <GtsLevelsChart w={size.w} h={size.h} role="img" aria-label={label} />
     </div>
   );

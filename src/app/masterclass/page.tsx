@@ -12,13 +12,13 @@ import { LINKS } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Masterclass",
   description:
-    "The entire GTS method, free. Twelve modules, from what a candle is telling you up to every strategy inside the indicator.",
+    "The entire GTS method, free. Twelve modules, from what a candle is telling you up to every tool inside the GTS Terminal.",
   alternates: { canonical: "/masterclass" },
   openGraph: { title: "Masterclass — GLITCHERS" },
 };
 
 /* Category chips are inert, as in the HTML. Lessons move to Payload in Phase 5. */
-const CATS = ["All", "Foundations", "Price action", "Advanced theory", "The indicator", "Risk"];
+const CATS = ["All", "Foundations", "Price action", "Advanced theory", "The terminal", "Risk"];
 
 export default function MasterclassPage() {
   return (
@@ -31,7 +31,7 @@ export default function MasterclassPage() {
           <span className="foil">No paywall.</span>
         </h1>
         <p className="lede" style={{ marginInline: "auto" }}>
-          Twelve modules, from what a candle is telling you up to every strategy inside the indicator. Sign in with
+          Twelve modules, from what a candle is telling you up to every tool inside the terminal. Sign in with
           Discord to track progress and watch the videos.
         </p>
       </header>

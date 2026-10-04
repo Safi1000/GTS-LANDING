@@ -10,11 +10,12 @@ export const SITE = {
   short: "GTS",
   title: "GLITCHERS — Gold & Crypto Trading Education",
   description:
-    "A Discord trading education community for gold and crypto. A free masterclass, live mentorship, a proprietary TradingView indicator, and our own backtesting terminal.",
+    "A Discord trading education community for gold and crypto. A free masterclass, live mentorship, and the GTS Terminal: our own charting terminal with GTS Levels, GTS Reversals, a liquidation heatmap and orderflow confirmations.",
   promoCode: "GTS20",
 } as const;
 
 export const LINKS = {
+  terminal: "https://charts.glitchtrading.co", // GTS charting terminal (levels, reversals, heatmap, orderflow)
   discordInvite: "#", // PLACEHOLDER — Discord invite URL
   signIn: "#", // PLACEHOLDER — becomes /login in Phase 5
   account: "#", // PLACEHOLDER — becomes /account in Phase 5

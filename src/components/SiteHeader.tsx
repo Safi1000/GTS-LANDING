@@ -9,17 +9,17 @@ import { MobileDrawer } from "@/components/MobileDrawer";
 import { LINKS } from "@/lib/site";
 
 const DROPS = {
-  indicator: [
-    ["/indicator", "Overview", "What it prints, and what it won't do"],
-    ["/indicator", "Strategies", "Four setups, one script"],
-    ["/indicator", "Methodology", "How the win rates were measured"],
+  terminal: [
+    ["/terminal", "Overview", "What it marks, and what it won't do"],
+    ["/terminal#tools", "Tools", "Levels, reversals, heatmap, orderflow"],
+    ["/terminal#methodology", "Methodology", "How the win rates were measured"],
     ["/pricing", "Pricing", "Monthly or annual"],
   ],
   masterclass: [
     ["/masterclass", "All lessons", "The full free curriculum"],
     ["/masterclass", "Start here", "Foundations for new traders"],
     ["/masterclass", "Live sessions", "Thursdays with your mentors"],
-    ["/indicator", "Strategy library", "Rules, examples, invalidation"],
+    ["/terminal#access", "Getting access", "Pay, open a ticket, you are in"],
   ],
 } as const;
 
@@ -68,10 +68,10 @@ export function SiteHeader() {
           </Link>
           <div className="nav-links">
             <div className="has-drop">
-              <Link href="/indicator" className={nl("/indicator")}>
-                Indicator
+              <Link href="/terminal" className={nl("/terminal")}>
+                Terminal
               </Link>
-              <Drop items={DROPS.indicator} />
+              <Drop items={DROPS.terminal} />
             </div>
             <div className="has-drop">
               <Link href="/masterclass" className={nl("/masterclass")}>

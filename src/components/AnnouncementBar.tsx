@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 import { ScrollTrigger } from "@/lib/gsap";
-import { useToast } from "@/components/Toast";
-import { SITE } from "@/lib/site";
-import { CopyIcon } from "@/components/icons";
+import { LINKS } from "@/lib/site";
 
-const ITEMS = ["Annual plan — 20% off", "Gold & crypto challenges live", "Masterclass free, always"];
-
+/**
+ * Top bar: a single static link to the GTS charting terminal (replaces the
+ * scrolling marquee from the HTML). Dismissable; the height stays 38px so the
+ * hero's viewport maths (100svh − 113px) still holds.
+ */
 export function AnnouncementBar() {
   const [hidden, setHidden] = useState(false);
-  const toast = useToast();
 
   return (
     <div
@@ -19,23 +19,11 @@ export function AnnouncementBar() {
       onTransitionEnd={(e) => e.propertyName === "height" && ScrollTrigger.refresh()}
     >
       <div className="anno-in">
-        <div className="anno-track">
-          <div className="anno-move">
-            {[0, 1].flatMap((k) =>
-              ITEMS.flatMap((t, i) => [<span key={`${k}${i}t`}>{t}</span>, <span key={`${k}${i}d`}>◆</span>]),
-            )}
-          </div>
-        </div>
-        <button
-          className="code-btn"
-          onClick={() => {
-            navigator.clipboard?.writeText(SITE.promoCode).catch(() => {});
-            toast(`Promo code ${SITE.promoCode} copied`);
-          }}
-        >
-          {SITE.promoCode}
-          <CopyIcon />
-        </button>
+        <a className="anno-link" href={LINKS.terminal} target="_blank" rel="noopener noreferrer">
+          <span className="anno-kicker">GTS Terminal</span>
+          <span className="anno-text">GTS Levels, GTS Reversals, liquidation heatmap and orderflow confirmations.</span>
+          <span className="anno-cta">Open the terminal →</span>
+        </a>
         <button className="anno-x" aria-label="Dismiss" onClick={() => setHidden(true)}>
           &times;
         </button>

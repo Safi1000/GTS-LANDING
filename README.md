@@ -1,8 +1,8 @@
 # GLITCHERS (GTS) — web
 
-Next.js port of `gts-site-v2.html`, the GTS landing page. GTS is positioned as **trading education and mentorship**: no signals service. The only performance figures on the site are the indicator's backtested win rates. It will grow into the membership platform (masterclass, gated video, indicator and terminal entitlements).
+Next.js port of `gts-site-v2.html`, the GTS landing page. GTS is positioned as **trading education and mentorship**: no signals service. The paid product is the **GTS Terminal** (https://charts.glitchtrading.co): GTS Levels, GTS Reversals, liquidation heatmap, orderflow confirmations, bar replay. The only performance figures on the site are its backtested win rates (80% at 1R / 70% at 2R). It will grow into the membership platform (masterclass, gated video, indicator and terminal entitlements).
 
-**Status:** Phase 1–2 done (scaffold, design system, components, home, indicator, pricing, masterclass + 404; the HTML's Results page was removed with the signals content). Auth, CMS, video and payments have not started.
+**Status:** Phase 1–2 done (scaffold, design system, components, home, terminal, pricing, masterclass + 404; `/indicator` redirects permanently to `/terminal`; the HTML's Results page was removed with the signals content). Auth, CMS, video and payments have not started.
 
 ## Stack
 
@@ -46,7 +46,7 @@ Later phases add Supabase, Payload, Bunny and Stripe keys here. Server-only secr
 | `Reveal` | scroll reveal for every `[data-rv]` inside it (`display: contents`, adds no box) |
 | `HeroMotion` + `Preloader` | preloader → hero intro timeline, hero parallax, floaters |
 | `AnatomyScrub` + `AnatomyChart` | pinned "anatomy of a setup" scrub building the GTS Levels / GTS Reversals chart (levels > .02, candles to the reversal .04→.44, reversal > .48, entry/SL/TPs .54→.70, rally .72→.96). The chart is drawn at its box's real pixel size; on desktop the box matches the step list's height |
-| `SignalChart` | autoplaying indicator chart (indicator page) |
+| `SignalChart` | autoplaying GTS Levels chart (terminal page) |
 | `Counter`, `SylStagger`, `StepsTrack`, `AmbientDrift`, `Marquee` | small scroll/loop effects |
 | `MagneticButton`, `TiltCard`, `SpotlightCard`, `CrosshairCursor`, `ScrollProgressBar` | pointer / chrome |
 | `Accordion`, `Tabs`, `BillingToggle`, `Countdown` | interactive widgets |

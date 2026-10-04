@@ -42,17 +42,19 @@ export function Kicker({ children }: { children: React.ReactNode }) {
   );
 }
 
-/** Pulsing dot + label in panel bars ("LIVE", "REPLAY"). */
-export function PanelBar({ pair, tf, label, live }: { pair: string; tf: string; label: string; live: string }) {
+/** Chart panel header. `live` adds the pulsing dot + label ("LIVE", "REPLAY"); omit it for none. */
+export function PanelBar({ pair, tf, label, live }: { pair: string; tf: string; label: string; live?: string }) {
   return (
     <div className="panel-bar">
       <span className="pair">{pair}</span>
       <span className="tf">{tf}</span>
       <span>{label}</span>
-      <span className="live">
-        <i className="dot" />
-        {live}
-      </span>
+      {live && (
+        <span className="live">
+          <i className="dot" />
+          {live}
+        </span>
+      )}
     </div>
   );
 }

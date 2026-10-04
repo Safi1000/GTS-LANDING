@@ -4,7 +4,7 @@ import Link from "next/link";
 import { LINKS } from "@/lib/site";
 
 const ITEMS: [string, string][] = [
-  ["/indicator", "Indicator"],
+  ["/terminal", "Terminal"],
   ["/masterclass", "Masterclass"],
   ["/pricing", "Pricing"],
 ];

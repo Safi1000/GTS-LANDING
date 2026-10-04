@@ -11,18 +11,19 @@ import { LINKS } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "One subscription for the indicator and the backtesting terminal. The Discord, the masterclass, the live sessions and the partner perks stay free.",
+    "One subscription for the GTS Terminal. The Discord, the masterclass, the live sessions and the partner perks stay free.",
   alternates: { canonical: "/pricing" },
   openGraph: { title: "Pricing — GLITCHERS" },
 };
 
 const COMMUNITY = [
   "The complete masterclass", "Live sessions with mentors", "Prop firm and exchange perks",
-  "Both trading challenges",
+  "Both account challenges, followed live",
 ];
 const MEMBER = [
-  "Everything in Community", "The GTS indicator on TradingView", "All four strategies", "Backtesting terminal",
-  "Consolidated multi-provider data", "Member-only Discord channels", "Priority support", "Cancel any time",
+  "Everything in Community", "The GTS Terminal", "GTS Levels and GTS Reversals", "Liquidation heatmap",
+  "Orderflow confirmations", "Bar replay on a consolidated feed", "Member-only Discord channels", "Priority support",
+  "Cancel any time",
 ];
 const WITH = [
   "Education is free and complete",
@@ -44,7 +45,7 @@ export default function PricingPage() {
           <h1 className="d-lg" style={{ marginTop: 18 }}>
             One subscription.
             <br />
-            Indicator and terminal.
+            The GTS Terminal.
           </h1>
           <p className="lede" style={{ marginInline: "auto" }}>
             Everything else — the Discord, the masterclass, the live sessions and the partner perks — stays free.
@@ -71,8 +72,8 @@ export default function PricingPage() {
                 {COMMUNITY.map((f) => (
                   <li key={f}><CheckIcon color="#C99A4B" />{f}</li>
                 ))}
-                <li className="off"><DashIcon />The indicator</li>
-                <li className="off"><DashIcon />Backtesting terminal</li>
+                <li className="off"><DashIcon />The GTS Terminal</li>
+                <li className="off"><DashIcon />Bar replay and backtesting</li>
               </ul>
             </div>
             <div className="card card-glow plan feature frame" data-rv>
@@ -92,7 +93,8 @@ export default function PricingPage() {
           </div>
           <p className="small" data-rv style={{ textAlign: "center", marginTop: 26 }}>
             Card via Stripe, or pay in USDT, BTC and ETH. Crypto payments are a fixed-term purchase and do not renew
-            automatically — we send a reminder before access ends.
+            automatically — we send a reminder before access ends. After paying, open a ticket in our Discord with
+            your invoice ID and we give your Google email access to the terminal.
           </p>
         </section>
 

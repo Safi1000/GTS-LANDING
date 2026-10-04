@@ -7,13 +7,19 @@ import { LINKS } from "@/lib/site";
 
 /* Links marked "#" were dead `#/` links in the HTML; Phase 4 gives them routes. */
 const COLS: [string, [string, string][]][] = [
-  ["Community", [[LINKS.discordInvite, "Join the Discord"], ["#", "Challenges"], ["#", "Partners & perks"], ["#", "Giveaways"]]],
-  ["Learn", [["/masterclass", "Masterclass"], ["/masterclass", "Live sessions"], ["/indicator", "Strategy library"], ["#", "FAQ"], ["#", "About us"]]],
-  ["Product", [["/indicator", "The indicator"], ["/pricing", "Pricing"], ["#", "Backtesting terminal"], [LINKS.signIn, "Sign in"], [LINKS.account, "Account"]]],
+  ["Community", [[LINKS.discordInvite, "Join the Discord"], ["#", "Partners & perks"], ["#", "Giveaways"]]],
+  ["Learn", [["/masterclass", "Masterclass"], ["/masterclass", "Live sessions"], ["/terminal#tools", "Terminal tools"], ["#", "FAQ"], ["#", "About us"]]],
+  ["Product", [["/terminal", "The GTS Terminal"], ["/pricing", "Pricing"], [LINKS.terminal, "Open the terminal"], [LINKS.signIn, "Sign in"], [LINKS.account, "Account"]]],
 ];
 
 const A = ({ href, children }: { href: string; children: React.ReactNode }) =>
-  href.startsWith("/") ? <Link href={href}>{children}</Link> : <a href={href}>{children}</a>;
+  href.startsWith("/") ? (
+    <Link href={href}>{children}</Link>
+  ) : href.startsWith("http") ? (
+    <a href={href} target="_blank" rel="noopener noreferrer">{children}</a>
+  ) : (
+    <a href={href}>{children}</a>
+  );
 
 export function Footer() {
   // Static pages are rendered at build time, so this is the build year (one

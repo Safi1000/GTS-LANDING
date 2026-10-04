@@ -22,10 +22,10 @@ export function Trust() {
   return (
     <section className="wrap" style={{ marginTop: -30, position: "relative", zIndex: 5 }}>
       <div className="strip frame" data-rv>
-        <div><Counter as="b" to={75} suffix="%" /><span>Win rate at 1R</span></div>
-        <div><Counter as="b" to={60} suffix="%" /><span>Win rate at 2R</span></div>
+        <div><Counter as="b" to={80} suffix="%" /><span>Win rate at 1R</span></div>
+        <div><Counter as="b" to={70} suffix="%" /><span>Win rate at 2R</span></div>
         <div><b>12</b><span>Masterclass modules</span></div>
-        <div><Counter as="b" to={2} suffix="×" /><span>Challenges running</span></div>
+        <div><Counter as="b" to={2} /><span>Public account challenges</span></div>
       </div>
     </section>
   );
@@ -33,7 +33,7 @@ export function Trust() {
 
 /* ══════════ I. ANATOMY OF A SETUP (pinned scrub) ══════════ */
 const ANAT_STEPS = [
-  ["01 · LEVELS", "GTS Levels map the zones", "The script draws the supply and demand levels price keeps coming back to."],
+  ["01 · LEVELS", "GTS Levels map the zones", "The terminal draws the supply and demand levels price keeps coming back to."],
   ["02 · TAP", "Price taps the level", "Price sells back into the zone, right where buyers stepped in last time."],
   ["03 · REVERSAL", "A GTS Reversal prints", "An arrow prints under the candle that rejects the level. That candle is the trigger."],
   ["04 · ENTRY", "Entry, stop, two targets", "Entry on the reversal candle, stop below the level with room to breathe, targets at 1R and 2R."],
@@ -60,7 +60,7 @@ export function Anatomy() {
           ))}
         </div>
         <div className="panel">
-          <PanelBar pair="XAUUSD" tf="15M" label="GTS Levels · GTS Reversals" live="LIVE" />
+          <PanelBar pair="XAUUSD" tf="15M" label="GTS Levels · GTS Reversals" />
           <AnatomyChart label="Gold chart: price taps a GTS Level, a GTS Reversal prints, with entry, stop and two targets" />
         </div>
       </div>
@@ -96,8 +96,8 @@ export function Rooms() {
 /* ══════════ III. HOW IT WORKS ══════════ */
 const STEPS = [
   ["I", "Join the Discord", "Discussion, mentorship and partner perks. Nothing behind a card.", "Free"],
-  ["II", "Take the masterclass", "The complete method, including every strategy the indicator uses.", "Free"],
-  ["III", "Add the indicator", "Once you know the method, the tool that prints it saves you the screen time.", "From $39/mo"],
+  ["II", "Take the masterclass", "The complete method, including every tool in the terminal.", "Free"],
+  ["III", "Add the terminal", "Once you know the method, the terminal that marks it saves you the screen time.", "From $39/mo"],
 ];
 
 export function HowItWorks() {
@@ -124,34 +124,34 @@ export function HowItWorks() {
   );
 }
 
-/* ══════════ IV. INDICATOR ══════════ */
-export function IndicatorSection() {
+/* ══════════ IV. THE GTS TERMINAL ══════════ */
+export function TerminalSection() {
   return (
     <section className="wrap band">
-      <Rail n="IV" label="The indicator" />
+      <Rail n="IV" label="The GTS Terminal" />
       <div className="split top">
         <div data-rv>
           <h2>
-            It prints the setup.
+            It marks the setup.
             <br />
             <span className="hi">You bring the context.</span>
           </h2>
           <p className="lede">
-            Built in-house for gold and crypto. Four strategies ship inside one script, each suited to a different
-            market condition, and every one of them is taught free in the masterclass.
+            Our own charting terminal, built in-house for gold and crypto. GTS Levels, GTS Reversals, a liquidation
+            heatmap and orderflow confirmations on one chart, and every one of them is taught free in the masterclass.
           </p>
           <p className="lede">
             It is not a bot. It will not save bad risk management. It marks the level and gets out of your way.
           </p>
           <div className="chips" style={{ marginTop: 26 }}>
-            <span className="chip">Trend continuation</span>
-            <span className="chip">Sweep reversal</span>
-            <span className="chip">Range break</span>
-            <span className="chip">Session scalp</span>
+            <span className="chip">GTS Levels</span>
+            <span className="chip">GTS Reversals</span>
+            <span className="chip">Liquidation heatmap</span>
+            <span className="chip">Orderflow confirmations</span>
           </div>
           <div className="btn-row" style={{ marginTop: 30 }}>
-            <MagneticButton href="/indicator" className="btn btn-primary">
-              Get access
+            <MagneticButton href="/terminal" className="btn btn-primary">
+              Explore the terminal
               <ArrowIcon />
             </MagneticButton>
             <MagneticButton href="/pricing" className="btn btn-secondary">
@@ -161,9 +161,9 @@ export function IndicatorSection() {
         </div>
         <div data-rv>
           <div className="figs frame">
-            <div className="fig"><b><Counter to={75} suffix="%" /></b><span>Win rate · 1R</span></div>
-            <div className="fig"><b><Counter to={60} suffix="%" /></b><span>Win rate · 2R</span></div>
-            <div className="fig"><b>4</b><span>Strategies</span></div>
+            <div className="fig"><b><Counter to={80} suffix="%" /></b><span>Win rate · 1R</span></div>
+            <div className="fig"><b><Counter to={70} suffix="%" /></b><span>Win rate · 2R</span></div>
+            <div className="fig"><b>4</b><span>Tools</span></div>
             <div className="fig"><b>2</b><span>Markets</span></div>
           </div>
           <p className="note">
@@ -172,8 +172,8 @@ export function IndicatorSection() {
             after.
           </p>
           <p className="note">
-            <b>Delivery.</b> The script is invite-only on TradingView. You give us your username after subscribing
-            and we grant access to your account, usually within a few hours.
+            <b>Access.</b> Pay by card or crypto, open a ticket in our Discord with your invoice ID, and we give your
+            Google email access to the terminal.
           </p>
         </div>
       </div>
@@ -196,7 +196,7 @@ export function MasterclassSection() {
           </h2>
           <p className="lede">
             Not a funnel with the good parts removed. The curriculum runs from what a candle is actually telling you
-            up to every strategy inside the indicator and how to size the trades it gives you.
+            up to every tool inside the terminal and how to size the trades it gives you.
           </p>
           <p className="lede">Video lessons, live sessions with mentors, and written breakdowns with annotated charts.</p>
           <div className="btn-row" style={{ marginTop: 30 }}>
@@ -218,14 +218,14 @@ export function MasterclassSection() {
   );
 }
 
-/* ══════════ VI. TERMINAL ══════════ */
-export function TerminalSection() {
+/* ══════════ VI. REPLAY & BACKTESTING (part of the terminal) ══════════ */
+export function ReplaySection() {
   return (
     <section className="wrap band">
-      <Rail n="VI" label="The backtesting terminal" />
+      <Rail n="VI" label="Replay & backtesting" />
       <div className="split">
         <div data-rv>
-          <span className="badge" style={{ marginBottom: 22 }}>Included with membership</span>
+          <span className="badge" style={{ marginBottom: 22 }}>Included in the GTS Terminal</span>
           <h2>
             One chart per pair.
             <br />
@@ -272,7 +272,7 @@ export function Partners() {
         ))}
       </Marquee>
       <div className="wrap">
-        <div className="grid-4">
+        <div className="grid-3">
           {PERKS.map(([k, h, p]) => (
             <TiltCard className="card-glow" data-rv key={k}>
               <Kicker>{k}</Kicker>
@@ -348,7 +348,7 @@ export function HomeCta() {
           So is the masterclass.
         </h2>
         <p className="lede" style={{ margin: "20px auto 0", textAlign: "center" }}>
-          Come in, take the course, join the live sessions, and decide about the indicator afterwards. That order works
+          Come in, take the course, join the live sessions, and decide about the terminal afterwards. That order works
           better for everyone.
         </p>
         <div className="btn-row center" style={{ marginTop: 36 }}>
@@ -357,7 +357,7 @@ export function HomeCta() {
             <ArrowIcon />
           </MagneticButton>
           <MagneticButton href="/pricing" className="btn btn-secondary btn-lg">
-            Indicator pricing
+            Terminal pricing
           </MagneticButton>
         </div>
       </div>

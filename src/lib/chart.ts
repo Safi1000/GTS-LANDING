@@ -37,40 +37,9 @@ export function makeBars(seed: number, phases: Phase[], start: number): Bar[] {
   return b;
 }
 
-export const PHASES: Phase[] = [
-  [10, -0.9, 3.2],
-  [8, -2.4, 3.8],
-  [4, 4.6, 3.4],
-  [4, -1.1, 2.4],
-  [14, 2.5, 3],
-];
-
 /** Candle palette — bone up, oxblood down. Never green/red. */
 export const BULL = "#D8CFC2";
 export const BEAR = "#7E1730";
-
-export type SignalOpts = { w: number; h: number; seed: number; start: number; entryIdx: number };
-
-export function signalGeometry(o: SignalOpts) {
-  const W = o.w, H = o.h, PT = 24, PB = 28, PL = 12, PR = 92;
-  const bars = makeBars(o.seed, PHASES, o.start);
-  const EI = o.entryIdx;
-  const entry = bars[EI].c;
-  const sl = Math.min(...bars.slice(EI - 9, EI - 1).map((b) => b.l)) - 1.6;
-  const risk = entry - sl;
-  const tp1 = entry + risk, tp2 = entry + risk * 2;
-  const lo = Math.min(...bars.map((b) => b.l), sl);
-  const hi = Math.max(...bars.map((b) => b.h), tp2);
-  const sp = hi - lo;
-  const y = (v: number) => PT + ((hi - v) / sp) * (H - PT - PB);
-  const cw = (W - PL - PR) / bars.length;
-  const x = (i: number) => PL + i * cw + cw / 2;
-  const grid = Array.from({ length: 5 }, (_, g) => ({
-    gy: PT + (g * (H - PT - PB)) / 4,
-    gp: hi - (g / 4) * sp,
-  }));
-  return { W, H, PL, PR, bars, EI, entry, sl, tp1, tp2, y, x, cw, grid };
-}
 
 export function plainBars(seed: number, n: number) {
   return makeBars(
