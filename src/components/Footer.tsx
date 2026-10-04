@@ -7,8 +7,8 @@ import { LINKS } from "@/lib/site";
 
 /* Links marked "#" were dead `#/` links in the HTML; Phase 4 gives them routes. */
 const COLS: [string, [string, string][]][] = [
-  ["Community", [[LINKS.discordInvite, "Join the Discord"], ["/results", "Weekly results"], ["#", "Challenges"], ["#", "Partners & perks"], ["#", "Giveaways"]]],
-  ["Learn", [["/masterclass", "Masterclass"], ["/masterclass", "Live sessions"], ["/indicator", "Strategy library"], ["#", "FAQ"], ["#", "About the desk"]]],
+  ["Community", [[LINKS.discordInvite, "Join the Discord"], ["#", "Challenges"], ["#", "Partners & perks"], ["#", "Giveaways"]]],
+  ["Learn", [["/masterclass", "Masterclass"], ["/masterclass", "Live sessions"], ["/indicator", "Strategy library"], ["#", "FAQ"], ["#", "About us"]]],
   ["Product", [["/indicator", "The indicator"], ["/pricing", "Pricing"], ["#", "Backtesting terminal"], [LINKS.signIn, "Sign in"], [LINKS.account, "Account"]]],
 ];
 
@@ -26,7 +26,7 @@ export function Footer() {
           <div>
             <h3>One email a week.</h3>
             <p className="small" style={{ marginTop: 6 }}>
-              Signals recap, new lessons, partner deals. Nothing else.
+              New lessons, session recaps, partner deals. Nothing else.
             </p>
           </div>
           <NewsletterForm />
@@ -38,7 +38,7 @@ export function Footer() {
               <b>GLITCHERS</b>
             </Link>
             <p className="small" style={{ marginTop: 16, maxWidth: "34ch" }}>
-              A gold and crypto trading desk that runs in Discord. Teaching the method, selling the tool.
+              A gold and crypto trading education community that runs in Discord. Teaching the method, selling the tool.
             </p>
             <div className="socials">
               <a href={LINKS.social.x} aria-label="X"><XIcon /></a>

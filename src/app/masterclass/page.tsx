@@ -106,9 +106,9 @@ export default function MasterclassPage() {
         <Rail n="I" label="Live sessions" />
         <div className="split top">
           <div data-rv>
-            <h2>Thursdays, with the desk.</h2>
+            <h2>Thursdays, with your mentors.</h2>
             <p className="lede">
-              A live chart session every Thursday — the week&apos;s signals reviewed, the losers explained, and
+              A live chart session every Thursday — the week&apos;s charts broken down, mistakes explained, and
               whatever the room asks. Recorded and added to the library afterwards.
             </p>
           </div>
@@ -118,7 +118,7 @@ export default function MasterclassPage() {
               <span className="mono small" style={{ color: "var(--gold-400)" }}>NEXT SESSION</span>
             </div>
             <Countdown />
-            <p className="small" style={{ marginTop: 8 }}>Thursday 20:00 UTC · Weekly signal review</p>
+            <p className="small" style={{ marginTop: 8 }}>Thursday 20:00 UTC · Weekly chart review</p>
             <div className="btn-row" style={{ marginTop: 22 }}>
               <MagneticButton href={LINKS.calendar} className="btn btn-secondary btn-sm">Add to calendar</MagneticButton>
               <a href={LINKS.pastRecordings} className="btn btn-ghost btn-sm">Past recordings</a>

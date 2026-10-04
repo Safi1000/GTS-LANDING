@@ -8,9 +8,9 @@
 export const SITE = {
   name: "GLITCHERS",
   short: "GTS",
-  title: "GLITCHERS — Gold & Crypto Trading Desk",
+  title: "GLITCHERS — Gold & Crypto Trading Education",
   description:
-    "A Discord trading desk for gold and crypto. Daily signals, a proprietary TradingView indicator, a free masterclass, and our own backtesting terminal.",
+    "A Discord trading education community for gold and crypto. A free masterclass, live mentorship, a proprietary TradingView indicator, and our own backtesting terminal.",
   promoCode: "GTS20",
 } as const;
 

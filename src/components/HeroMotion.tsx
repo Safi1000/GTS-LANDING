@@ -88,14 +88,10 @@ export function HeroMotion({ children }: { children: ReactNode }) {
           // the empty 0.9s spacer keeps the headline timings exactly as before
           .add(() => setRevealed(true), "-=.55")
           .to({}, { duration: 0.9 }, "<")
-          .from("[data-hero=word]", { opacity: 0, y: 12, duration: 0.6 }, "-=.5")
-          .from("[data-hero=orn]", { opacity: 0, scaleX: 0.4, duration: 0.6 }, "-=.45")
-          .from("[data-hero=eye]", { opacity: 0, y: 10, duration: 0.5 }, "-=.4")
+          .from("[data-hero=eye]", { opacity: 0, y: 10, duration: 0.5 }, "-=.5")
           .from(".w", { yPercent: 110, opacity: 0, duration: 0.85, stagger: 0.07, ease: "power3.out" }, "-=.35")
           .from("[data-hero=lede]", { opacity: 0, y: 14, duration: 0.6 }, "-=.45")
-          .from("[data-hero=btns]", { opacity: 0, y: 14, duration: 0.6 }, "-=.45")
-          .from("[data-hero=micro]", { opacity: 0, duration: 0.5 }, "-=.4")
-          .from("[data-hero=cue]", { opacity: 0, duration: 0.5 }, "-=.3");
+          .from("[data-hero=btns]", { opacity: 0, y: 14, duration: 0.6 }, "-=.45");
 
         // StrictMode (dev) reverts and re-runs this immediately: let an
         // unfinished intro run again instead of being skipped.

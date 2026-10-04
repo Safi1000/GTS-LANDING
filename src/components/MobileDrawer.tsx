@@ -6,7 +6,6 @@ import { LINKS } from "@/lib/site";
 const ITEMS: [string, string][] = [
   ["/indicator", "Indicator"],
   ["/masterclass", "Masterclass"],
-  ["/results", "Results"],
   ["/pricing", "Pricing"],
 ];
 

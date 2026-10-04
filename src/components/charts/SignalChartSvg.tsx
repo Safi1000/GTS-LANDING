@@ -98,7 +98,7 @@ export function SignalChartSvg({
           fontSize={10}
           letterSpacing=".1em"
         >
-          GTS BUY
+          GTS SETUP
         </text>
       </g>
     </svg>

@@ -324,53 +324,37 @@
 .crest-ring{position:absolute;width:150px;height:150px;border:1px solid rgba(201,154,75,.32);
   border-radius:50%;opacity:0;pointer-events:none}
 /* animated GTS logo (components/gts-logo) — replaces the crest stage above.
-   320px box ≈ the old 220px dial: the logo's ring spans the middle ~64%. */
-.logo-stage{position:relative;width:clamp(110px,20vh,320px);aspect-ratio:1/1;margin:0 auto 6px;display:grid;place-items:center}
+   Full size is 320px (260px below 940px wide). It only shrinks on screens too
+   short to fit it and the rest of the hero: 63.7svh − 253px is the height
+   left after the bars, nav, headline, copy and buttons (all vh-scaled). */
+.logo-stage{position:relative;width:clamp(120px,calc(63.7svh - 253px),320px);aspect-ratio:1/1;margin:0 auto 6px;
+  display:grid;place-items:center}
+@media (max-width:940px){.logo-stage{width:clamp(120px,calc(63.7svh - 253px),260px)}}
 .logo-fallback{width:98px;height:116px}
-.hero .wordmark{font-family:var(--f-crest);font-weight:700;font-size:13px;letter-spacing:.48em;
-  color:var(--muted);padding-left:.48em}
 .hero h1{margin-top:clamp(10px,2.2vh,24px)}
 .hero h1.d-xl{font-size:clamp(30px,min(7.6vw,6.6vh),102px)}
-/* "signal" keeps the foil gradient but not the shimmer, in the hero only */
+/* "method" keeps the foil gradient but not the shimmer, in the hero only */
 .hero .foil{animation:none}
 .hero-gap-s{margin-top:clamp(8px,1.6vh,18px)}
 .hero-gap-l{margin-top:clamp(14px,3vh,34px)}
-.hero-cue{margin-top:clamp(12px,2.6vh,44px)}
-.hero .scroll-cue{height:clamp(22px,3.4vh,40px)}
-/* phones: one row of smaller hero buttons, no scroll cue */
+/* phones: one row of smaller hero buttons */
 @media (max-width:640px){
   .hero .btn-lg{padding:13px 15px;font-size:14px;gap:7px}
   .hero .btn-row{gap:8px}
-  .hero-micro{font-size:10px;letter-spacing:.02em}
-  .hero-cue{display:none}
 }
 /* short screens (laptops at 768/720, small phones) */
-@media (max-height:820px){.hero-cue{display:none}}
 @media (max-height:760px) and (min-width:641px){.hero .btn-lg{padding:14px 26px;font-size:14px}}
 @media (max-height:720px) and (max-width:640px){
   .hero .lede{font-size:14px;line-height:1.45}
   .logo-stage{margin-bottom:0}
 }
 .hero h1 .ln{display:block;overflow:hidden;padding-bottom:.04em}
-/* Hero lines use `.w`, as in the HTML. That class is also the ledger's
-   `.w{color:var(--win)}`, which is what makes the headline pale gold
+/* Hero lines use `.w`, as in the HTML. That class is the "win" colour
+   `.w{color:var(--win)}` (from the old results ledger), which makes the headline pale gold
    (#F5E3A3), and it beats `.dim` on line 3 — kept on purpose, matches the HTML.
    The spans stay inline, so the intro's yPercent has no visual effect and the
    lines fade in; add `.hero h1 .w{display:inline-block}` for a slide-up. */
 .hero .lede{margin-inline:auto;max-width:min(68ch,100%);margin-top:clamp(10px,1.8vh,18px)}
-.hero-micro{font-family:var(--f-mono);font-size:11.5px;color:var(--muted);letter-spacing:.06em;margin-top:clamp(10px,1.8vh,20px)}
-.scroll-cue{width:1px;height:40px;background:var(--line-mid);margin:0 auto;position:relative;overflow:hidden}
-.scroll-cue::after{content:'';position:absolute;left:-1px;width:3px;height:10px;background:var(--gold-500);
-  animation:cue 2.1s ease-in-out infinite}
-.floaters{position:absolute;inset:0;pointer-events:none}
-.floater{position:absolute;width:198px;background:rgba(23,21,26,.86);border:1px solid var(--line);
-  border-radius:3px;padding:14px 16px;text-align:left;box-shadow:0 0 70px rgba(122,23,48,.34);
-  backdrop-filter:blur(6px)}
-.floater.f1{left:3%;top:30%}.floater.f2{right:3%;top:23%}.floater.f3{right:9%;bottom:19%}
-.floater .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
-.floater .pair{font-family:var(--f-mono);font-size:12px}
-.floater .r{font-family:var(--f-mono);font-size:20px;color:var(--gold-300);letter-spacing:-.03em}
-.floater .meta{font-size:10px;color:var(--faint);letter-spacing:.12em;text-transform:uppercase;margin-top:3px}
 
 /* ─── strip ─── */
 .strip{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:3px;
@@ -403,14 +387,8 @@
 .anat-step h3{font-size:18px;margin-top:8px}
 .anat-step p{font-size:13.5px;color:var(--muted);margin-top:6px;line-height:1.55}
 
-/* ─── horizontal rooms ───
-   Natively swipeable (scrollbar hidden) so the rooms stay reachable without JS
-   or with reduced motion; the pinned scroll adds .pinned and takes over. */
-.hscroll{overflow-x:auto;overflow-y:hidden;position:relative;scrollbar-width:none}
-.hscroll::-webkit-scrollbar{display:none}
-.hscroll.pinned{overflow:hidden}
-.htrack{display:flex;gap:20px;padding-inline:var(--gut);width:max-content;align-items:stretch}
-.room{width:min(340px,78vw);flex:none;background:var(--ink-700);border:1px solid var(--line);
+/* ─── rooms (static grid; was a pinned horizontal track) ─── */
+.room{background:var(--ink-700);border:1px solid var(--line);
   border-radius:3px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;
   min-height:290px;transition:border-color .25s,background .25s}
 .room:hover{border-color:var(--line-gold);background:var(--ink-600)}
@@ -432,7 +410,7 @@
 .step .tag{font-family:var(--f-mono);font-size:10.5px;color:var(--gold-500);letter-spacing:.14em;
   text-transform:uppercase;margin-top:14px;display:block}
 
-/* ─── figures / syllabus / ledger / bars ─── */
+/* ─── figures / syllabus ─── */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,74px);align-items:center}
 .split.top{align-items:start}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -452,26 +430,8 @@
   transition:color .2s,padding-left .25s var(--e-out)}
 .syl div:hover{color:var(--gold-300);padding-left:8px}
 .syl i{font-family:var(--f-mono);font-style:normal;color:var(--gold-700);font-size:12px;padding-top:2px}
-.ledger{width:100%;border-collapse:collapse;font-size:14px}
-.ledger th{text-align:left;font-family:var(--f-crest);font-size:10.5px;letter-spacing:.22em;
-  text-transform:uppercase;color:var(--muted);font-weight:600;padding:0 14px 14px 0;
-  border-bottom:1px solid var(--line-mid)}
-.ledger td{padding:15px 14px 15px 0;border-bottom:1px solid var(--line);font-family:var(--f-mono);font-size:13px}
-.ledger td.t{font-family:var(--f-disp);font-weight:500}
-.ledger tbody tr{transition:background .15s}
-.ledger tbody tr:hover{background:rgba(92,15,34,.14)}
-.ledger .num{text-align:right}
+/* .w is load-bearing: it colours the hero headline (see .hero h1 above) */
 .w{color:var(--win)}.l{color:var(--loss)}.f{color:var(--flat)}
-.bars{display:flex;align-items:flex-end;gap:10px;height:130px}
-.bars div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
-.bars i{display:block;background:linear-gradient(180deg,var(--gold-500),var(--ox-600));border-radius:1px;height:0}
-.bars span{font-family:var(--f-mono);font-size:10px;color:var(--faint);text-align:center;margin-top:8px}
-
-/* ledger filters — rows are server-rendered; the chip state only flips a data attribute */
-.lf[data-filter="gold"] tbody tr:not([data-mkt="gold"]),
-.lf[data-filter="crypto"] tbody tr:not([data-mkt="crypto"]),
-.lf[data-filter="win"] tbody tr:not([data-res="win"]),
-.lf[data-filter="loss"] tbody tr:not([data-res="loss"]){display:none}
 
 /* ─── marquee ─── */
 .marq{overflow:hidden;
@@ -586,7 +546,6 @@ footer{border-top:1px solid var(--line);margin-top:var(--band);position:relative
   .nav-links{display:none}.nav-cta .btn-ghost{display:none}.burger{display:block}
   .split,.grid-2,.grid-3,.grid-4,.syl{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr;gap:34px}.steps .track{display:none}
-  .floaters{display:none}
   .strip{grid-template-columns:1fr 1fr}
   .strip>div:nth-child(2){border-right:0}
   .strip>div:nth-child(-n+2){border-bottom:1px solid var(--line)}
@@ -606,5 +565,4 @@ footer{border-top:1px solid var(--line);margin-top:var(--band);position:relative
 @keyframes march{to{transform:translateX(-50%)}}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes sheen{0%{left:-75%}17%{left:150%}100%{left:150%}}
-@keyframes cue{0%{top:-10px;opacity:0}30%{opacity:1}100%{top:40px;opacity:0}}
 @keyframes pre-failsafe{to{opacity:0;visibility:hidden}}

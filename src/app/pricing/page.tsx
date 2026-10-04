@@ -11,26 +11,26 @@ import { LINKS } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "One subscription for the indicator and the backtesting terminal. The Discord, the masterclass, the signals, the results and the partner perks stay free.",
+    "One subscription for the indicator and the backtesting terminal. The Discord, the masterclass, the live sessions and the partner perks stay free.",
   alternates: { canonical: "/pricing" },
   openGraph: { title: "Pricing — GLITCHERS" },
 };
 
 const COMMUNITY = [
-  "Daily gold and crypto signals", "The complete masterclass", "Live sessions with the desk",
-  "Weekly published results", "Prop firm and exchange perks", "Both trading challenges",
+  "The complete masterclass", "Live sessions with mentors", "Prop firm and exchange perks",
+  "Both trading challenges",
 ];
 const MEMBER = [
   "Everything in Community", "The GTS indicator on TradingView", "All four strategies", "Backtesting terminal",
   "Consolidated multi-provider data", "Member-only Discord channels", "Priority support", "Cancel any time",
 ];
 const WITH = [
-  "Education is free and complete", "Losing signals published alongside winners",
+  "Education is free and complete",
   "Win rates come with a sample size", "One price, no upsells inside the server",
   "Affiliate relationships disclosed up front",
 ];
 const ELSEWHERE = [
-  "Course locked behind a second payment", "Only the winning screenshots get posted",
+  "Course locked behind a second payment",
   "90% win rate, no methodology anywhere", "VIP tier, then a VIP+ tier", "Broker referral links with no disclosure",
 ];
 const LI = { display: "flex", gap: 12, fontSize: 14.5 } as const;
@@ -47,8 +47,7 @@ export default function PricingPage() {
             Indicator and terminal.
           </h1>
           <p className="lede" style={{ marginInline: "auto" }}>
-            Everything else — the Discord, the masterclass, the signals, the results and the partner perks — stays
-            free.
+            Everything else — the Discord, the masterclass, the live sessions and the partner perks — stays free.
           </p>
           <div style={{ display: "flex", justifyContent: "center", marginTop: 34 }}>
             <BillingToggle />

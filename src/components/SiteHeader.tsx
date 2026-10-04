@@ -18,7 +18,7 @@ const DROPS = {
   masterclass: [
     ["/masterclass", "All lessons", "The full free curriculum"],
     ["/masterclass", "Start here", "Foundations for new traders"],
-    ["/masterclass", "Live sessions", "Thursdays with the desk"],
+    ["/masterclass", "Live sessions", "Thursdays with your mentors"],
     ["/indicator", "Strategy library", "Rules, examples, invalidation"],
   ],
 } as const;
@@ -79,9 +79,6 @@ export function SiteHeader() {
               </Link>
               <Drop items={DROPS.masterclass} />
             </div>
-            <Link href="/results" className={nl("/results")}>
-              Results
-            </Link>
             <Link href="/pricing" className={nl("/pricing")}>
               Pricing
             </Link>

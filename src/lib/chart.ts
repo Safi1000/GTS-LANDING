@@ -84,17 +84,6 @@ export function plainBars(seed: number, n: number) {
   );
 }
 
-export function equityPoints() {
-  const r = prng(77);
-  const pts: number[] = [];
-  let v = 0;
-  for (let i = 0; i < 24; i++) {
-    v += r() * 10 - 2.6;
-    pts.push(v);
-  }
-  return pts;
-}
-
 export function ambientCandles() {
   const r = prng(9);
   const out: { x: number; t: number; h: number; wy: number; wh: number }[] = [];

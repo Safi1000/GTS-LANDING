@@ -1,12 +1,10 @@
 import { Accordion } from "@/components/Accordion";
 import { AnatomyScrub } from "@/components/AnatomyScrub";
-import { BarsReveal } from "@/components/BarsReveal";
 import { AmbientCandles } from "@/components/charts/AmbientCandles";
 import { PlainChart } from "@/components/charts/PlainChart";
 import { SignalChartSvg } from "@/components/charts/SignalChartSvg";
 import { Counter } from "@/components/Counter";
 import { Crest } from "@/components/Crest";
-import { HorizontalRooms } from "@/components/HorizontalRooms";
 import { MagneticButton } from "@/components/MagneticButton";
 import { Marquee } from "@/components/Marquee";
 import { StepsTrack } from "@/components/StepsTrack";
@@ -15,7 +13,7 @@ import { TiltCard } from "@/components/TiltCard";
 import { ArrowIcon } from "@/components/icons";
 import { Kicker, Orn, PanelBar, Rail } from "@/components/ui";
 import {
-  HOME_FAQ, HOME_LEDGER, PARTNER_LOGOS, PERKS, QUOTES_A, QUOTES_B, ROOMS, SYLLABUS, WEEK_BARS, type Quote,
+  HOME_FAQ, PARTNER_LOGOS, PERKS, QUOTES_A, QUOTES_B, ROOMS, SYLLABUS, type Quote,
 } from "@/lib/content";
 import { LINKS } from "@/lib/site";
 
@@ -28,25 +26,25 @@ export function Trust() {
       <div className="strip frame" data-rv>
         <div><Counter as="b" to={75} suffix="%" /><span>Win rate at 1R</span></div>
         <div><Counter as="b" to={60} suffix="%" /><span>Win rate at 2R</span></div>
-        <div><b>Daily</b><span>Gold + crypto signals</span></div>
+        <div><b>12</b><span>Masterclass modules</span></div>
         <div><Counter as="b" to={2} suffix="×" /><span>Challenges running</span></div>
       </div>
     </section>
   );
 }
 
-/* ══════════ I. ANATOMY OF A SIGNAL (pinned scrub) ══════════ */
+/* ══════════ I. ANATOMY OF A SETUP (pinned scrub) ══════════ */
 const ANAT_STEPS = [
   ["01 · RANGE", "Price builds a level", "The script tracks the highs and lows that everyone else is watching."],
   ["02 · SWEEP", "Liquidity gets taken", "Price runs the level, trips the stops sitting beyond it, and fails to hold."],
   ["03 · BOS", "Structure breaks back", "The reclaim confirms the move was a raid, not a breakout."],
-  ["04 · SIGNAL", "Entry, stop, two targets", "Printed and measured. From here it is your risk and your call."],
+  ["04 · ENTRY", "Entry, stop, two targets", "Printed and measured. From here it is your risk and your call."],
 ];
 
 export function Anatomy() {
   return (
     <AnatomyScrub className="wrap band anatomy">
-      <Rail n="I" label="Anatomy of a signal" />
+      <Rail n="I" label="Anatomy of a setup" />
       <div className="anat-grid">
         <div>
           <h2 style={{ fontSize: "clamp(28px,3.4vw,42px)", marginBottom: 26 }} data-rv>
@@ -65,11 +63,11 @@ export function Anatomy() {
           </div>
         </div>
         <div className="panel">
-          <PanelBar pair="XAUUSD" tf="15M" label="GTS Signals v3" live="LIVE" />
+          <PanelBar pair="XAUUSD" tf="15M" label="GTS Indicator v3" live="LIVE" />
           <SignalChartSvg
             opts={SIGNAL_OPTS}
             role="img"
-            aria-label="Gold chart printing a GTS buy signal as the page scrolls"
+            aria-label="Gold chart where the GTS indicator marks a setup as the page scrolls"
           />
         </div>
       </div>
@@ -77,38 +75,34 @@ export function Anatomy() {
   );
 }
 
-/* ══════════ II. THE ROOMS (horizontal) ══════════ */
+/* ══════════ II. THE ROOMS ══════════ */
 export function Rooms() {
   return (
-    <HorizontalRooms className="band">
-      <div className="wrap">
-        <Rail n="II" label="Inside the server" />
-        <h2 data-rv>Eight rooms, one desk.</h2>
-        <p className="lede" data-rv style={{ marginBottom: 44 }}>
-          Everything runs where the conversation already is. Scroll sideways.
-        </p>
-      </div>
-      <div className="hscroll">
-        <div className="htrack">
-          {ROOMS.map(([code, h, p, idx]) => (
-            <div className="room" key={code}>
-              <div>
-                <code>{code}</code>
-                <h3>{h}</h3>
-                <p>{p}</p>
-              </div>
-              <div className="idx">{idx}</div>
+    <section className="wrap band">
+      <Rail n="II" label="Inside the server" />
+      <h2 data-rv>Four rooms, one community.</h2>
+      <p className="lede" data-rv style={{ marginBottom: 44 }}>
+        Everything runs where the conversation already is.
+      </p>
+      <div className="grid-4">
+        {ROOMS.map(([code, h, p, idx]) => (
+          <div className="room" data-rv key={code}>
+            <div>
+              <code>{code}</code>
+              <h3>{h}</h3>
+              <p>{p}</p>
             </div>
-          ))}
-        </div>
+            <div className="idx">{idx}</div>
+          </div>
+        ))}
       </div>
-    </HorizontalRooms>
+    </section>
   );
 }
 
 /* ══════════ III. HOW IT WORKS ══════════ */
 const STEPS = [
-  ["I", "Join the Discord", "Signals, results, discussion and partner perks. Nothing behind a card.", "Free"],
+  ["I", "Join the Discord", "Discussion, mentorship and partner perks. Nothing behind a card.", "Free"],
   ["II", "Take the masterclass", "The complete method, including every strategy the indicator uses.", "Free"],
   ["III", "Add the indicator", "Once you know the method, the tool that prints it saves you the screen time.", "From $39/mo"],
 ];
@@ -211,7 +205,7 @@ export function MasterclassSection() {
             Not a funnel with the good parts removed. The curriculum runs from what a candle is actually telling you
             up to every strategy inside the indicator and how to size the trades it gives you.
           </p>
-          <p className="lede">Video lessons, live sessions with the desk, and written breakdowns with annotated charts.</p>
+          <p className="lede">Video lessons, live sessions with mentors, and written breakdowns with annotated charts.</p>
           <div className="btn-row" style={{ marginTop: 30 }}>
             <MagneticButton href="/masterclass" className="btn btn-secondary">
               Start the masterclass
@@ -231,63 +225,11 @@ export function MasterclassSection() {
   );
 }
 
-/* ══════════ VI. RESULTS ══════════ */
-export function ResultsSection() {
-  return (
-    <section className="wrap band">
-      <Rail n="VI" label="Results, posted weekly" />
-      <div className="split top" style={{ alignItems: "end", marginBottom: 44 }}>
-        <div data-rv>
-          <h2>
-            The losses
-            <br />
-            get posted too.
-          </h2>
-          <p className="lede">
-            Every signal the desk sends is logged and published on Sunday. Cherry-picked screenshots are how signal
-            groups get away with a 40% win rate.
-          </p>
-        </div>
-        <div data-rv>
-          <p className="small" style={{ marginBottom: 12 }}>R per week, last eight</p>
-          <BarsReveal bars={WEEK_BARS} />
-        </div>
-      </div>
-      <div data-rv style={{ overflowX: "auto" }}>
-        <table className="ledger">
-          <thead>
-            <tr>
-              <th>Pair</th><th>Direction</th><th className="hide-sm">Strategy</th><th>Outcome</th>
-              <th className="num">R</th>
-            </tr>
-          </thead>
-          <tbody>
-            {HOME_LEDGER.map(([pair, dir, strat, out, r, cls], i) => (
-              <tr key={i}>
-                <td className="t">{pair}</td>
-                <td>{dir}</td>
-                <td className="hide-sm">{strat}</td>
-                <td className={cls}>{out}</td>
-                <td className={`num ${cls}`}>{r}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="btn-row" style={{ marginTop: 30 }}>
-          <MagneticButton href="/results" className="btn btn-secondary btn-sm">
-            See the full ledger
-          </MagneticButton>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ══════════ VII. TERMINAL ══════════ */
+/* ══════════ VI. TERMINAL ══════════ */
 export function TerminalSection() {
   return (
     <section className="wrap band">
-      <Rail n="VII" label="The backtesting terminal" />
+      <Rail n="VI" label="The backtesting terminal" />
       <div className="split">
         <div data-rv>
           <span className="badge" style={{ marginBottom: 22 }}>Included with membership</span>
@@ -319,12 +261,12 @@ export function TerminalSection() {
   );
 }
 
-/* ══════════ VIII. PARTNERS ══════════ */
+/* ══════════ VII. PARTNERS ══════════ */
 export function Partners() {
   return (
     <section className="band">
       <div className="wrap">
-        <Rail n="VIII" label="Perks & partners" />
+        <Rail n="VII" label="Perks & partners" />
         <h2 data-rv>Cheaper funding, cheaper fees.</h2>
         <p className="lede" data-rv style={{ marginBottom: 38 }}>
           We partner with prop firms and exchanges so the community pays less to trade. Codes live in{" "}
@@ -351,7 +293,7 @@ export function Partners() {
   );
 }
 
-/* ══════════ IX. VOICES  [SAMPLE COPY] ══════════ */
+/* ══════════ VIII. VOICES  [SAMPLE COPY] ══════════ */
 const QuoteCard = ({ q }: { q: Quote }) => (
   <div className="quote">
     <p>{q.p}</p>
@@ -366,7 +308,7 @@ export function Voices() {
   return (
     <section className="band">
       <div className="wrap">
-        <Rail n="IX" label="From the server" />
+        <Rail n="VIII" label="From the server" />
         <h2 data-rv style={{ marginBottom: 40 }}>What members actually say.</h2>
       </div>
       <Marquee speed={0.4} style={{ marginBottom: 16 }}>
@@ -379,11 +321,11 @@ export function Voices() {
   );
 }
 
-/* ══════════ X. FAQ ══════════ */
+/* ══════════ IX. FAQ ══════════ */
 export function Faq() {
   return (
     <section className="wrap band">
-      <Rail n="X" label="Questions" />
+      <Rail n="IX" label="Questions" />
       <div className="split top">
         <div data-rv>
           <h2>Straight answers.</h2>
@@ -413,7 +355,7 @@ export function HomeCta() {
           So is the masterclass.
         </h2>
         <p className="lede" style={{ margin: "20px auto 0", textAlign: "center" }}>
-          Come in, read the results, take the course, and decide about the indicator afterwards. That order works
+          Come in, take the course, join the live sessions, and decide about the indicator afterwards. That order works
           better for everyone.
         </p>
         <div className="btn-row center" style={{ marginTop: 36 }}>

@@ -4,7 +4,7 @@ import { useRef, type ReactNode } from "react";
 import { gsap, MOTION, ScrollTrigger, useGSAP, within } from "@/lib/gsap";
 
 /**
- * "Anatomy of a signal" — pins `.anat-grid` and draws the signal chart
+ * "Anatomy of a setup" — pins `.anat-grid` and draws the indicator chart
  * against scroll progress while highlighting the matching step on the left.
  *
  * The section content (steps, chart SVG) is server-rendered and passed in as

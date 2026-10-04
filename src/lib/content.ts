@@ -2,21 +2,16 @@
  * Static page content lifted from gts-site-v2.html.
  *
  * Items marked SAMPLE / PLACEHOLDER were placeholders in the HTML and stay
- * placeholders: the testimonials, the ledger rows, the R-per-week bars and the
- * methodology figures. They get replaced by CMS / database data in Phase 5.
+ * placeholders: the testimonials and the methodology figures. They get
+ * replaced by CMS / database data in Phase 5.
  */
-import { prng } from "@/lib/chart";
 import type { AccItem } from "@/components/Accordion";
 
 export const ROOMS = [
-  ["#gold-signals", "Gold setups, daily", "Entry, stop and targets, posted with the reasoning attached.", "I"],
-  ["#crypto-signals", "Majors and alts", "The same framework, sized for crypto volatility.", "II"],
-  ["#trade-ideas", "Bias before the open", "Where the desk thinks price is going, and what would prove it wrong.", "III"],
-  ["#weekly-results", "Every signal tracked", "Wins and losses both, published at the end of each week.", "IV"],
-  ["#discussion", "Open floor", "Charts, questions, disagreements. The part that makes traders better.", "V"],
-  ["#challenges", "Two running now", "Gold and crypto, with the leaderboard posted publicly.", "VI"],
-  ["#perks", "Prop firms & exchanges", "Discount codes, fee rebates and giveaways from our partners.", "VII"],
-  ["#news", "Automated feed", "Our bot posts releases and events before they move price.", "VIII"],
+  ["#discussion", "Open floor", "Charts, questions, disagreements. The part that makes traders better.", "I"],
+  ["#challenges", "Two running now", "Gold and crypto, with the leaderboard posted publicly.", "II"],
+  ["#perks", "Prop firms & exchanges", "Discount codes, fee rebates and giveaways from our partners.", "III"],
+  ["#news", "Automated feed", "Our bot posts releases and events before they move price.", "IV"],
 ] as const;
 
 export const SYLLABUS = [
@@ -24,19 +19,6 @@ export const SYLLABUS = [
   "Liquidity & order flow", "Risk & position sizing", "Session timing", "Every indicator strategy",
   "Backtesting your edge", "Journaling & review",
 ];
-
-/** SAMPLE — R per week, last eight */
-export const WEEK_BARS = [34, 52, 28, 66, 18, 78, 58, 92].map((h, i) => ({ label: `W${i + 1}`, h }));
-
-/** SAMPLE — home page ledger excerpt */
-export const HOME_LEDGER = [
-  ["XAUUSD", "Long", "Sweep reversal", "Target hit", "+2.0", "w"],
-  ["BTCUSDT", "Short", "Range break", "Target hit", "+1.0", "w"],
-  ["XAUUSD", "Short", "Trend continuation", "Stopped", "−1.0", "l"],
-  ["ETHUSDT", "Long", "Sweep reversal", "Target hit", "+2.0", "w"],
-  ["XAUUSD", "Long", "Session scalp", "Break even", "0.0", "f"],
-  ["SOLUSDT", "Long", "Trend continuation", "Target hit", "+1.0", "w"],
-] as const;
 
 export const PARTNER_LOGOS = [
   "PROP FIRM", "EXCHANGE", "PROP FIRM", "EXCHANGE", "BROKER", "PROP FIRM",
@@ -54,22 +36,20 @@ export type Quote = { p: string; av: string; hd: string };
 /** SAMPLE COPY — testimonials (each row repeats with shorter cuts for the loop) */
 export const QUOTES_A: Quote[] = [
   { p: "The free masterclass is better than two paid courses I bought last year. Took three weeks to work through and I stopped revenge trading after module four.", av: "KH", hd: "@kh_trades" },
-  { p: "What sold me was the results channel. They post the stopped-out trades with the same energy as the winners. Nobody else does that.", av: "MR", hd: "@marcusr" },
   { p: "Indicator does not think for you, which I like. It marks the sweep and the break, I decide if the daily agrees. Cut my screen time in half.", av: "SA", hd: "@saad.fx" },
   { p: "Terminal is the underrated part. Replaying gold on a consolidated feed instead of one broker's wicks changed how I backtest.", av: "JD", hd: "@jdoyle" },
   { p: "The free masterclass is better than two paid courses I bought last year. I stopped revenge trading after module four.", av: "KH", hd: "@kh_trades" },
-  { p: "They post the stopped-out trades with the same energy as the winners. Nobody else does that.", av: "MR", hd: "@marcusr" },
   { p: "It marks the sweep and the break, I decide if the daily agrees. Cut my screen time in half.", av: "SA", hd: "@saad.fx" },
   { p: "Replaying gold on a consolidated feed changed how I backtest.", av: "JD", hd: "@jdoyle" },
 ];
 export const QUOTES_B: Quote[] = [
-  { p: "Joined for signals, stayed for #discussion. Getting your chart torn apart by people who actually trade is worth more than the signals.", av: "TN", hd: "@tariqn" },
+  { p: "Stayed for #discussion. Getting your chart torn apart by people who actually trade is worth more than any course.", av: "TN", hd: "@tariqn" },
   { p: "Prop firm code paid for my indicator subscription twice over. Genuinely did not expect that.", av: "LB", hd: "@lenab" },
-  { p: "Two months in, first green month ever. The position sizing module did it, not the signals.", av: "AY", hd: "@ayo_trades" },
+  { p: "Two months in, first green month ever. The position sizing module did it.", av: "AY", hd: "@ayo_trades" },
   { p: "They told me not to subscribe until I had finished the masterclass. First trading group that has ever talked me out of spending money.", av: "DV", hd: "@dvriend" },
-  { p: "Getting your chart torn apart by people who actually trade is worth more than the signals.", av: "TN", hd: "@tariqn" },
+  { p: "Getting your chart torn apart by people who actually trade is worth more than any course.", av: "TN", hd: "@tariqn" },
   { p: "Prop firm code paid for my indicator subscription twice over.", av: "LB", hd: "@lenab" },
-  { p: "First green month ever. The position sizing module did it, not the signals.", av: "AY", hd: "@ayo_trades" },
+  { p: "First green month ever. The position sizing module did it.", av: "AY", hd: "@ayo_trades" },
   { p: "First trading group that has ever talked me out of spending money.", av: "DV", hd: "@dvriend" },
 ];
 
@@ -79,16 +59,16 @@ export const HOME_FAQ: AccItem[] = [
   { q: "What is the win rate, really?", a: "75% at 1R and 60% at 2R across our own backtests. Those are backtested figures, not live account statements, and the full methodology — pairs, date range, sample size and the worst losing streak — is posted in the server. A win rate without a sample size attached is marketing, not data." },
   { q: "Do you offer refunds?", a: "Card subscriptions can be cancelled any time and you keep access to the end of the paid period. Crypto payments are a fixed-term purchase and cannot be refunded, which is why we say so plainly at checkout rather than burying it in the terms." },
   { q: "Do I need experience to join?", a: "No. The masterclass starts at market structure and candles and assumes nothing. Most people spend a few weeks in the free material before they think about the indicator, and we would rather you did it in that order." },
-  { q: "Which markets do you cover?", a: "Gold and crypto. Gold on the London and New York sessions, crypto around the clock with a focus on majors and a small rotation of liquid alts. We do not send equities, indices or FX pairs, because that is not where the desk has an edge." },
-  { q: "Is any of this financial advice?", a: "No. Everything we publish is educational. Signals are ideas with a level, a stop and a target attached — not instructions, and we have no idea what your account size or risk tolerance is. GLITCHERS is not a broker, adviser or asset manager and never handles anyone's funds." },
-  { q: "What happens if I cancel?", a: "Indicator and terminal access end when the paid period does, and the script disappears from your TradingView list. You keep your Discord membership, the masterclass, the results archive and the partner perks — those never depended on paying." },
+  { q: "Which markets do you cover?", a: "Gold and crypto. Gold on the London and New York sessions, crypto around the clock with a focus on majors and a small rotation of liquid alts. We do not teach equities, indices or FX pairs, because that is not where our edge is." },
+  { q: "Is any of this financial advice?", a: "No. Everything we publish is educational, and we have no idea what your account size or risk tolerance is. GLITCHERS is not a broker, adviser or asset manager and never handles anyone's funds." },
+  { q: "What happens if I cancel?", a: "Indicator and terminal access end when the paid period does, and the script disappears from your TradingView list. You keep your Discord membership, the masterclass, the live sessions and the partner perks — those never depended on paying." },
 ];
 
 export const BILLING_FAQ: AccItem[] = [
   { q: "Can I cancel any time?", a: "Yes, from your account page in two clicks. Access continues to the end of the period you have already paid for, then the script is removed from your TradingView account." },
   { q: "What happens if my card fails?", a: "Nothing immediately. Stripe retries over roughly two weeks and you stay in a grace period the whole time. We only revoke indicator access once the subscription has actually failed, not on the first decline." },
   { q: "How do crypto payments work?", a: "They buy a fixed term — 30 days or 365 days — rather than a subscription. There is no auto-renew, so we message you at seven days, three days and one day before access ends. Crypto payments cannot be refunded." },
-  { q: "Do I lose the free stuff if I cancel?", a: "No. The Discord, masterclass, signals, results archive and partner perks were never tied to paying, and they stay exactly as they were." },
+  { q: "Do I lose the free stuff if I cancel?", a: "No. The Discord, masterclass, live sessions and partner perks were never tied to paying, and they stay exactly as they were." },
 ];
 
 export const STRATEGIES = [
@@ -133,40 +113,6 @@ export const LESSONS = [
   ["Risk", "Journaling and reviewing your own data", "The habit that turns a losing trader into a breakeven one.", "16m"],
 ] as const;
 
-const PAIRS = [["XAUUSD", "gold"], ["BTCUSDT", "crypto"], ["ETHUSDT", "crypto"], ["SOLUSDT", "crypto"]] as const;
-const STRATS = ["Sweep reversal", "Trend continuation", "Range break", "Session scalp"];
-
-export type LedgerRow = {
-  d: string; p: string; m: string; dir: string; st: string; out: string; R: string; cls: string; wk: string;
-};
-
-/**
- * SAMPLE DATA — the full results ledger, generated from prng(4242) exactly as
- * in the HTML. Dates use Date.UTC: the HTML used local-time `new Date(y,m,d)`
- * then toISOString(), which shifted every date back a day east of UTC and
- * would mismatch between server and browser.
- */
-export function sampleLedger(): LedgerRow[] {
-  const r = prng(4242);
-  const rows: LedgerRow[] = [];
-  for (let i = 0; i < 26; i++) {
-    const [p, m] = PAIRS[Math.floor(r() * 4)];
-    const dir = r() > 0.45 ? "Long" : "Short";
-    const st = STRATS[Math.floor(r() * 4)];
-    const roll = r();
-    let out: string, R: string, cls: string, wk: string;
-    if (roll < 0.62) {
-      out = "Target hit"; R = "+" + (r() > 0.5 ? 2 : 1).toFixed(1); cls = "w"; wk = "win";
-    } else if (roll < 0.88) {
-      out = "Stopped"; R = "−1.0"; cls = "l"; wk = "loss";
-    } else {
-      out = "Break even"; R = "0.0"; cls = "f"; wk = "be";
-    }
-    rows.push({ d: new Date(Date.UTC(2026, 6, 31 - i)).toISOString().slice(0, 10), p, m, dir, st, out, R, cls, wk });
-  }
-  return rows;
-}
-
 /** Footer risk warning. LEGALLY LOAD-BEARING — verbatim from the HTML. Do not edit without sign-off. */
 export const RISK_WARNING =
-  "Trading gold, foreign exchange and cryptocurrency carries a high level of risk and can result in the loss of all of your capital. Past performance, including any win rates, backtested figures or published results shown on this site, is not a reliable indicator of future results — backtested performance in particular benefits from hindsight and does not fully account for slippage, liquidity or the psychological cost of a losing streak. All performance figures shown here are from in-house backtesting, and the complete methodology, including sample size, date range, pairs tested and worst drawdown, is published in our Discord server. Nothing on this site or in our Discord is financial, investment or tax advice; everything we publish is educational, and every trading decision you make is your own. GLITCHERS is not a licensed broker, financial adviser or asset manager, does not manage funds on anyone's behalf, and never takes custody of member capital. Signals are ideas, not instructions. We hold commercial affiliate relationships with the prop firms and exchanges listed on this site and may earn a commission when you use our links or discount codes. Only trade with capital you can afford to lose.";
+  "Trading gold, foreign exchange and cryptocurrency carries a high level of risk and can result in the loss of all of your capital. Past performance, including any win rates, backtested figures or published results shown on this site, is not a reliable indicator of future results — backtested performance in particular benefits from hindsight and does not fully account for slippage, liquidity or the psychological cost of a losing streak. All performance figures shown here are from in-house backtesting, and the complete methodology, including sample size, date range, pairs tested and worst drawdown, is published in our Discord server. Nothing on this site or in our Discord is financial, investment or tax advice; everything we publish is educational, and every trading decision you make is your own. GLITCHERS is not a licensed broker, financial adviser or asset manager, does not manage funds on anyone's behalf, and never takes custody of member capital. We hold commercial affiliate relationships with the prop firms and exchanges listed on this site and may earn a commission when you use our links or discount codes. Only trade with capital you can afford to lose.";

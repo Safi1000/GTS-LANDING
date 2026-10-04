@@ -44,11 +44,11 @@ export default function IndicatorPage() {
 
       <section className="wrap">
         <div className="panel" data-rv>
-          <PanelBar pair="XAUUSD" tf="15M" label="GTS Signals v3" live="LIVE" />
+          <PanelBar pair="XAUUSD" tf="15M" label="GTS Indicator v3" live="LIVE" />
           <SignalChart>
             <SignalChartSvg
               opts={{ w: 720, h: 400, seed: 20260807, start: 2404, entryIdx: 25 }}
-              aria-label="Gold chart with a GTS buy signal"
+              aria-label="Gold chart with a setup marked by the GTS indicator"
             />
           </SignalChart>
         </div>
@@ -86,7 +86,7 @@ export default function IndicatorPage() {
           <h3 style={{ fontSize: 25 }}>Where the numbers come from</h3>
           {/* PLACEHOLDER figures — as flagged in the HTML */}
           <div className="grid-4" style={{ marginTop: 28 }}>
-            <div><div className="mono" style={{ fontSize: 25, color: "var(--gold-300)" }}>1,240</div><p className="small" style={{ marginTop: 6 }}>Signals in sample</p></div>
+            <div><div className="mono" style={{ fontSize: 25, color: "var(--gold-300)" }}>1,240</div><p className="small" style={{ marginTop: 6 }}>Setups in sample</p></div>
             <div><div className="mono" style={{ fontSize: 25, color: "var(--gold-300)" }}>18 mo</div><p className="small" style={{ marginTop: 6 }}>Date range tested</p></div>
             <div><div className="mono" style={{ fontSize: 25, color: "var(--gold-300)" }}>6</div><p className="small" style={{ marginTop: 6 }}>Pairs tested</p></div>
             <div><div className="mono" style={{ fontSize: 25, color: "var(--loss)" }}>&minus;7R</div><p className="small" style={{ marginTop: 6 }}>Worst drawdown</p></div>

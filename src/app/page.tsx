@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Reveal } from "@/components/Reveal";
 import { Hero } from "@/components/home/Hero";
 import {
-  Anatomy, Faq, HomeCta, HowItWorks, IndicatorSection, MasterclassSection, Partners, ResultsSection, Rooms,
+  Anatomy, Faq, HomeCta, HowItWorks, IndicatorSection, MasterclassSection, Partners, Rooms,
   TerminalSection, Trust, Voices,
 } from "@/components/home/Sections";
 import { SITE } from "@/lib/site";
@@ -23,7 +23,6 @@ export default function Home() {
       <HowItWorks />
       <IndicatorSection />
       <MasterclassSection />
-      <ResultsSection />
       <TerminalSection />
       <Partners />
       <Voices />
