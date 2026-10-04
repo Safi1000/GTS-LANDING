@@ -7,9 +7,9 @@ import { INTRO_KEY, navState } from "@/lib/nav-state";
 
 /**
  * Owns all hero motion: the preloader → logo → headline intro timeline, the
- * scroll parallax and the floating signal cards. The hero content itself is
+ * scroll parallax. The hero content itself is
  * server-rendered and passed in as children; elements are found through
- * scoped selectors (`[data-hero=…]`, `.floater`, `.w`).
+ * scoped selectors (`[data-hero=…]`, `.w`).
  *
  * The intro plays only on the first hard load of `/` in a session. Repeat
  * visits and client-side navigations to `/` show the hero as-is.
@@ -47,21 +47,10 @@ export function HeroMotion({ children }: { children: ReactNode }) {
           return;
         }
 
-        /* parallax + floaters (built before the intro, as in the HTML) */
+        /* parallax (built before the intro, as in the HTML) */
         const scrub = (s: number) => ({ trigger: root, start: "top top", end: "bottom top", scrub: s });
         gsap.to("[data-hero=inner]", { y: -70, opacity: 0.15, ease: "none", scrollTrigger: scrub(0.6) });
         gsap.to(".grid-bg", { y: 90, ease: "none", scrollTrigger: scrub(0.6) });
-        gsap.utils.toArray<HTMLElement>(".floater").forEach((f, i) => {
-          gsap.to(f, {
-            y: -14,
-            duration: +(f.dataset.float ?? 8),
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-            delay: i * 0.4,
-          });
-          gsap.to(f, { y: -120 - i * 40, opacity: 0, ease: "none", scrollTrigger: scrub(0.8) });
-        });
 
         if (!playIntro.current) {
           setShowPre(false);
@@ -106,7 +95,6 @@ export function HeroMotion({ children }: { children: ReactNode }) {
           .from("[data-hero=lede]", { opacity: 0, y: 14, duration: 0.6 }, "-=.45")
           .from("[data-hero=btns]", { opacity: 0, y: 14, duration: 0.6 }, "-=.45")
           .from("[data-hero=micro]", { opacity: 0, duration: 0.5 }, "-=.4")
-          .from(".floater", { opacity: 0, y: 26, scale: 0.94, duration: 0.7, stagger: 0.12, ease: "power3.out" }, "-=.6")
           .from("[data-hero=cue]", { opacity: 0, duration: 0.5 }, "-=.3");
 
         // StrictMode (dev) reverts and re-runs this immediately: let an
