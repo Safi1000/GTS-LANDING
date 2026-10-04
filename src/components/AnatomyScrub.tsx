@@ -12,7 +12,16 @@ import { gsap, MOTION, ScrollTrigger, useGSAP, within } from "@/lib/gsap";
  * ones from gts-site-v2.html:
  *   candles 0 → .5 · sweep .36 · BOS .52 · levels .58 → .82 · tag .88
  *   steps: <.34 → 0, <.55 → 1, <.8 → 2, else 3
+ *
+ * The grid pins directly under the stuck nav and is sized to the rest of the
+ * viewport (`.anatomy.scrub` in globals.css), so the steps and chart are fully
+ * on screen for the whole scrub. On narrow/short screens the steps stack in one
+ * cell and cross-fade, so heading + active step + chart fit together.
+ * `.scrub` is only added while the scrub runs: reduced-motion and no-JS
+ * visitors get the normal layout with all four steps visible.
  */
+// Height of the nav once it is "stuck" (62px bar + 1px border); the pinned grid starts below it.
+const NAV_STUCK = 63;
 export function AnatomyScrub({ children, className }: { children: ReactNode; className?: string }) {
   const ref = useRef<HTMLElement>(null);
   useGSAP(
@@ -32,13 +41,16 @@ export function AnatomyScrub({ children, className }: { children: ReactNode; cla
 
       const mm = gsap.matchMedia();
       mm.add(MOTION, () => {
+        root.classList.add("scrub");
         all.forEach((n) => show(n, false));
         const st = ScrollTrigger.create({
-          trigger: root,
-          start: "top 12%",
+          trigger: grid,
+          start: `top ${NAV_STUCK}px`,
           end: "+=2200",
           pin: grid,
           scrub: 0.4,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
           onUpdate: (self) => {
             const p = self.progress;
             const nC = Math.round(Math.min(p / 0.5, 1) * cdl.length);
@@ -54,6 +66,7 @@ export function AnatomyScrub({ children, className }: { children: ReactNode; cla
         // Back to the server-rendered state if motion is turned off or we unmount.
         return () => {
           st.kill();
+          root.classList.remove("scrub");
           all.forEach((n) => show(n, true));
           setStep(0);
         };

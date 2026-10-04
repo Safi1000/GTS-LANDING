@@ -386,6 +386,19 @@
 .anat-step .n{font-family:var(--f-mono);font-size:10.5px;color:var(--gold-500);letter-spacing:.16em}
 .anat-step h3{font-size:18px;margin-top:8px}
 .anat-step p{font-size:13.5px;color:var(--muted);margin-top:6px;line-height:1.55}
+/* While the scrub runs (.scrub, added by AnatomyScrub): the pinned grid fills
+   the viewport below the stuck nav (63px), content centred, nothing off-screen. */
+.anatomy.scrub .anat-grid{height:calc(100svh - 63px);min-height:0;align-content:center}
+/* Narrow or short screens: the steps share one cell and cross-fade (height =
+   tallest step, so nothing jumps), and the chart is capped to the space left. */
+@media (max-width:1080px),(max-height:720px){
+  .anatomy.scrub .anat-grid{gap:18px}
+  .anatomy.scrub .anat-grid h2{margin-bottom:14px!important}
+  .anatomy.scrub .anat-steps{display:grid}
+  .anatomy.scrub .anat-step{grid-area:1/1;opacity:0}
+  .anatomy.scrub .anat-step.on{opacity:1}
+  .anatomy.scrub .panel{width:100%;max-width:calc((100svh - 63px - 300px) * 1.674);margin-inline:auto}
+}
 
 /* ─── rooms (static grid; was a pinned horizontal track) ─── */
 .room{background:var(--ink-700);border:1px solid var(--line);
