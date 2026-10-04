@@ -45,7 +45,7 @@ Later phases add Supabase, Payload, Bunny and Stripe keys here. Server-only secr
 |---|---|
 | `Reveal` | scroll reveal for every `[data-rv]` inside it (`display: contents`, adds no box) |
 | `HeroMotion` + `Preloader` | preloader → hero intro timeline, hero parallax, floaters |
-| `AnatomyScrub` | pinned "anatomy of a setup" scrub (thresholds: candles 0→.5, sweep .36, BOS .52, levels .58→.82, tag .88) |
+| `AnatomyScrub` + `AnatomyChart` | pinned "anatomy of a setup" scrub building the GTS Levels / GTS Reversals chart (levels > .02, candles to the reversal .04→.44, reversal > .48, entry/SL/TPs .54→.70, rally .72→.96). The chart is drawn at its box's real pixel size; on desktop the box matches the step list's height |
 | `SignalChart` | autoplaying indicator chart (indicator page) |
 | `Counter`, `SylStagger`, `StepsTrack`, `AmbientDrift`, `Marquee` | small scroll/loop effects |
 | `MagneticButton`, `TiltCard`, `SpotlightCard`, `CrosshairCursor`, `ScrollProgressBar` | pointer / chrome |

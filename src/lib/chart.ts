@@ -106,3 +106,54 @@ export function ambientCandles() {
  * Node and Safari in the last digit and cause a hydration mismatch.
  */
 export const r3 = (n: number) => Math.round(n * 1000) / 1000;
+
+/* ─── GTS Levels + GTS Reversals scene (home "Anatomy of a setup") ───
+   A hand-shaped path (waypoints + seeded noise) rather than random phases, so
+   the story is guaranteed: price rejects the upper level, sells off, taps the
+   lower GTS Level, a GTS Reversal prints on the rejection candle (entry), and
+   the rally runs through TP1 / TP2 into the upper level. Pure and seeded. */
+
+/** labelAt: candle index where the "GTS LEVEL" label sits (chosen where price is not trading) */
+export type Zone = { from: number; to: number | null; lo: number; hi: number; active: boolean; labelAt?: number };
+export type ReversalArrow = { i: number; dir: "up" | "down"; main?: boolean };
+
+export function reversalScene() {
+  const r = prng(20261005);
+  const N = 56;
+  const R = 34; // the reversal candle (entry)
+  const WP: [number, number][] = [
+    [0, 2399.5], [7, 2412], [17, 2392.2], [23, 2402.2], [33, 2391.6], [R, 2395.6], [50, 2411.4], [N - 1, 2408.2],
+  ];
+  const at = (i: number) => {
+    for (let k = 0; k < WP.length - 1; k++) {
+      const [a, pa] = WP[k], [b, pb] = WP[k + 1];
+      if (i >= a && i <= b) return pa + ((pb - pa) * (i - a)) / (b - a);
+    }
+    return WP[WP.length - 1][1];
+  };
+  const isWaypoint = (i: number) => WP.some(([k]) => k === i);
+  const bars: Bar[] = [];
+  let prev = 2399;
+  for (let i = 0; i < N; i++) {
+    const c = isWaypoint(i) ? at(i) : at(i) + (r() - 0.5) * 2.2;
+    const o = prev;
+    bars.push({ o, c, h: Math.max(o, c) + 0.2 + r() * 1.3, l: Math.min(o, c) - 0.2 - r() * 1.3 });
+    prev = c;
+  }
+  // the tap and the rejection candle both trade into the demand level
+  bars[33].l = 2390.6;
+  bars[R] = { o: bars[33].c, c: 2395.6, h: 2396.1, l: 2390.9 };
+
+  const zones: Zone[] = [
+    { from: 5, to: null, lo: 2410.6, hi: 2413.4, active: true, labelAt: 13 }, // supply, from the first high
+    { from: 21, to: 41, lo: 2400.6, hi: 2403.0, active: false }, // lower-high level, broken by the rally
+    { from: 15, to: null, lo: 2390.2, hi: 2393.2, active: true, labelAt: 44 }, // demand, from the swing low — the one that gets tapped
+  ];
+  const arrows: ReversalArrow[] = [
+    { i: 7, dir: "down" }, { i: 17, dir: "up" }, { i: 23, dir: "down" }, { i: R, dir: "up", main: true }, { i: 50, dir: "down" },
+  ];
+  const entry = bars[R].c;
+  const sl = zones[2].lo - 1.2; // below the level, with breathing room
+  const risk = entry - sl;
+  return { bars, zones, arrows, R, entry, sl, tp1: entry + risk, tp2: entry + risk * 2 };
+}

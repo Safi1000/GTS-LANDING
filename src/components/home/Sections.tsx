@@ -1,8 +1,8 @@
 import { Accordion } from "@/components/Accordion";
+import { AnatomyChart } from "@/components/AnatomyChart";
 import { AnatomyScrub } from "@/components/AnatomyScrub";
 import { AmbientCandles } from "@/components/charts/AmbientCandles";
 import { PlainChart } from "@/components/charts/PlainChart";
-import { SignalChartSvg } from "@/components/charts/SignalChartSvg";
 import { Counter } from "@/components/Counter";
 import { Crest } from "@/components/Crest";
 import { MagneticButton } from "@/components/MagneticButton";
@@ -16,8 +16,6 @@ import {
   HOME_FAQ, PARTNER_LOGOS, PERKS, QUOTES_A, QUOTES_B, ROOMS, SYLLABUS, type Quote,
 } from "@/lib/content";
 import { LINKS } from "@/lib/site";
-
-export const SIGNAL_OPTS = { w: 720, h: 430, seed: 20260807, start: 2404, entryIdx: 25 };
 
 /* ══════════ TRUST ══════════ */
 export function Trust() {
@@ -35,40 +33,35 @@ export function Trust() {
 
 /* ══════════ I. ANATOMY OF A SETUP (pinned scrub) ══════════ */
 const ANAT_STEPS = [
-  ["01 · RANGE", "Price builds a level", "The script tracks the highs and lows that everyone else is watching."],
-  ["02 · SWEEP", "Liquidity gets taken", "Price runs the level, trips the stops sitting beyond it, and fails to hold."],
-  ["03 · BOS", "Structure breaks back", "The reclaim confirms the move was a raid, not a breakout."],
-  ["04 · ENTRY", "Entry, stop, two targets", "Printed and measured. From here it is your risk and your call."],
+  ["01 · LEVELS", "GTS Levels map the zones", "The script draws the supply and demand levels price keeps coming back to."],
+  ["02 · TAP", "Price taps the level", "Price sells back into the zone, right where buyers stepped in last time."],
+  ["03 · REVERSAL", "A GTS Reversal prints", "An arrow prints under the candle that rejects the level. That candle is the trigger."],
+  ["04 · ENTRY", "Entry, stop, two targets", "Entry on the reversal candle, stop below the level with room to breathe, targets at 1R and 2R."],
 ];
 
 export function Anatomy() {
   return (
     <AnatomyScrub className="wrap band anatomy">
       <Rail n="I" label="Anatomy of a setup" />
+      {/* flat grid: heading on top, steps beside the chart (the chart matches the steps' height) */}
       <div className="anat-grid">
-        <div>
-          <h2 style={{ fontSize: "clamp(28px,3.4vw,42px)", marginBottom: 26 }} data-rv>
-            The setup
-            <br />
-            marks itself.
-          </h2>
-          <div className="anat-steps">
-            {ANAT_STEPS.map(([n, h, p], i) => (
-              <div className={`anat-step${i === 0 ? " on" : ""}`} key={n}>
-                <div className="n">{n}</div>
-                <h3>{h}</h3>
-                <p>{p}</p>
-              </div>
-            ))}
-          </div>
+        <h2 className="anat-h" data-rv>
+          The setup
+          <br />
+          marks itself.
+        </h2>
+        <div className="anat-steps">
+          {ANAT_STEPS.map(([n, h, p], i) => (
+            <div className={`anat-step${i === 0 ? " on" : ""}`} key={n}>
+              <div className="n">{n}</div>
+              <h3>{h}</h3>
+              <p>{p}</p>
+            </div>
+          ))}
         </div>
         <div className="panel">
-          <PanelBar pair="XAUUSD" tf="15M" label="GTS Indicator v3" live="LIVE" />
-          <SignalChartSvg
-            opts={SIGNAL_OPTS}
-            role="img"
-            aria-label="Gold chart where the GTS indicator marks a setup as the page scrolls"
-          />
+          <PanelBar pair="XAUUSD" tf="15M" label="GTS Levels · GTS Reversals" live="LIVE" />
+          <AnatomyChart label="Gold chart: price taps a GTS Level, a GTS Reversal prints, with entry, stop and two targets" />
         </div>
       </div>
     </AnatomyScrub>
