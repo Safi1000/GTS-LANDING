@@ -80,8 +80,8 @@ export default function PricingPage() {
               <span className="badge badge-ox">Most popular</span>
               <h3 style={{ marginTop: 20, fontSize: 23 }}>Member</h3>
               <MemberPrice />
-              {/* PLACEHOLDER — becomes Stripe checkout in Phase 5 */}
-              <MagneticButton href="#" className="btn btn-primary" style={{ width: "100%", marginTop: 26 }}>
+              {/* points at the access steps until a Stripe checkout link exists */}
+              <MagneticButton href="/terminal#access" className="btn btn-primary" style={{ width: "100%", marginTop: 26 }}>
                 Get access
               </MagneticButton>
               <ul>

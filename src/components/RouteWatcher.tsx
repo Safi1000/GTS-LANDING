@@ -25,6 +25,17 @@ export function RouteWatcher() {
     return () => cancelAnimationFrame(raf);
   }, [pathname]);
 
+  // Placeholder links (href="#", no destination yet) would jump to the top and
+  // put "#" in the URL. Swallow those clicks until real URLs exist.
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      const a = (e.target as Element | null)?.closest?.("a");
+      if (a && a.getAttribute("href") === "#") e.preventDefault();
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+
   useEffect(() => {
     let alive = true;
     document.fonts?.ready.then(() => alive && ScrollTrigger.refresh());

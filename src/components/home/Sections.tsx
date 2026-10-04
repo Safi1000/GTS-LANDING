@@ -247,7 +247,7 @@ export function ReplaySection() {
 /* ══════════ VII. PARTNERS ══════════ */
 export function Partners() {
   return (
-    <section className="band">
+    <section className="band" id="perks">
       <div className="wrap">
         <Rail n="VII" label="Perks & partners" />
         <h2 data-rv>Cheaper funding, cheaper fees.</h2>
@@ -307,7 +307,7 @@ export function Voices() {
 /* ══════════ IX. FAQ ══════════ */
 export function Faq() {
   return (
-    <section className="wrap band">
+    <section className="wrap band" id="faq">
       <Rail n="IX" label="Questions" />
       <div className="split top">
         <div data-rv>

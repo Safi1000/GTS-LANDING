@@ -85,7 +85,8 @@
     --gut:clamp(20px,5vw,64px); --band:clamp(80px,11vw,150px); --maxw:1200px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{-webkit-text-size-adjust:100%}
+  /* anchor jumps (/terminal#tools, /#faq…) stop below the sticky nav (63px stuck) */
+  html{-webkit-text-size-adjust:100%;scroll-padding-top:84px}
   body{background:var(--ink-900);color:var(--bone);font-family:var(--f-disp);font-size:16px;
     line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   body.lock{overflow:hidden}

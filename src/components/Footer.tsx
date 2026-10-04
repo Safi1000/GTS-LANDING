@@ -5,10 +5,10 @@ import { DiscordIcon, InstagramIcon, XIcon, YouTubeIcon } from "@/components/ico
 import { RISK_WARNING } from "@/lib/content";
 import { LINKS } from "@/lib/site";
 
-/* Links marked "#" were dead `#/` links in the HTML; Phase 4 gives them routes. */
+/* Links marked "#" are placeholders (no destination yet); RouteWatcher stops them jumping to the top. */
 const COLS: [string, [string, string][]][] = [
-  ["Community", [[LINKS.discordInvite, "Join the Discord"], ["#", "Partners & perks"], ["#", "Giveaways"]]],
-  ["Learn", [["/masterclass", "Masterclass"], ["/masterclass", "Live sessions"], ["/terminal#tools", "Terminal tools"], ["#", "FAQ"], ["#", "About us"]]],
+  ["Community", [[LINKS.discordInvite, "Join the Discord"], ["/#perks", "Partners & perks"], ["/#perks", "Giveaways"]]],
+  ["Learn", [["/masterclass", "Masterclass"], ["/masterclass", "Live sessions"], ["/terminal#tools", "Terminal tools"], ["/#faq", "FAQ"], ["#", "About us"]]],
   ["Product", [["/terminal", "The GTS Terminal"], ["/pricing", "Pricing"], [LINKS.terminal, "Open the terminal"], [LINKS.signIn, "Sign in"], [LINKS.account, "Account"]]],
 ];
 

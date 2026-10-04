@@ -6,9 +6,12 @@ import { gsap, MOTION, useGSAP } from "@/lib/gsap";
 /**
  * Scroll reveal for every `[data-rv]` element inside it.
  *
- * Renders a `display: contents` wrapper, so it adds no box and cannot disturb
- * grid/flex layouts — the server-rendered children lay out exactly as in the
- * HTML. Content starts visible; gsap.from() only runs with motion allowed.
+ * Wraps a whole page's sections (normal block flow, so the wrapper is layout
+ * neutral). It must be a real box, not `display: contents`: Next's
+ * scroll-to-top on navigation checks the page's first element, and a box-less
+ * one reads as hidden, so Next skipped the scroll and new pages opened at the
+ * previous page's scroll position.
+ * Content starts visible; gsap.from() only runs with motion allowed.
  */
 export function Reveal({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -31,8 +34,6 @@ export function Reveal({ children }: { children: ReactNode }) {
     { scope: ref },
   );
   return (
-    <div ref={ref} style={{ display: "contents" }}>
-      {children}
-    </div>
+    <div ref={ref}>{children}</div>
   );
 }
