@@ -324,10 +324,11 @@
   color:var(--muted);padding-left:.48em}
 .hero h1{margin-top:24px}
 .hero h1 .ln{display:block;overflow:hidden;padding-bottom:.04em}
-/* .hl = hero line (no styles of its own). Was `.w` in the HTML, which collided
-   with the ledger's `.w{color:var(--win)}` and turned the whole headline gold.
-   It stays inline, as in the HTML — so the intro's yPercent has no visual
-   effect and the lines fade in. Add display:inline-block here for a slide-up. */
+/* Hero lines use `.w`, as in the HTML. That class is also the ledger's
+   `.w{color:var(--win)}`, which is what makes the headline pale gold
+   (#F5E3A3), and it beats `.dim` on line 3 — kept on purpose, matches the HTML.
+   The spans stay inline, so the intro's yPercent has no visual effect and the
+   lines fade in; add `.hero h1 .w{display:inline-block}` for a slide-up. */
 .hero .lede{margin-inline:auto;max-width:54ch}
 .hero-micro{font-family:var(--f-mono);font-size:11.5px;color:var(--muted);letter-spacing:.06em;margin-top:20px}
 .scroll-cue{width:1px;height:40px;background:var(--line-mid);margin:0 auto;position:relative;overflow:hidden}
