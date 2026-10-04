@@ -9,7 +9,7 @@ import { INTRO_KEY, navState } from "@/lib/nav-state";
  * Owns all hero motion: the preloader → crest → headline intro timeline, the
  * scroll parallax and the floating signal cards. The hero content itself is
  * server-rendered and passed in as children; elements are found through
- * scoped selectors (`[data-hero=…]`, `.hl`, `.floater`, `.dial`).
+ * scoped selectors (`[data-hero=…]`, `.floater`, `.dial`).
  *
  * The intro plays only on the first hard load of `/` in a session. Repeat
  * visits and client-side navigations to `/` show the hero as-is.
@@ -91,7 +91,7 @@ export function HeroMotion({ children }: { children: ReactNode }) {
           .from("[data-hero=word]", { opacity: 0, y: 12, duration: 0.6 }, "-=.5")
           .from("[data-hero=orn]", { opacity: 0, scaleX: 0.4, duration: 0.6 }, "-=.45")
           .from("[data-hero=eye]", { opacity: 0, y: 10, duration: 0.5 }, "-=.4")
-          .from(".hl", { yPercent: 110, opacity: 0, duration: 0.85, stagger: 0.07, ease: "power3.out" }, "-=.35")
+          .from(".w", { yPercent: 110, opacity: 0, duration: 0.85, stagger: 0.07, ease: "power3.out" }, "-=.35")
           .from("[data-hero=lede]", { opacity: 0, y: 14, duration: 0.6 }, "-=.45")
           .from("[data-hero=btns]", { opacity: 0, y: 14, duration: 0.6 }, "-=.45")
           .from("[data-hero=micro]", { opacity: 0, duration: 0.5 }, "-=.4")

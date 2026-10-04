@@ -87,10 +87,10 @@ export function Hero() {
         </div>
         <h1 className="d-xl">
           <span className="ln">
-            <span className="hl">Read the chart.</span>
+            <span className="w">Read the chart.</span>
           </span>
           <span className="ln">
-            <span className="hl">
+            <span className="w">
               Take the{" "}
               <em className="foil" style={{ fontStyle: "normal" }}>
                 signal
@@ -99,7 +99,7 @@ export function Hero() {
             </span>
           </span>
           <span className="ln">
-            <span className="hl dim">Know why it worked.</span>
+            <span className="w dim">Know why it worked.</span>
           </span>
         </h1>
         <p className="lede" data-hero="lede">
