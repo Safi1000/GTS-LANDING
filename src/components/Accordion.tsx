@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { ScrollTrigger } from "@/lib/gsap";
 
 export type AccItem = { q: string; a: string };
@@ -20,25 +20,28 @@ export function Accordion({
   style?: React.CSSProperties;
   "data-rv"?: boolean;
 }) {
-  const [open, setOpen] = useState<number | null>(null);
-  const panels = useRef<(HTMLDivElement | null)[]>([]);
+  const [open, setOpen] = useState<{ i: number; h: number } | null>(null);
 
   return (
     <div className={`acc ${className}`.trim()} style={style} {...(rest["data-rv"] ? { "data-rv": "" } : {})}>
       {items.map((it, i) => {
-        const isOpen = open === i;
+        const isOpen = open?.i === i;
         return (
           <div className={`acc-item${isOpen ? " open" : ""}`} key={it.q}>
-            <button className="acc-q" aria-expanded={isOpen} onClick={() => setOpen(isOpen ? null : i)}>
+            <button
+              className="acc-q"
+              aria-expanded={isOpen}
+              onClick={(e) => {
+                const panel = e.currentTarget.nextElementSibling as HTMLElement;
+                setOpen(isOpen ? null : { i, h: panel.scrollHeight });
+              }}
+            >
               {it.q}
               <span className="pm" />
             </button>
             <div
               className="acc-a"
-              ref={(el) => {
-                panels.current[i] = el;
-              }}
-              style={{ height: isOpen ? panels.current[i]?.scrollHeight ?? "auto" : 0 }}
+              style={{ height: isOpen ? open.h : 0 }}
               // refresh after the height transition, not before (the HTML refreshed
               // immediately, so pins below measured the pre-animation height)
               onTransitionEnd={(e) => e.propertyName === "height" && ScrollTrigger.refresh()}

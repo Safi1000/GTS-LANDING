@@ -17,3 +17,8 @@ export const MOTION = "(prefers-reduced-motion: no-preference)";
 export const POINTER_MOTION = "(hover: hover) and (prefers-reduced-motion: no-preference)";
 
 export { gsap, ScrollTrigger, useGSAP };
+
+/** Typed scoped query: all matches *inside* `root` (a ref'd element), never the document. */
+export function within<T extends Element = HTMLElement>(root: Element | null | undefined, sel: string): T[] {
+  return root ? Array.from(root.querySelectorAll<T>(sel)) : [];
+}

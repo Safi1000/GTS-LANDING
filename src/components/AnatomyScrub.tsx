@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, type ReactNode } from "react";
-import { gsap, MOTION, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { gsap, MOTION, ScrollTrigger, useGSAP, within } from "@/lib/gsap";
 
 /**
  * "Anatomy of a signal" — pins `.anat-grid` and draws the signal chart
@@ -18,14 +18,13 @@ export function AnatomyScrub({ children, className }: { children: ReactNode; cla
   useGSAP(
     () => {
       const root = ref.current!;
-      const q = gsap.utils.selector(root);
-      const cdl = q(".cdl") as SVGGElement[];
-      const sig = q(".sig") as SVGGElement[];
-      const [mk1] = q(".mk1") as SVGGElement[];
-      const [mk2] = q(".mk2") as SVGGElement[];
-      const [tag] = q(".tag") as SVGGElement[];
-      const steps = q(".anat-step") as HTMLElement[];
-      const [grid] = q(".anat-grid") as HTMLElement[];
+      const cdl = within<SVGGElement>(root, ".cdl");
+      const sig = within<SVGGElement>(root, ".sig");
+      const [mk1] = within<SVGGElement>(root, ".mk1");
+      const [mk2] = within<SVGGElement>(root, ".mk2");
+      const [tag] = within<SVGGElement>(root, ".tag");
+      const steps = within<HTMLElement>(root, ".anat-step");
+      const [grid] = within<HTMLElement>(root, ".anat-grid");
       const all = [...cdl, ...sig, mk1, mk2, tag].filter(Boolean);
 
       const show = (n: Element, on: boolean) => n.setAttribute("opacity", on ? "1" : "0");

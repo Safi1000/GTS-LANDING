@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, type ReactNode } from "react";
-import { gsap, MOTION, useGSAP } from "@/lib/gsap";
+import { gsap, MOTION, useGSAP, within } from "@/lib/gsap";
 
 /**
  * Autoplaying signal chart (indicator page). Wraps a server-rendered
@@ -13,13 +13,12 @@ export function SignalChart({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   useGSAP(
     () => {
-      const q = gsap.utils.selector(ref.current);
-      const cdl = q(".cdl") as SVGGElement[];
-      const sig = q(".sig") as SVGGElement[];
-      const [mk1] = q(".mk1") as SVGGElement[];
-      const [mk2] = q(".mk2") as SVGGElement[];
-      const [tag] = q(".tag") as SVGGElement[];
-      const [svg] = q("svg") as SVGSVGElement[];
+      const cdl = within<SVGGElement>(ref.current, ".cdl");
+      const sig = within<SVGGElement>(ref.current, ".sig");
+      const [mk1] = within<SVGGElement>(ref.current, ".mk1");
+      const [mk2] = within<SVGGElement>(ref.current, ".mk2");
+      const [tag] = within<SVGGElement>(ref.current, ".tag");
+      const [svg] = within<SVGSVGElement>(ref.current, "svg");
       const all = [...cdl, ...sig, mk1, mk2, tag].filter(Boolean);
       if (!svg) return;
 

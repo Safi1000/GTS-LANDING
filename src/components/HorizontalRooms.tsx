@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, type ReactNode } from "react";
-import { gsap, MOTION, useGSAP } from "@/lib/gsap";
+import { gsap, MOTION, useGSAP, within } from "@/lib/gsap";
 
 /**
  * Pins the section and translates `.htrack` sideways by its overflow.
@@ -14,9 +14,8 @@ export function HorizontalRooms({ children, className }: { children: ReactNode; 
   const ref = useRef<HTMLElement>(null);
   useGSAP(
     () => {
-      const q = gsap.utils.selector(ref.current);
-      const [scroller] = q(".hscroll") as HTMLElement[];
-      const [track] = q(".htrack") as HTMLElement[];
+      const [scroller] = within<HTMLElement>(ref.current, ".hscroll");
+      const [track] = within<HTMLElement>(ref.current, ".htrack");
       if (!scroller || !track) return;
 
       const mm = gsap.matchMedia();

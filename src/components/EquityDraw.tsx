@@ -1,14 +1,14 @@
 "use client";
 
 import { useRef, type ReactNode } from "react";
-import { gsap, MOTION, useGSAP } from "@/lib/gsap";
+import { gsap, MOTION, useGSAP, within } from "@/lib/gsap";
 
 /** Draws the equity curve's stroke when it scrolls into view. */
 export function EquityDraw({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   useGSAP(
     () => {
-      const [path] = gsap.utils.selector(ref.current)(".eq") as SVGPathElement[];
+      const [path] = within<SVGPathElement>(ref.current, ".eq");
       if (!path) return;
       const mm = gsap.matchMedia();
       mm.add(MOTION, () => {

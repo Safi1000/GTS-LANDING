@@ -12,14 +12,15 @@ export function Crest({
   alt = "",
   className,
   style,
-  priority,
+  eager,
 }: {
   w: number;
   h: number;
   alt?: string;
   className?: string;
   style?: CSSProperties;
-  priority?: boolean;
+  /** above-the-fold use (nav, hero, preloader) */
+  eager?: boolean;
 }) {
   return (
     <Image
@@ -29,7 +30,7 @@ export function Crest({
       alt={alt}
       className={className}
       style={{ width: w, height: h, ...style }}
-      priority={priority}
+      loading={eager ? "eager" : undefined}
     />
   );
 }

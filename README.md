@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GLITCHERS (GTS) — web
 
-## Getting Started
+Next.js port of `gts-site-v2.html`, the GTS landing page. It will grow into the membership platform (masterclass, gated video, indicator and terminal entitlements).
 
-First, run the development server:
+**Status:** Phase 1–2 done (scaffold, design system, components, the five HTML pages + 404). Auth, CMS, video and payments have not started.
+
+## Stack
+
+- Next.js 16 (App Router, Turbopack), React 19, TypeScript
+- Tailwind CSS 4: theme tokens in `src/app/globals.css` (`@theme inline`). Tailwind 4 has no `tailwind.config.ts`.
+- GSAP 3 + ScrollTrigger via `@gsap/react` (`useGSAP`)
+- Planned: Supabase (Discord OAuth), Payload CMS 3, Bunny Stream, Stripe
+
+## Running it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build && npm start
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Copy `.env.example` to `.env.local`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Required | Used by | Notes |
+|---|---|---|---|
+| `NEXT_PUBLIC_SITE_URL` | prod | `app/layout.tsx` `metadataBase` | Absolute origin for canonical and OG URLs, e.g. `https://glitchers.example`. Defaults to `http://localhost:3000`. |
 
-## Learn More
+Later phases add Supabase, Payload, Bunny and Stripe keys here. Server-only secrets must never get a `NEXT_PUBLIC_` prefix.
 
-To learn more about Next.js, take a look at the following resources:
+## Design system rules
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Gold marks a signal, never decoration.** Bullish candles are bone (`#D8CFC2`), bearish are oxblood (`#7E1730`). Never green/red. The Tailwind theme has no default palette (`--color-*: initial`), so `text-green-500` doesn't exist.
+- Token names and hex values in `:root` are sampled from the logo. Don't rename them.
+- The component classes from the HTML (`.btn`, `.card`, `.rail`, `.strip`, `.panel`, `.ledger`, `.acc-*`, …) are ported verbatim into `@layer components`. Use them; Tailwind is for layout and one-offs. They're layered so utilities can still override them.
+- Fonts come from `next/font`, exposed as `--f-disp` (Archivo), `--f-crest` (Cinzel) and `--f-mono` (JetBrains Mono). SVG text must use `style={{ fontFamily: "var(--f-mono)" }}`, not the literal family name, because next/font renames families.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Architecture
 
-## Deploy on Vercel
+**Server by default.** Pages and section content are server components. Client components only own motion or interaction, and wrap server-rendered children:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Client component | Owns |
+|---|---|
+| `Reveal` | scroll reveal for every `[data-rv]` inside it (`display: contents`, adds no box) |
+| `HeroMotion` + `Preloader` | preloader → hero intro timeline, hero parallax, floaters |
+| `AnatomyScrub` | pinned "anatomy of a signal" scrub (thresholds: candles 0→.5, sweep .36, BOS .52, levels .58→.82, tag .88) |
+| `HorizontalRooms` | pinned horizontal track (`invalidateOnRefresh`, distance is a function) |
+| `SignalChart` | autoplaying signal chart (indicator page) |
+| `Counter`, `BarsReveal`, `EquityDraw`, `SylStagger`, `StepsTrack`, `AmbientDrift`, `Marquee` | small scroll/loop effects |
+| `MagneticButton`, `TiltCard`, `SpotlightCard`, `CrosshairCursor`, `ScrollProgressBar` | pointer / chrome |
+| `Accordion`, `Tabs`, `BillingToggle`, `LedgerFilters`, `Countdown` | interactive widgets |
+| `SiteHeader`, `MobileDrawer`, `AnnouncementBar`, `Toast`, `NewsletterForm` | site chrome |
+| `RouteWatcher` | `ScrollTrigger.refresh()` after route changes, font load and window load |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Motion rules**
+
+- Content renders fully visible on the server. Animations use `gsap.from()`, so if JS fails, nothing is stuck invisible.
+- Every effect is registered with `gsap.matchMedia()` under `MOTION` (`prefers-reduced-motion: no-preference`) in `src/lib/gsap.ts`. Reduced-motion users get the server-rendered state.
+- Every animation lives in `useGSAP` with a scope ref, so unmounting reverts its tweens and ScrollTriggers. Verified: navigating `/` → `/pricing` → `/` twice leaves 0 pin-spacers on `/pricing` and exactly 2 on `/`, with identical pin positions each time.
+- No `document.querySelector` in components. Use refs, scoped selector strings, or `within(ref, sel)` from `src/lib/gsap.ts`.
+
+**Determinism.** `src/lib/chart.ts` is a seeded PRNG plus plain arithmetic, so charts are identical on the server and in every browser. Don't add `Math.random()` or `Date` there. The trig output for the dial ticks is rounded (`r3`), because `Math.cos`/`sin` can differ across JS engines in the last digit.
+
+**Preloader.** It plays once per browser session, on a hard load of `/` only. An inline pre-paint script hides it on repeat visits and for reduced motion. `<noscript>` hides it without JS, and a CSS failsafe fades it out after 6s if JS never takes over.
+
+## Placeholders
+
+These were placeholders in the HTML and still are. Search for `PLACEHOLDER` / `SAMPLE`:
+
+- Discord invite, sign-in, account, socials, calendar links: `src/lib/site.ts`
+- Testimonials, ledger rows, R-per-week bars: `src/lib/content.ts`
+- Methodology figures: `src/app/indicator/page.tsx`
+- Footer links to routes that don't exist yet (terms, privacy, FAQ, …): `#`
+
+The footer risk warning (`RISK_WARNING` in `src/lib/content.ts`) is **legally load-bearing**. It's verbatim from the HTML, and a check confirmed it's byte-identical. Don't edit it without sign-off.
+
+## Assets
+
+`public/crest.png` is the logo extracted from the HTML's base64. It's **45×53 px and opaque RGB (no alpha)**, so it's blurry at hero size and shows a dark square behind the crest. It needs a re-export: transparent PNG at least ~470 px tall, or SVG.
