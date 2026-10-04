@@ -74,8 +74,8 @@ export const BILLING_FAQ: AccItem[] = [
 export const TOOLS = [
   {
     id: "levels", label: "GTS Levels", title: "GTS Levels",
-    body: "Supply and demand zones drawn automatically wherever price has reacted before. Active levels show in peach; once price breaks through one, it turns grey, so you can see at a glance which levels still matter.",
-    shows: "the zones price keeps coming back to, and which of them are still live.",
+    body: "Levels drawn straight from orderflow: the places where real buying and selling actually happened. Live levels show in peach; when that piece of orderflow stops mattering, its level turns grey, so the chart only highlights what is still in play.",
+    shows: "where the meaningful orderflow sits, and which of it still matters.",
     use: "we only look for trades at a level. No level, no setup.",
   },
   {
@@ -92,8 +92,8 @@ export const TOOLS = [
   },
   {
     id: "orderflow", label: "Orderflow confirmations", title: "Orderflow confirmations",
-    body: "Reads the buying and selling pressure behind a move, so you can see whether a reversal at a level has real participation behind it or is just a pause.",
-    shows: "whether buyers or sellers are actually stepping in at the level.",
+    body: "Shows absorption and exhaustion. Absorption is when resting orders soak up aggressive buying or selling without letting price through; exhaustion is when the aggressive side simply runs out of steam.",
+    shows: "whether a move into a level is being absorbed, or is running out on its own.",
     use: "as the final check before taking a reversal, and the first thing to look at when one fails.",
   },
 ];
@@ -116,3 +116,15 @@ export const LESSONS = [
 /** Footer risk warning. LEGALLY LOAD-BEARING — verbatim from the HTML. Do not edit without sign-off. */
 export const RISK_WARNING =
   "Trading gold, foreign exchange and cryptocurrency carries a high level of risk and can result in the loss of all of your capital. Past performance, including any win rates, backtested figures or published results shown on this site, is not a reliable indicator of future results — backtested performance in particular benefits from hindsight and does not fully account for slippage, liquidity or the psychological cost of a losing streak. All performance figures shown here are from in-house backtesting, and the complete methodology, including sample size, date range, pairs tested and worst drawdown, is published in our Discord server. Nothing on this site or in our Discord is financial, investment or tax advice; everything we publish is educational, and every trading decision you make is your own. GLITCHERS is not a licensed broker, financial adviser or asset manager, does not manage funds on anyone's behalf, and never takes custody of member capital. We hold commercial affiliate relationships with the prop firms and exchanges listed on this site and may earn a commission when you use our links or discount codes. Only trade with capital you can afford to lose.";
+
+/** GTS Terminal journal features (terminal page), taken from the journal screens. */
+export const JOURNAL_FEATURES = [
+  "Tracks every trade automatically, no spreadsheet",
+  "Win rate, profit factor, net R, expectancy, best streak and max drawdown",
+  "Equity curve, plus daily, weekly, monthly and by-hour breakdowns",
+  "Filter by session (London, Asia, New York), time of day, and pair, gold or crypto",
+  "Split by symbol, long vs short, and timeframe",
+  "What-if: change your target and break-even rules and replay the same trades",
+  "What could have been better: how far losers ran first, what winners left behind",
+  "Monte Carlo runs on your own trade history",
+];

@@ -7,7 +7,7 @@ import { BEAR, BULL, reversalScene } from "@/lib/chart";
  * Pure render at an exact pixel size (`w` × `h`), so text stays crisp and the
  * chart can match whatever box it sits in (AnatomyChart measures that box).
  * Every layer renders visible; AnatomyScrub hides and reveals them via:
- *   .zone          GTS Levels (peach = active, grey = broken)
+ *   .zone          GTS Levels (peach = live, grey = that orderflow no longer matters)
  *   .cdl[data-i]   candles, in order
  *   .arw[data-i]   GTS Reversal arrows, shown with their candle
  *   .arw-main      the reversal on the level tap (entry), with its tag

@@ -41,10 +41,10 @@ export function makeBars(seed: number, phases: Phase[], start: number): Bar[] {
 export const BULL = "#D8CFC2";
 export const BEAR = "#7E1730";
 
-export function plainBars(seed: number, n: number) {
+export function plainBars(seed: number, n: number, phases?: Phase[]) {
   return makeBars(
     seed,
-    [
+    phases ?? [
       [Math.round(n * 0.3), 1.2, 3],
       [Math.round(n * 0.25), -2, 3.4],
       [Math.round(n * 0.45), 2.2, 3],
@@ -52,6 +52,15 @@ export function plainBars(seed: number, n: number) {
     2390,
   );
 }
+
+/** Replay panel timeframes: each gets its own seeded shape (54 bars), so switching visibly changes the chart. */
+export const REPLAY_TFS: Record<string, { seed: number; phases: Phase[] }> = {
+  "1M": { seed: 11, phases: [[16, -0.6, 1.4], [12, 0.8, 1.6], [26, -0.2, 1.2]] },
+  "5M": { seed: 23, phases: [[20, 0.9, 2.0], [14, -1.4, 2.2], [20, 0.6, 1.8]] },
+  "1H": { seed: 88, phases: [[16, 1.2, 3], [14, -2, 3.4], [24, 2.2, 3]] },
+  "4H": { seed: 47, phases: [[22, 1.6, 3.6], [10, -2.4, 4], [22, 1.8, 3.4]] },
+  "1D": { seed: 64, phases: [[14, -1.8, 4.4], [18, 2.6, 4.6], [22, 1.2, 4.2]] },
+};
 
 export function ambientCandles() {
   const r = prng(9);

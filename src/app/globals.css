@@ -374,6 +374,15 @@
 .panel-bar{white-space:nowrap}
 .panel-bar>span:nth-child(3){min-width:0;overflow:hidden;text-overflow:ellipsis}
 .panel svg{display:block;width:100%;height:auto}
+/* replay panel controls (ReplayPanel) */
+.replay-bar{display:flex;gap:10px;align-items:center;padding:13px 16px;border-top:1px solid var(--line);flex-wrap:wrap}
+.replay-count{margin-left:auto;font-size:11px;color:var(--faint);letter-spacing:.06em}
+/* terminal page: journal feature list + screenshots */
+.journal-list{list-style:none;display:grid;gap:12px;padding-top:6px}
+.journal-list li{display:flex;gap:11px;font-size:14.5px;align-items:flex-start}
+.journal-list li svg{flex:none;margin-top:4px}
+.journal-shots{display:grid;gap:20px}
+.journal-shots figure{margin:0}
 
 /* ─── anatomy (pinned scrub) ─── */
 .anatomy{position:relative}

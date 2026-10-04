@@ -12,8 +12,8 @@ const DROPS = {
   terminal: [
     ["/terminal", "Overview", "What it marks, and what it won't do"],
     ["/terminal#tools", "Tools", "Levels, reversals, heatmap, orderflow"],
+    ["/terminal#journal", "Journal", "Every trade tracked for you"],
     ["/terminal#methodology", "Methodology", "How the win rates were measured"],
-    ["/pricing", "Pricing", "Monthly or annual"],
   ],
   masterclass: [
     ["/masterclass", "All lessons", "The full free curriculum"],

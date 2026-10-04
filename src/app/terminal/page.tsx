@@ -1,22 +1,24 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { AnatomyChart } from "@/components/AnatomyChart";
+import { CheckIcon } from "@/components/icons";
 import { Counter } from "@/components/Counter";
 import { Crest } from "@/components/Crest";
 import { MagneticButton } from "@/components/MagneticButton";
 import { Reveal } from "@/components/Reveal";
+import { ReplayPanel } from "@/components/ReplayPanel";
 import { SignalChart } from "@/components/SignalChart";
 import { StepsTrack } from "@/components/StepsTrack";
 import { Tabs } from "@/components/Tabs";
 import { TiltCard } from "@/components/TiltCard";
-import { PlainChart } from "@/components/charts/PlainChart";
 import { Orn, PanelBar, Rail } from "@/components/ui";
-import { TOOLS } from "@/lib/content";
+import { JOURNAL_FEATURES, TOOLS } from "@/lib/content";
 import { LINKS } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "The GTS Terminal",
   description:
-    "Our own charting terminal for gold and crypto: GTS Levels, GTS Reversals, a liquidation heatmap and orderflow confirmations on one chart, plus bar replay on a consolidated price feed.",
+    "Our own charting terminal for gold and crypto: GTS Levels, GTS Reversals, a liquidation heatmap and orderflow confirmations on one chart, bar replay, and a journal that tracks every trade automatically.",
   alternates: { canonical: "/terminal" },
   openGraph: { title: "The GTS Terminal — GLITCHERS" },
 };
@@ -43,7 +45,8 @@ export default function TerminalPage() {
         </h1>
         <p className="lede" style={{ marginInline: "auto" }}>
           A charting terminal we built ourselves for gold and crypto. GTS Levels, GTS Reversals, a liquidation heatmap
-          and orderflow confirmations on one chart, plus bar replay on a consolidated price feed.
+          and orderflow confirmations on one chart, bar replay on a consolidated price feed, and a journal that
+          tracks every trade for you.
         </p>
         <div className="btn-row center" style={{ marginTop: 32 }}>
           <MagneticButton href="/pricing" className="btn btn-primary btn-lg">Get access</MagneticButton>
@@ -155,23 +158,62 @@ export default function TerminalPage() {
             </p>
             <p className="lede">Replay any period bar by bar, mark your entries, and score every trade in R.</p>
           </div>
-          <div className="panel" data-rv>
-            <PanelBar pair="XAUUSD" tf="1H" label="Replay · 14 Mar 2026" live="REPLAY" />
-            <PlainChart seed={88} w={720} h={300} n={54} aria-hidden="true" />
-            <div style={{ display: "flex", gap: 10, padding: "13px 16px", borderTop: "1px solid var(--line)", flexWrap: "wrap" }}>
-              <span className="chip">1M</span>
-              <span className="chip">5M</span>
-              <span className="chip on">1H</span>
-              <span className="chip">4H</span>
-              <span className="chip">1D</span>
-              <span className="chip" style={{ marginLeft: "auto" }}>Step ›</span>
-            </div>
+          <ReplayPanel />
+        </div>
+      </section>
+
+      <section className="wrap band" id="journal">
+        <Rail n="III" label="The journal" />
+        <div className="split top" style={{ marginBottom: 44 }}>
+          <div data-rv>
+            <h2>
+              Every trade,
+              <br />
+              <span className="hi">tracked for you.</span>
+            </h2>
+            <p className="lede">
+              A full journal built into the terminal. It tracks your trades automatically, so the numbers that matter
+              are already there when you sit down to review, cut by session, time of day or pair.
+            </p>
           </div>
+          <ul className="journal-list" data-rv>
+            {JOURNAL_FEATURES.map((f) => (
+              <li key={f}>
+                <CheckIcon color="#C99A4B" />
+                {f}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="journal-shots">
+          {[
+            ["/terminal/journal-overview.png", 1637, 831, "Overview", "Journal overview: win rate, profit factor, net R, average R:R, best streak, max drawdown, equity curve, daily breakdown, and results by symbol, direction and timeframe"],
+            ["/terminal/journal-analysis.png", 1670, 853, "Analysis", "Journal analysis: what-if target and break-even changes, what could have been better, Monte Carlo simulation and the daily breakdown table"],
+          ].map(([src, w, h, tab, alt]) => (
+            <figure className="panel" data-rv key={src as string}>
+              <div className="panel-bar">
+                <span className="pair">Journal</span>
+                <span className="tf">{tab}</span>
+                <span>GTS Terminal</span>
+              </div>
+              {/* tap/click opens the full-size screen (the detail is small on phones) */}
+              <a href={src as string} target="_blank" rel="noopener noreferrer" aria-label={`Open the journal ${tab} screen full size`}>
+                <Image
+                  src={src as string}
+                  width={w as number}
+                  height={h as number}
+                  alt={alt as string}
+                  sizes="(max-width: 1200px) 100vw, 1136px"
+                  style={{ width: "100%", height: "auto", display: "block" }}
+                />
+              </a>
+            </figure>
+          ))}
         </div>
       </section>
 
       <section className="wrap band" id="access">
-        <Rail n="III" label="Getting access" />
+        <Rail n="IV" label="Getting access" />
         <h2 data-rv style={{ marginBottom: 52 }}>
           Three steps,
           <br />
@@ -191,7 +233,7 @@ export default function TerminalPage() {
       </section>
 
       <section className="wrap band-t">
-        <Rail n="IV" label="What it is not" />
+        <Rail n="V" label="What it is not" />
         <div className="grid-3">
           <TiltCard data-rv>
             <h3>Not a bot</h3>

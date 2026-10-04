@@ -10,7 +10,7 @@ export const SITE = {
   short: "GTS",
   title: "GLITCHERS — Gold & Crypto Trading Education",
   description:
-    "A Discord trading education community for gold and crypto. A free masterclass, live mentorship, and the GTS Terminal: our own charting terminal with GTS Levels, GTS Reversals, a liquidation heatmap and orderflow confirmations.",
+    "A Discord trading education community for gold and crypto. A free masterclass, live mentorship, and the GTS Terminal: our own charting terminal with GTS Levels, GTS Reversals, a liquidation heatmap, orderflow confirmations and an auto-tracking journal.",
   promoCode: "GTS20",
 } as const;
 

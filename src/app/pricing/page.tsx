@@ -22,7 +22,7 @@ const COMMUNITY = [
 ];
 const MEMBER = [
   "Everything in Community", "The GTS Terminal", "GTS Levels and GTS Reversals", "Liquidation heatmap",
-  "Orderflow confirmations", "Bar replay on a consolidated feed", "Member-only Discord channels", "Priority support",
+  "Orderflow confirmations", "Bar replay on a consolidated feed", "Auto-tracking trade journal", "Member-only Discord channels", "Priority support",
   "Cancel any time",
 ];
 const WITH = [

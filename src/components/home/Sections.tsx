@@ -2,10 +2,10 @@ import { Accordion } from "@/components/Accordion";
 import { AnatomyChart } from "@/components/AnatomyChart";
 import { AnatomyScrub } from "@/components/AnatomyScrub";
 import { AmbientCandles } from "@/components/charts/AmbientCandles";
-import { PlainChart } from "@/components/charts/PlainChart";
 import { Counter } from "@/components/Counter";
 import { Crest } from "@/components/Crest";
 import { MagneticButton } from "@/components/MagneticButton";
+import { ReplayPanel } from "@/components/ReplayPanel";
 import { Marquee } from "@/components/Marquee";
 import { StepsTrack } from "@/components/StepsTrack";
 import { SylStagger } from "@/components/SylStagger";
@@ -33,7 +33,7 @@ export function Trust() {
 
 /* ══════════ I. ANATOMY OF A SETUP (pinned scrub) ══════════ */
 const ANAT_STEPS = [
-  ["01 · LEVELS", "GTS Levels map the zones", "The terminal draws the supply and demand levels price keeps coming back to."],
+  ["01 · LEVELS", "GTS Levels map the zones", "The terminal draws levels straight from orderflow, where real buying and selling took place."],
   ["02 · TAP", "Price taps the level", "Price sells back into the zone, right where buyers stepped in last time."],
   ["03 · REVERSAL", "A GTS Reversal prints", "An arrow prints under the candle that rejects the level. That candle is the trigger."],
   ["04 · ENTRY", "Entry, stop, two targets", "Entry on the reversal candle, stop below the level with room to breathe, targets at 1R and 2R."],
@@ -138,7 +138,8 @@ export function TerminalSection() {
           </h2>
           <p className="lede">
             Our own charting terminal, built in-house for gold and crypto. GTS Levels, GTS Reversals, a liquidation
-            heatmap and orderflow confirmations on one chart, and every one of them is taught free in the masterclass.
+            heatmap and orderflow confirmations on one chart, a journal that tracks every trade for you, and every
+            tool taught free in the masterclass.
           </p>
           <p className="lede">
             It is not a bot. It will not save bad risk management. It marks the level and gets out of your way.
@@ -237,18 +238,7 @@ export function ReplaySection() {
           </p>
           <p className="lede">Replay any period bar by bar, mark your entries, and score every trade in R.</p>
         </div>
-        <div className="panel" data-rv>
-          <PanelBar pair="XAUUSD" tf="1H" label="Replay · 14 Mar 2026" live="REPLAY" />
-          <PlainChart seed={88} w={720} h={300} n={54} aria-hidden="true" />
-          <div style={{ display: "flex", gap: 10, padding: "13px 16px", borderTop: "1px solid var(--line)", flexWrap: "wrap" }}>
-            <span className="chip">1M</span>
-            <span className="chip">5M</span>
-            <span className="chip on">1H</span>
-            <span className="chip">4H</span>
-            <span className="chip">1D</span>
-            <span className="chip" style={{ marginLeft: "auto" }}>Step ›</span>
-          </div>
-        </div>
+        <ReplayPanel />
       </div>
     </section>
   );
