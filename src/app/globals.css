@@ -448,6 +448,8 @@
 /* ─── figures / syllabus ─── */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,74px);align-items:center}
 .split.top{align-items:start}
+/* both columns the same height (home masterclass: syllabus matches the copy) */
+.split.stretch{align-items:stretch}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -465,6 +467,8 @@
   transition:color .2s,padding-left .25s var(--e-out)}
 .syl div:hover{color:var(--gold-300);padding-left:8px}
 .syl i{font-family:var(--f-mono);font-style:normal;color:var(--gold-700);font-size:12px;padding-top:2px}
+.syl.fill{height:100%}
+.syl.fill div{align-items:center}
 /* masterclass curriculum (CurriculumFilter) */
 .module+.module{margin-top:44px}
 .module-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:18px}
@@ -587,6 +591,7 @@ footer{border-top:1px solid var(--line);margin-top:var(--band);position:relative
 @media (max-width:940px){
   .nav-links{display:none}.nav-cta .btn-ghost{display:none}.burger{display:block}
   .split,.grid-2,.grid-3,.grid-4,.syl{grid-template-columns:1fr}
+  .syl.fill{grid-template-rows:none!important;height:auto}
   .steps{grid-template-columns:1fr;gap:34px}.steps .track{display:none}
   .strip{grid-template-columns:1fr 1fr}
   .strip>div:nth-child(2){border-right:0}

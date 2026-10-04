@@ -187,7 +187,7 @@ export function MasterclassSection() {
   return (
     <section className="wrap band">
       <Rail n="V" label="The masterclass" />
-      <div className="split top">
+      <div className="split stretch">
         <div data-rv>
           <div className="free-tag">Free · No paywall</div>
           <h2>
@@ -207,7 +207,7 @@ export function MasterclassSection() {
             </MagneticButton>
           </div>
         </div>
-        <SylStagger>
+        <SylStagger rows={Math.ceil(SYLLABUS.length / 2)}>
           {SYLLABUS.map((s, i) => (
             <div key={s}>
               <i>{String(i + 1).padStart(2, "0")}</i>

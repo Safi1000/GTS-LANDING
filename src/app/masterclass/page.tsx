@@ -3,8 +3,6 @@ import { Countdown } from "@/components/Countdown";
 import { MagneticButton } from "@/components/MagneticButton";
 import { Reveal } from "@/components/Reveal";
 import { CurriculumFilter } from "@/components/CurriculumFilter";
-import { PlainChart } from "@/components/charts/PlainChart";
-import { PlayIcon } from "@/components/icons";
 import { Rail } from "@/components/ui";
 import { CURRICULUM } from "@/lib/content";
 import { LINKS } from "@/lib/site";
@@ -19,7 +17,6 @@ export const metadata: Metadata = {
 
 /* Curriculum lives in lib/content.ts (CURRICULUM); it moves to Payload in Phase 5. */
 const LESSON_COUNT = CURRICULUM.reduce((n, m) => n + m.lessons.length, 0);
-const [FIRST] = CURRICULUM;
 
 export default function MasterclassPage() {
   return (
@@ -38,51 +35,25 @@ export default function MasterclassPage() {
       </header>
 
       <section className="wrap band-t">
-        <div className="card card-glow frame" data-rv style={{ padding: 0, overflow: "hidden", marginBottom: 28 }}>
-          <div className="split" style={{ gap: 0, alignItems: "stretch" }}>
-            <div style={{ padding: 40, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-              <span className="badge">Start here</span>
-              <h2 style={{ fontSize: 32, marginTop: 18 }}>Foundations: risk and mentality first</h2>
-              <p className="lede">
-                Before market structure, before any setup: how to manage risk, and the mentality that decides whether
-                any strategy works at all.
-              </p>
-              <div className="mono small" style={{ marginTop: 22, color: "var(--faint)" }}>
-                Module 01 · {FIRST.lessons.length} lessons · {CURRICULUM.length} modules, {LESSON_COUNT} lessons in total
-              </div>
-              <div className="btn-row" style={{ marginTop: 26 }}>
-                <MagneticButton href="#" className="btn btn-primary">Start module 1</MagneticButton>
-              </div>
-            </div>
-            <div
-              style={{
-                background: "var(--grad-ox)",
-                borderLeft: "1px solid var(--line)",
-                display: "grid",
-                placeItems: "center",
-                minHeight: 300,
-                position: "relative",
-              }}
-            >
-              <PlainChart seed={31} w={400} h={260} n={34} style={{ width: "100%", height: "100%" }} aria-hidden="true" />
-              <div
-                style={{
-                  position: "absolute",
-                  width: 60,
-                  height: 60,
-                  borderRadius: "50%",
-                  background: "var(--grad-gold)",
-                  display: "grid",
-                  placeItems: "center",
-                  boxShadow: "var(--glow-gold)",
-                }}
-              >
-                <PlayIcon />
-              </div>
-            </div>
+        <div className="card card-glow frame" data-rv style={{ padding: 40, marginBottom: 44 }}>
+          <span className="badge">The course</span>
+          <h2 style={{ fontSize: 32, marginTop: 18 }}>From risk management to the Glitch Models.</h2>
+          <p className="lede" style={{ maxWidth: "70ch" }}>
+            Six modules in the order they build on each other: risk and mentality, market structure, liquidity and
+            imbalances, supply and demand, the trading models, and a full gold backtest that ties it all together.
+          </p>
+          <div className="mono small" style={{ marginTop: 22, color: "var(--faint)" }}>
+            {CURRICULUM.length} modules · {LESSON_COUNT} lessons · Free
+          </div>
+          <div className="btn-row" style={{ marginTop: 26 }}>
+            <MagneticButton href="#curriculum" className="btn btn-primary">
+              Start the masterclass
+            </MagneticButton>
           </div>
         </div>
-        <CurriculumFilter modules={CURRICULUM} />
+        <div id="curriculum">
+          <CurriculumFilter modules={CURRICULUM} />
+        </div>
       </section>
 
       <section className="wrap band-t">
