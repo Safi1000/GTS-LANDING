@@ -8,7 +8,7 @@ export type LayerName =
   | "c0" | "c1" | "c2" | "c3" | "c4" | "c5" | "c6"
   | "m0" | "m1"
   | "G" | "S" | "T"
-  | "bull" | "arrow" | "bear";
+  | "bull" | "bullFrag" | "arrow" | "bear" | "bearFrag";
 
 // Paint order (first = back, last = front)
 export const LAYER_ORDER: LayerName[] = [
@@ -16,7 +16,7 @@ export const LAYER_ORDER: LayerName[] = [
   "c0", "c1", "c2", "c3", "c4", "c5", "c6",
   "m0", "m1",
   "G", "S", "T",
-  "bull", "arrow", "bear",
+  "bull", "bullFrag", "arrow", "bear", "bearFrag",
 ];
 
 export const LAYERS: Record<LayerName, [number, number, number, number]> = {
@@ -24,6 +24,12 @@ export const LAYERS: Record<LayerName, [number, number, number, number]> = {
   bull: [106, 248, 197, 240],
   arrow: [277, 227, 126, 156],
   bear: [739, 316, 160, 154],
+  // bull.png / bear.png originally had pieces of neighbouring artwork baked in
+  // (the lower arrow shaft above the bull's horn, a sliver above the bear's
+  // head), which flew in with the animals. They were split out into these
+  // layers — same canvas and position as the animal — and revealed in place.
+  bullFrag: [106, 248, 197, 240],
+  bearFrag: [739, 316, 160, 154],
   c0: [401, 174, 47, 162],
   c1: [447, 168, 45, 168],
   c2: [503, 169, 45, 167],

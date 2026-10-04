@@ -11,7 +11,8 @@ import {
 import styles from "./AnimatedLogo.module.css";
 import { ART_SIZE, LAYERS, LAYER_ORDER, type LayerName } from "./layers";
 
-export type LogoVariant = "market-open" | "bull-vs-bear";
+// "market-open" is commented out (disabled on request) — see play() below.
+export type LogoVariant = /* "market-open" | */ "bull-vs-bear";
 
 export type AnimatedLogoHandle = {
   /** Play the intro again from the start */
@@ -19,7 +20,7 @@ export type AnimatedLogoHandle = {
 };
 
 type Props = {
-  /** Which intro to play. Default: "market-open" */
+  /** Which intro to play. Only "bull-vs-bear" is enabled. */
   variant?: LogoVariant;
   /** Folder in /public that holds the layer PNGs. Default: "/gts-logo" */
   assetBase?: string;
@@ -39,7 +40,7 @@ const SPARK_COUNT = 18;
 
 const AnimatedLogo = forwardRef<AnimatedLogoHandle, Props>(function AnimatedLogo(
   {
-    variant = "market-open",
+    variant = "bull-vs-bear",
     assetBase = "/gts-logo",
     playOnView = false,
     idle = true,
@@ -196,6 +197,12 @@ const AnimatedLogo = forwardRef<AnimatedLogoHandle, Props>(function AnimatedLogo
 
     let end: number;
 
+    /* "Market open" intro — DISABLED (commented out on request).
+       To restore: add "market-open" back to LogoVariant above, delete this
+       whole note, up to and including the blank line below it, and turn
+       the "else" line where this comment ends (just before `const HIT`) back
+       into a plain `} else {`.
+
     if (variant === "market-open") {
       drawRing(0, 1100, "cubic-bezier(.6,0,.3,1)");
       circuits(500);
@@ -223,7 +230,7 @@ const AnimatedLogo = forwardRef<AnimatedLogoHandle, Props>(function AnimatedLogo
       flashAt(512, 375, 300, 2700);
       lightSweep(3100);
       end = 4100;
-    } else {
+    } else */ {
       const HIT = 1250;
       A(L.bull, [
         { opacity: 0, transform: "translateX(-150%)" },
@@ -291,6 +298,13 @@ const AnimatedLogo = forwardRef<AnimatedLogoHandle, Props>(function AnimatedLogo
       ], 2000, 380, "cubic-bezier(.6,0,.4,1)");
       A(shake, [{ transform: "none" }, { transform: "translateY(.6%)" }, { transform: "none" }], 2300, 200, "ease-out", { fill: "none" });
       flashAt(512, 375, 260, 2290);
+      // the arrow's lower shaft (split out of bull.png) wipes in just ahead of the arrow
+      A(L.bullFrag, [
+        { clipPath: "inset(100% 100% 0 0)", opacity: 1, filter: "brightness(2)" },
+        { clipPath: "inset(0 0 0 0)", opacity: 1, filter: "brightness(1)" },
+      ], 2220, 240, "cubic-bezier(.2,.9,.3,1)");
+      // sliver above the bear (split out of bear.png) appears once the S has landed
+      A(L.bearFrag, [{ opacity: 0 }, { opacity: 1 }], 2100, 220, "ease-out");
       arrow(2400, 380);
       lightSweep(2700);
       end = 3700;
@@ -299,7 +313,7 @@ const AnimatedLogo = forwardRef<AnimatedLogoHandle, Props>(function AnimatedLogo
     startIdle(end);
     setPending(false); // first frame of every layer is now set by the animations above
     timers.current.push(window.setTimeout(() => onCompleteRef.current?.(), end));
-  }, [variant, idle, stop]);
+  }, [idle, stop]); // add `variant` back here if "market-open" is re-enabled
 
   useImperativeHandle(ref, () => ({ replay: play }), [play]);
 
@@ -342,6 +356,7 @@ const AnimatedLogo = forwardRef<AnimatedLogoHandle, Props>(function AnimatedLogo
       className={[styles.root, pending ? styles.pending : "", className].filter(Boolean).join(" ")}
       role="img"
       aria-label={label}
+      data-variant={variant}
     >
       <div ref={haloRef} className={styles.halo} aria-hidden="true" />
       <div ref={shakeRef} className={styles.shake}>
