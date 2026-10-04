@@ -86,9 +86,9 @@ export const TOOLS = [
   },
   {
     id: "heatmap", label: "Liquidation heatmap", title: "Liquidation heatmap",
-    body: "Where leveraged positions would be forced out, drawn as a heatmap on the chart. Dense clusters show where liquidations are stacked, and price is often drawn towards them.",
-    shows: "where the stops and liquidations are sitting above and below price.",
-    use: "as context: a level with a liquidation cluster just beyond it is one to treat with more care.",
+    body: "A heatmap of the liquidations that actually took place: where leveraged positions were forced out, drawn on the chart at the price and time it happened. The hotter the area, the more was liquidated there.",
+    shows: "where traders got liquidated, and which moves were driven by forced buying or selling.",
+    use: "as context: a GTS Reversal that prints right after a wave of liquidations tells you the move was forced, not chosen.",
   },
   {
     id: "orderflow", label: "Orderflow confirmations", title: "Orderflow confirmations",
