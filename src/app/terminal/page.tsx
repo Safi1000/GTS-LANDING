@@ -261,7 +261,7 @@ export default function TerminalPage() {
         <div className="cta-band" data-rv>
           <h2>Learn it first. Then get the terminal.</h2>
           <p className="lede" style={{ margin: "20px auto 0", textAlign: "center" }}>
-            The masterclass teaches every tool in the terminal for free. If it turns out you do not need it, that is a
+            The masterclass teaches the method behind the terminal for free. If it turns out you do not need it, that is a
             good outcome.
           </p>
           <div className="btn-row center" style={{ marginTop: 32 }}>

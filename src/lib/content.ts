@@ -14,11 +14,6 @@ export const ROOMS = [
   ["#news", "Automated feed", "Our bot posts releases and events before they move price.", "IV"],
 ] as const;
 
-export const SYLLABUS = [
-  "Market structure", "Price action", "Dow theory", "Wyckoff", "Elliott wave", "Technical analysis",
-  "Liquidity & order flow", "Risk & position sizing", "Session timing", "Every terminal tool",
-  "Backtesting your edge", "Journaling & review",
-];
 
 export const PARTNER_LOGOS = [
   "PROP FIRM", "EXCHANGE", "PROP FIRM", "EXCHANGE", "BROKER", "PROP FIRM",
@@ -57,7 +52,7 @@ export const HOME_FAQ: AccItem[] = [
   { q: "How do I get access to the terminal?", a: "Pay by card through Stripe or in crypto, then open a ticket in our Discord with the invoice ID you receive after paying. We verify the payment and give your Google email access to the terminal." },
   { q: "What is the win rate, really?", a: "80% at 1R and 70% at 2R across our own backtests. Those are backtested figures, not live account statements, and the full methodology — pairs, date range, sample size and the worst losing streak — is posted in the server. A win rate without a sample size attached is marketing, not data." },
   { q: "Do you offer refunds?", a: "Card subscriptions can be cancelled any time and you keep access to the end of the paid period. Crypto payments are a fixed-term purchase and cannot be refunded, which is why we say so plainly at checkout rather than burying it in the terms." },
-  { q: "Do I need experience to join?", a: "No. The masterclass starts at market structure and candles and assumes nothing. Most people spend a few weeks in the free material before they think about the terminal, and we would rather you did it in that order." },
+  { q: "Do I need experience to join?", a: "No. The masterclass starts with risk management and basic market structure and assumes nothing. Most people spend a few weeks in the free material before they think about the terminal, and we would rather you did it in that order." },
   { q: "Which markets do you cover?", a: "Gold and crypto. Gold on the London and New York sessions, crypto around the clock with a focus on majors and a small rotation of liquid alts. We do not teach equities, indices or FX pairs, because that is not where our edge is." },
   { q: "Is any of this financial advice?", a: "No. Everything we publish is educational, and we have no idea what your account size or risk tolerance is. GLITCHERS is not a broker, adviser or asset manager and never handles anyone's funds." },
   { q: "What happens if I cancel?", a: "Terminal access ends when the paid period does. You keep your Discord membership, the masterclass, the live sessions and the partner perks — those never depended on paying." },
@@ -98,20 +93,66 @@ export const TOOLS = [
   },
 ];
 
-export const LESSONS = [
-  ["Foundations", "What a candle actually tells you", "Open, high, low, close — and why the close is the only one carrying information.", "14m"],
-  ["Foundations", "Support, resistance and why levels fail", "Levels are zones, not lines. Drawing them so they survive contact with price.", "19m"],
-  ["Price action", "Market structure from scratch", "Higher highs, lower lows, and the exact moment structure breaks.", "23m"],
-  ["Price action", "Liquidity: where the stops are", "Why price runs a high before reversing, and how to see it in advance.", "21m"],
-  ["Advanced theory", "Dow theory, properly", "The six tenets, and which two still matter on a 15-minute chart.", "17m"],
-  ["Advanced theory", "Wyckoff accumulation and distribution", "Reading the schematics without forcing every range into one.", "28m"],
-  ["Advanced theory", "Elliott wave without the cult", "Counting waves as a bias tool, not a prediction machine.", "26m"],
-  ["The terminal", "Setting up the GTS Terminal", "Layouts, alerts and which settings to leave alone.", "12m"],
-  ["The terminal", "Every tool, one by one", "GTS Levels, GTS Reversals, the heatmap and orderflow, and when to ignore them.", "41m"],
-  ["Risk", "Position sizing that survives a losing streak", "Fixed fractional sizing and what a 7R drawdown does to an account.", "18m"],
-  ["Risk", "Session timing and when to stand down", "Why the same setup has a different win rate at 3am.", "15m"],
-  ["Risk", "Journaling and reviewing your own data", "The habit that turns a losing trader into a breakeven one.", "16m"],
-] as const;
+/**
+ * The masterclass curriculum: modules in order, each with its lessons.
+ * Copy is deliberately generic (no first or third person). No durations yet.
+ */
+export type Lesson = { title: string; desc: string };
+export type CourseModule = { id: string; name: string; lessons: Lesson[] };
+
+export const CURRICULUM: CourseModule[] = [
+  {
+    id: "foundations",
+    name: "Foundations",
+    lessons: [
+      { title: "Risk Management", desc: "Consistent profitability is not possible without managing risk. That is why it comes first." },
+      { title: "How to Actually Win", desc: "Strategy matters less than most traders think: almost any strategy can be profitable once the mentality is in check." },
+    ],
+  },
+  {
+    id: "structure",
+    name: "Market Structure",
+    lessons: [
+      { title: "Basic Market Structure", desc: "The basic building blocks of market structure. Essential for every beginner." },
+      { title: "Intro to Zones", desc: "A different way of reading market structure, built on original zone concepts that change everything that follows." },
+      { title: "Advanced Market Structure", desc: "Builds on the previous lesson by combining traditional market structure with zones." },
+      { title: "Market Cycles", desc: "The theory of market cycles, premium and discount, and one of the ten algorithmic functions of price delivery." },
+    ],
+  },
+  {
+    id: "liquidity",
+    name: "Liquidity & Imbalances",
+    lessons: [
+      { title: "External Liquidity", desc: "The type of liquidity most traders already know, and why there is more to it than that." },
+      { title: "Internal Liquidity", desc: "The part of the market few traders recognise as liquidity, and the opportunities it opens up." },
+    ],
+  },
+  {
+    id: "snd",
+    name: "Supply & Demand",
+    lessons: [
+      { title: "Basic Supply & Demand", desc: "Almost everything in technical analysis, summarised through supply and demand structures." },
+      { title: "Advanced Supply & Demand", desc: "Combining everything so far to find the right points to trade. Advanced material." },
+    ],
+  },
+  {
+    id: "strategy",
+    name: "Trading Strategy",
+    lessons: [
+      { title: "The Glitch Models", desc: "Where everything before it comes together, and where the part about making money begins." },
+    ],
+  },
+  {
+    id: "backtests",
+    name: "Backtests & Narrative Building",
+    lessons: [
+      { title: "Gold Backtest", desc: "An over-the-shoulder recording of 25 gold trades tested with every concept in the course. A lesson in context and narrative building." },
+    ],
+  },
+];
+
+/** Home page syllabus: every lesson, in order. */
+export const SYLLABUS = CURRICULUM.flatMap((m) => m.lessons.map((l) => l.title));
 
 /** Footer risk warning. LEGALLY LOAD-BEARING — verbatim from the HTML. Do not edit without sign-off. */
 export const RISK_WARNING =

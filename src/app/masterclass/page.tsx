@@ -2,23 +2,24 @@ import type { Metadata } from "next";
 import { Countdown } from "@/components/Countdown";
 import { MagneticButton } from "@/components/MagneticButton";
 import { Reveal } from "@/components/Reveal";
-import { TiltCard } from "@/components/TiltCard";
+import { CurriculumFilter } from "@/components/CurriculumFilter";
 import { PlainChart } from "@/components/charts/PlainChart";
 import { PlayIcon } from "@/components/icons";
-import { KICKER, Rail } from "@/components/ui";
-import { LESSONS } from "@/lib/content";
+import { Rail } from "@/components/ui";
+import { CURRICULUM } from "@/lib/content";
 import { LINKS } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Masterclass",
   description:
-    "The entire GTS method, free. Twelve modules, from what a candle is telling you up to every tool inside the GTS Terminal.",
+    "The entire GTS method, free. Six modules and twelve lessons, from risk management and market structure to the Glitch Models and a full gold backtest.",
   alternates: { canonical: "/masterclass" },
   openGraph: { title: "Masterclass — GLITCHERS" },
 };
 
-/* Category chips are inert, as in the HTML. Lessons move to Payload in Phase 5. */
-const CATS = ["All", "Foundations", "Price action", "Advanced theory", "The terminal", "Risk"];
+/* Curriculum lives in lib/content.ts (CURRICULUM); it moves to Payload in Phase 5. */
+const LESSON_COUNT = CURRICULUM.reduce((n, m) => n + m.lessons.length, 0);
+const [FIRST] = CURRICULUM;
 
 export default function MasterclassPage() {
   return (
@@ -31,28 +32,23 @@ export default function MasterclassPage() {
           <span className="foil">No paywall.</span>
         </h1>
         <p className="lede" style={{ marginInline: "auto" }}>
-          Twelve modules, from what a candle is telling you up to every tool inside the terminal. Sign in with
-          Discord to track progress and watch the videos.
+          Six modules and twelve lessons, from risk management and market structure to the Glitch Models and a
+          full gold backtest. Sign in with Discord to track progress and watch the videos.
         </p>
       </header>
 
       <section className="wrap band-t">
-        <div className="chips" data-rv style={{ marginBottom: 34 }}>
-          {CATS.map((c, i) => (
-            <button key={c} className={`chip${i === 0 ? " on" : ""}`}>{c}</button>
-          ))}
-        </div>
         <div className="card card-glow frame" data-rv style={{ padding: 0, overflow: "hidden", marginBottom: 28 }}>
           <div className="split" style={{ gap: 0, alignItems: "stretch" }}>
             <div style={{ padding: 40, display: "flex", flexDirection: "column", justifyContent: "center" }}>
               <span className="badge">Start here</span>
-              <h2 style={{ fontSize: 32, marginTop: 18 }}>Foundations: reading a chart without indicators</h2>
+              <h2 style={{ fontSize: 32, marginTop: 18 }}>Foundations: risk and mentality first</h2>
               <p className="lede">
-                Before any of the fancy stuff — what price is actually doing, why a candle closes where it does, and
-                how to see structure without a single line on the chart.
+                Before market structure, before any setup: how to manage risk, and the mentality that decides whether
+                any strategy works at all.
               </p>
               <div className="mono small" style={{ marginTop: 22, color: "var(--faint)" }}>
-                6 lessons · 1h 48m · Updated Jul 2026
+                Module 01 · {FIRST.lessons.length} lessons · {CURRICULUM.length} modules, {LESSON_COUNT} lessons in total
               </div>
               <div className="btn-row" style={{ marginTop: 26 }}>
                 <MagneticButton href="#" className="btn btn-primary">Start module 1</MagneticButton>
@@ -86,20 +82,7 @@ export default function MasterclassPage() {
             </div>
           </div>
         </div>
-        <div className="grid-3">
-          {LESSONS.map(([cat, title, desc, dur], i) => (
-            <TiltCard key={title} href="/masterclass" className="card-glow" data-rv style={{ display: "block" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <span className="mono" style={KICKER}>{cat}</span>
-                <span className="mono" style={{ fontSize: 11, color: "var(--faint)" }}>{dur}</span>
-              </div>
-              <h3 style={{ marginTop: 14, fontSize: 17 }}>
-                {String(i + 1).padStart(2, "0")} · {title}
-              </h3>
-              <p className="small" style={{ marginTop: 9 }}>{desc}</p>
-            </TiltCard>
-          ))}
-        </div>
+        <CurriculumFilter modules={CURRICULUM} />
       </section>
 
       <section className="wrap band-t">

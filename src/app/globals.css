@@ -465,6 +465,10 @@
   transition:color .2s,padding-left .25s var(--e-out)}
 .syl div:hover{color:var(--gold-300);padding-left:8px}
 .syl i{font-family:var(--f-mono);font-style:normal;color:var(--gold-700);font-size:12px;padding-top:2px}
+/* masterclass curriculum (CurriculumFilter) */
+.module+.module{margin-top:44px}
+.module-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.module-head h3{font-size:21px}
 /* .w is load-bearing: it colours the hero headline (see .hero h1 above) */
 .w{color:var(--win)}.l{color:var(--loss)}.f{color:var(--flat)}
 

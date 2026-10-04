@@ -96,7 +96,7 @@ export function Rooms() {
 /* ══════════ III. HOW IT WORKS ══════════ */
 const STEPS = [
   ["I", "Join the Discord", "Discussion, mentorship and partner perks. Nothing behind a card.", "Free"],
-  ["II", "Take the masterclass", "The complete method, including every tool in the terminal.", "Free"],
+  ["II", "Take the masterclass", "The complete method, from risk and market structure to the Glitch Models.", "Free"],
   ["III", "Add the terminal", "Once you know the method, the terminal that marks it saves you the screen time.", "From $39/mo"],
 ];
 
@@ -138,8 +138,8 @@ export function TerminalSection() {
           </h2>
           <p className="lede">
             Our own charting terminal, built in-house for gold and crypto. GTS Levels, GTS Reversals, a liquidation
-            heatmap and orderflow confirmations on one chart, a journal that tracks every trade for you, and every
-            tool taught free in the masterclass.
+            heatmap and orderflow confirmations on one chart, a journal that tracks every trade for you, and the
+            method behind it taught free in the masterclass.
           </p>
           <p className="lede">
             It is not a bot. It will not save bad risk management. It marks the level and gets out of your way.
@@ -196,8 +196,9 @@ export function MasterclassSection() {
             and sell the tool.
           </h2>
           <p className="lede">
-            Not a funnel with the good parts removed. The curriculum runs from what a candle is actually telling you
-            up to every tool inside the terminal and how to size the trades it gives you.
+            Not a funnel with the good parts removed. The curriculum runs from risk management and market structure
+            through liquidity and supply and demand to the Glitch Models, then a full gold backtest that puts it all
+            together.
           </p>
           <p className="lede">Video lessons, live sessions with mentors, and written breakdowns with annotated charts.</p>
           <div className="btn-row" style={{ marginTop: 30 }}>
