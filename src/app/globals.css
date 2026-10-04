@@ -320,6 +320,15 @@
 /* the two ceremonial rings — were created with JS in the HTML; now static and decorative */
 .crest-ring{position:absolute;width:150px;height:150px;border:1px solid rgba(201,154,75,.32);
   border-radius:50%;opacity:0;pointer-events:none}
+/* animated GTS logo (components/gts-logo) — replaces the crest stage above.
+   320px box ≈ the old 220px dial: the logo's ring spans the middle ~64%. */
+.logo-stage{position:relative;width:320px;aspect-ratio:1/1;margin:0 auto 6px;display:grid;place-items:center}
+.logo-fallback{width:98px;height:116px}
+.logo-switch{position:absolute;top:0;right:var(--gut);z-index:4;display:flex;align-items:center;gap:8px}
+.logo-switch-lbl{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin-right:2px}
+@media (max-width:940px){.logo-stage{width:260px}}
+@media (max-width:640px){.logo-switch{position:static;justify-content:center;flex-wrap:wrap;margin:-4px 0 14px}}
 .hero .wordmark{font-family:var(--f-crest);font-weight:700;font-size:13px;letter-spacing:.48em;
   color:var(--muted);padding-left:.48em}
 .hero h1{margin-top:24px}

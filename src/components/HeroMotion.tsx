@@ -1,22 +1,30 @@
 "use client";
 
-import { useRef, useState, type ReactNode } from "react";
+import { createContext, useContext, useRef, useState, type ReactNode } from "react";
 import { Preloader } from "@/components/Preloader";
 import { gsap, MOTION, useGSAP, within } from "@/lib/gsap";
 import { INTRO_KEY, navState } from "@/lib/nav-state";
 
 /**
- * Owns all hero motion: the preloader → crest → headline intro timeline, the
+ * Owns all hero motion: the preloader → logo → headline intro timeline, the
  * scroll parallax and the floating signal cards. The hero content itself is
  * server-rendered and passed in as children; elements are found through
- * scoped selectors (`[data-hero=…]`, `.floater`, `.dial`).
+ * scoped selectors (`[data-hero=…]`, `.floater`, `.w`).
  *
  * The intro plays only on the first hard load of `/` in a session. Repeat
  * visits and client-side navigations to `/` show the hero as-is.
+ *
+ * `useHeroRevealed()` tells children (the animated logo) when the hero is
+ * actually visible — after the preloader curtain lifts, or immediately when
+ * there is no preloader — so the logo intro never plays behind the curtain.
  */
+const RevealedCtx = createContext(false);
+export const useHeroRevealed = () => useContext(RevealedCtx);
+
 export function HeroMotion({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLElement>(null);
   const [showPre, setShowPre] = useState(true);
+  const [revealed, setRevealed] = useState(false);
   // decided once per mount; a ref survives StrictMode's double effect run
   const playIntro = useRef<boolean | null>(null);
 
@@ -35,6 +43,7 @@ export function HeroMotion({ children }: { children: ReactNode }) {
       mm.add({ motion: MOTION, reduce: "(prefers-reduced-motion: reduce)" }, (ctx) => {
         if (ctx.conditions?.reduce) {
           setShowPre(false);
+          setRevealed(true);
           return;
         }
 
@@ -56,6 +65,7 @@ export function HeroMotion({ children }: { children: ReactNode }) {
 
         if (!playIntro.current) {
           setShowPre(false);
+          setRevealed(true);
           return;
         }
         playIntro.current = false; // never replay on a later matchMedia change
@@ -85,9 +95,10 @@ export function HeroMotion({ children }: { children: ReactNode }) {
           .to("#pre .box", { opacity: 0, y: -14, duration: 0.4, ease: "power2.in" }, "+=.15")
           .to("#pre .curtain", { scaleY: 0, duration: 0.9, ease: "power4.inOut", transformOrigin: "top" }, "-=.15")
           .add(() => setShowPre(false))
-          .from("[data-hero=crest]", { opacity: 0, scale: 0.9, filter: "blur(10px)", duration: 0.9, ease: "power3.out" }, "-=.55")
-          .from("[data-hero=glow]", { opacity: 0, scale: 0.6, duration: 1, ease: "power2.out" }, "<")
-          .from(".dial", { opacity: 0, scale: 0.85, duration: 1.1, stagger: 0.1, ease: "power3.out" }, "<")
+          // the logo mounts and starts its own intro where the crest used to fade in;
+          // the empty 0.9s spacer keeps the headline timings exactly as before
+          .add(() => setRevealed(true), "-=.55")
+          .to({}, { duration: 0.9 }, "<")
           .from("[data-hero=word]", { opacity: 0, y: 12, duration: 0.6 }, "-=.5")
           .from("[data-hero=orn]", { opacity: 0, scaleX: 0.4, duration: 0.6 }, "-=.45")
           .from("[data-hero=eye]", { opacity: 0, y: 10, duration: 0.5 }, "-=.4")
@@ -97,14 +108,6 @@ export function HeroMotion({ children }: { children: ReactNode }) {
           .from("[data-hero=micro]", { opacity: 0, duration: 0.5 }, "-=.4")
           .from(".floater", { opacity: 0, y: 26, scale: 0.94, duration: 0.7, stagger: 0.12, ease: "power3.out" }, "-=.6")
           .from("[data-hero=cue]", { opacity: 0, duration: 0.5 }, "-=.3");
-
-        /* two ceremonial rings, 0.55s apart, starting 1.6s before the end */
-        const ringFrom = { scale: 0.55, opacity: 0.6 };
-        const ringTo = { scale: 1.5, opacity: 0, duration: 1.3, ease: "power2.out", immediateRender: false };
-        const [ringA, ringB] = within(root, ".crest-ring");
-        tl.addLabel("rings", "-=1.6");
-        if (ringA) tl.fromTo(ringA, ringFrom, ringTo, "rings");
-        if (ringB) tl.fromTo(ringB, ringFrom, ringTo, "rings+=0.55");
 
         // StrictMode (dev) reverts and re-runs this immediately: let an
         // unfinished intro run again instead of being skipped.
@@ -118,9 +121,11 @@ export function HeroMotion({ children }: { children: ReactNode }) {
   );
 
   return (
-    <header className="hero" ref={ref}>
-      {showPre && <Preloader />}
-      {children}
-    </header>
+    <RevealedCtx.Provider value={revealed}>
+      <header className="hero" ref={ref}>
+        {showPre && <Preloader />}
+        {children}
+      </header>
+    </RevealedCtx.Provider>
   );
 }

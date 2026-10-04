@@ -1,34 +1,9 @@
-import { Crest } from "@/components/Crest";
+import { HeroLogo } from "@/components/HeroLogo";
 import { HeroMotion } from "@/components/HeroMotion";
 import { MagneticButton } from "@/components/MagneticButton";
 import { ArrowIcon } from "@/components/icons";
 import { Orn } from "@/components/ui";
-import { r3 } from "@/lib/chart";
 import { LINKS } from "@/lib/site";
-
-/** 72 tick marks around the outer dial (built with innerHTML in the HTML). */
-function DialTicks() {
-  return (
-    <g stroke="rgba(201,154,75,.45)">
-      {Array.from({ length: 72 }, (_, i) => {
-        const a = (i * 5 * Math.PI) / 180;
-        const long = i % 6 === 0;
-        const r1 = long ? 84 : 89, r2 = 96;
-        return (
-          <line
-            key={i}
-            x1={r3(100 + Math.cos(a) * r1)}
-            y1={r3(100 + Math.sin(a) * r1)}
-            x2={r3(100 + Math.cos(a) * r2)}
-            y2={r3(100 + Math.sin(a) * r2)}
-            stroke={`rgba(201,154,75,${long ? 0.5 : 0.22})`}
-            strokeWidth={long ? 1.2 : 0.8}
-          />
-        );
-      })}
-    </g>
-  );
-}
 
 const FLOATERS = [
   ["f1", 7, "XAUUSD", "LONG", "+2.0R", "Sweep reversal"],
@@ -56,26 +31,7 @@ export function Hero() {
       </div>
 
       <div className="wrap" data-hero="inner">
-        <div className="crest-stage">
-          <div className="crest-glow" data-hero="glow" />
-          <div className="dial">
-            <svg viewBox="0 0 200 200" fill="none">
-              <circle cx="100" cy="100" r="96" stroke="rgba(201,154,75,.18)" />
-              <DialTicks />
-            </svg>
-          </div>
-          <div className="dial rev">
-            <svg viewBox="0 0 200 200" fill="none">
-              <circle cx="100" cy="100" r="78" stroke="rgba(201,154,75,.1)" strokeDasharray="2 7" />
-            </svg>
-          </div>
-          <div className="crest-ring" aria-hidden="true" />
-          <div className="crest-ring" aria-hidden="true" />
-          <div className="crest-wrap" data-hero="crest">
-            <Crest className="crest" w={98} h={116} alt="GLITCHERS crest" eager />
-            <div className="crest-sheen" />
-          </div>
-        </div>
+        <HeroLogo />
         <div className="wordmark" data-hero="word">
           GLITCHERS
         </div>

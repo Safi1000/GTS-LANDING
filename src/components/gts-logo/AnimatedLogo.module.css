@@ -1,0 +1,97 @@
+.root {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  aspect-ratio: 1 / 1;
+}
+
+/* Hidden until the first animation frame is set, so the finished logo never flashes before the intro */
+.pending .stage {
+  visibility: hidden;
+}
+
+.halo {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(246, 205, 110, 0.35), transparent 65%);
+  filter: blur(20px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.shake {
+  position: absolute;
+  inset: 0;
+}
+
+.stage {
+  position: absolute;
+  inset: 0;
+  filter: drop-shadow(0 10px 14px rgba(10, 0, 4, 0.55));
+}
+
+.stage img {
+  position: absolute;
+  display: block;
+  max-width: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  will-change: transform, opacity;
+}
+
+.fx {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.ringDraw {
+  opacity: 0;
+}
+
+.wave {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.sweep {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 42%, rgba(255, 247, 220, 0.85) 50%, transparent 58%);
+  background-size: 300% 100%;
+  background-position: 120% 0;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  opacity: 0;
+}
+
+.flash {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 250, 225, 0.95), rgba(255, 220, 140, 0.4) 35%, transparent 70%);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+
+.spark {
+  position: absolute;
+  left: 49.4%;
+  top: 40.4%;
+  width: 1.2%;
+  height: 1.2%;
+  border-radius: 50%;
+  background: #fbe6a4;
+  box-shadow: 0 0 8px 2px rgba(255, 214, 120, 0.8);
+  opacity: 0;
+  pointer-events: none;
+}
