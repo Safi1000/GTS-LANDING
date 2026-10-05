@@ -1,5 +1,5 @@
 /**
- * Deterministic chart engine — ported 1:1 from gts-site-v2.html.
+ * Deterministic chart engine - ported 1:1 from gts-site-v2.html.
  *
  * Everything here is pure: a seeded PRNG plus integer/IEEE arithmetic, so the
  * server and every browser produce bit-identical geometry. That is what lets
@@ -37,7 +37,7 @@ export function makeBars(seed: number, phases: Phase[], start: number): Bar[] {
   return b;
 }
 
-/** Candle palette — bone up, oxblood down. Never green/red. */
+/** Candle palette - bone up, oxblood down. Never green/red. */
 export const BULL = "#D8CFC2";
 export const BEAR = "#7E1730";
 
@@ -125,7 +125,7 @@ export function reversalScene() {
   const zones: Zone[] = [
     { from: 5, to: null, lo: 2410.6, hi: 2413.4, active: true, labelAt: 13 }, // supply, from the first high
     { from: 21, to: 41, lo: 2400.6, hi: 2403.0, active: false }, // lower-high level, broken by the rally
-    { from: 15, to: null, lo: 2390.2, hi: 2393.2, active: true, labelAt: 44 }, // demand, from the swing low — the one that gets tapped
+    { from: 15, to: null, lo: 2390.2, hi: 2393.2, active: true, labelAt: 44 }, // demand, from the swing low - the one that gets tapped
   ];
   const arrows: ReversalArrow[] = [
     { i: 7, dir: "down" }, { i: 17, dir: "up" }, { i: 23, dir: "down" }, { i: R, dir: "up", main: true }, { i: 50, dir: "down" },

@@ -21,6 +21,8 @@ export function MobileDrawer({ open, onNavigate }: { open: boolean; onNavigate: 
       ))}
       <a
         href={LINKS.discordInvite}
+        target="_blank"
+        rel="noopener noreferrer"
         style={{ ...delay(ITEMS.length), color: "var(--gold-300)" }}
         onClick={onNavigate}
       >

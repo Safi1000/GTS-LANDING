@@ -13,7 +13,7 @@ const START = 40; // replay opens part-way through the series
  * Bar-replay demo panel (home "Replay & backtesting", terminal page).
  * Timeframe chips switch the series; "Step ›" reveals the next bar, and once
  * the series is fully played it becomes "Restart". The server renders the 1H
- * series at bar 40 — identical to the client's first render.
+ * series at bar 40 - identical to the client's first render.
  */
 export function ReplayPanel({ rv = true }: { rv?: boolean }) {
   const [tf, setTf] = useState<(typeof TFS)[number]>("1H");

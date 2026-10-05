@@ -13,7 +13,7 @@ import { TiltCard } from "@/components/TiltCard";
 import { ArrowIcon } from "@/components/icons";
 import { Kicker, Orn, PanelBar, Rail } from "@/components/ui";
 import {
-  HOME_FAQ, PARTNER_LOGOS, PERKS, QUOTES_A, QUOTES_B, ROOMS, SYLLABUS, type Quote,
+  HOME_FAQ, PARTNER_LOGOS, PERKS, ROOMS, SYLLABUS,
 } from "@/lib/content";
 import { LINKS } from "@/lib/site";
 
@@ -169,7 +169,7 @@ export function TerminalSection() {
           </div>
           <p className="note">
             <b>On those numbers.</b> They come from our own backtests. The pairs tested, the date range, the sample
-            size and the worst losing streak are all posted in the server — read them before you subscribe, not
+            size and the worst losing streak are all posted in the server. Read them before you subscribe, not
             after.
           </p>
           <p className="note">
@@ -277,50 +277,29 @@ export function Partners() {
   );
 }
 
-/* ══════════ VIII. VOICES  [SAMPLE COPY] ══════════ */
-const QuoteCard = ({ q }: { q: Quote }) => (
-  <div className="quote">
-    <p>{q.p}</p>
-    <div className="who">
-      <div className="av">{q.av}</div>
-      <span className="hd">{q.hd}</span>
-    </div>
-  </div>
-);
-
-export function Voices() {
-  return (
-    <section className="band">
-      <div className="wrap">
-        <Rail n="VIII" label="From the server" />
-        <h2 data-rv style={{ marginBottom: 40 }}>What members actually say.</h2>
-      </div>
-      <Marquee speed={0.4} style={{ marginBottom: 16 }}>
-        {QUOTES_A.map((q, i) => <QuoteCard q={q} key={i} />)}
-      </Marquee>
-      <Marquee speed={-0.4}>
-        {QUOTES_B.map((q, i) => <QuoteCard q={q} key={i} />)}
-      </Marquee>
-    </section>
-  );
-}
-
-/* ══════════ IX. FAQ ══════════ */
+/* ══════════ VIII. FAQ ══════════ */
 export function Faq() {
   return (
     <section className="wrap band" id="faq">
-      <Rail n="IX" label="Questions" />
-      <div className="split top">
-        <div data-rv>
-          <h2>Straight answers.</h2>
-          <p className="lede">
-            If it is not here, ask in{" "}
-            <span className="mono" style={{ color: "var(--gold-500)", fontSize: 13.5 }}>#discussion</span> — someone
-            usually replies within minutes.
-          </p>
-        </div>
-        <Accordion items={HOME_FAQ} data-rv />
+      <Rail n="VIII" label="Questions" />
+      {/* heading on top, questions in two columns below */}
+      <div data-rv style={{ marginBottom: 40 }}>
+        <h2>Straight answers.</h2>
+        <p className="lede">
+          If it is not here, ask in{" "}
+          <a
+            href={LINKS.discordInvite}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mono"
+            style={{ color: "var(--gold-500)", fontSize: 13.5 }}
+          >
+            #discussion
+          </a>
+          , where someone usually replies within minutes.
+        </p>
       </div>
+      <Accordion items={HOME_FAQ} columns={2} data-rv />
     </section>
   );
 }
@@ -331,7 +310,7 @@ export function HomeCta() {
     <section className="wrap">
       <div className="cta-band" data-rv>
         <AmbientCandles />
-        <Crest w={48} h={57} style={{ margin: "0 auto 22px" }} />
+        <Crest size={60} style={{ margin: "0 auto 22px" }} />
         <Orn style={{ marginBottom: 22 }} />
         <h2>
           The server is free.

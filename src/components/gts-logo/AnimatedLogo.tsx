@@ -11,7 +11,7 @@ import {
 import styles from "./AnimatedLogo.module.css";
 import { ART_SIZE, LAYERS, LAYER_ORDER, type LayerName } from "./layers";
 
-// "market-open" is commented out (disabled on request) — see play() below.
+// "market-open" is commented out (disabled on request) - see play() below.
 export type LogoVariant = /* "market-open" | */ "bull-vs-bear";
 
 export type AnimatedLogoHandle = {
@@ -197,7 +197,7 @@ const AnimatedLogo = forwardRef<AnimatedLogoHandle, Props>(function AnimatedLogo
 
     let end: number;
 
-    /* "Market open" intro — DISABLED (commented out on request).
+    /* "Market open" intro - DISABLED (commented out on request).
        To restore: add "market-open" back to LogoVariant above, delete this
        whole note, up to and including the blank line below it, and turn
        the "else" line where this comment ends (just before `const HIT`) back

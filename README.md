@@ -2,7 +2,7 @@
 
 Next.js port of `gts-site-v2.html`, the GTS landing page. GTS is positioned as **trading education and mentorship**: no signals service. The paid product is the **GTS Terminal** (https://charts.glitchtrading.co): GTS Levels, GTS Reversals, liquidation heatmap, orderflow confirmations, bar replay. The only performance figures on the site are its backtested win rates (80% at 1R / 70% at 2R). It will grow into the membership platform (masterclass, gated video, indicator and terminal entitlements).
 
-**Status:** Phase 1–2 done (scaffold, design system, components, home, terminal, pricing, masterclass + 404; `/indicator` redirects permanently to `/terminal`; the HTML's Results page was removed with the signals content). Auth, CMS, video and payments have not started.
+**Status:** Phase 1–2 done (scaffold, design system, components, home, terminal, pricing, masterclass, terms, privacy, refund-policy, risk-disclosure + 404; `/indicator` redirects permanently to `/terminal`; the HTML's Results page was removed with the signals content). Auth, CMS, video and payments have not started.
 
 ## Stack
 
@@ -68,13 +68,13 @@ Later phases add Supabase, Payload, Bunny and Stripe keys here. Server-only secr
 
 These were placeholders in the HTML and still are. Search for `PLACEHOLDER` / `SAMPLE`:
 
-- Discord invite, sign-in, account, socials, calendar links: `src/lib/site.ts`
-- Testimonials: `src/lib/content.ts`
+- Sign-in, account, calendar and recordings links: `src/lib/site.ts` (the Discord invite is live)
+- Governing-law country in `src/app/terms/page.tsx` (marked PLACEHOLDER)
 - Methodology figures: `src/app/indicator/page.tsx`
-- Footer links to routes that don't exist yet (terms, privacy, FAQ, …): `#`
+- Footer "About us": `#`
 
 The footer risk warning (`RISK_WARNING` in `src/lib/content.ts`) is **legally load-bearing**. It's verbatim from the HTML, and a check confirmed it's byte-identical. Don't edit it without sign-off.
 
 ## Assets
 
-`public/crest.png` is the logo extracted from the HTML's base64. It's **45×53 px and opaque RGB (no alpha)**, so it's blurry at hero size and shows a dark square behind the crest. It needs a re-export: transparent PNG at least ~470 px tall, or SVG.
+The static logo is `public/gts-logo/GTS_Logo_2.webp` (1024×1024, background baked in), used via `components/Crest.tsx`; `src/app/icon.png` is a 256 px favicon generated from it. The animated hero logo uses the layer PNGs in `public/gts-logo/`.

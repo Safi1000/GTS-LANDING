@@ -14,8 +14,8 @@ type Props = {
 
 /**
  * `.btn` that leans toward the pointer (the HTML's `.mag`).
- * Internal hrefs render a next/link, `#`/external ones a plain anchor, and no
- * href renders a <button>.
+ * Internal hrefs render a next/link, external (http) ones a plain anchor that
+ * opens in a new tab, `#…` a plain anchor, and no href renders a <button>.
  */
 export function MagneticButton({ href, type = "button", className, style, children }: Props) {
   const ref = useRef<HTMLElement>(null);
@@ -64,8 +64,15 @@ export function MagneticButton({ href, type = "button", className, style, childr
       </Link>
     );
   }
+  const external = href.startsWith("http");
   return (
-    <a ref={ref as React.Ref<HTMLAnchorElement>} href={href} className={className} style={style}>
+    <a
+      ref={ref as React.Ref<HTMLAnchorElement>}
+      href={href}
+      className={className}
+      style={style}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+    >
       {children}
     </a>
   );

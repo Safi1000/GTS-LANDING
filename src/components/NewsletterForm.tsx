@@ -3,7 +3,7 @@
 import { MagneticButton } from "@/components/MagneticButton";
 import { useToast } from "@/components/Toast";
 
-/** Footer signup. Not wired to a provider yet — same behaviour as the HTML. */
+/** Footer signup. Not wired to a provider yet - same behaviour as the HTML. */
 export function NewsletterForm() {
   const toast = useToast();
   return (

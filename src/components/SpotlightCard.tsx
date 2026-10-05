@@ -4,7 +4,7 @@ import { useRef, type CSSProperties, type ReactNode } from "react";
 
 /**
  * `.spot`: a soft gold radial that follows the pointer.
- * Ported for completeness — the HTML defines `.spot` but no element uses it.
+ * Ported for completeness - the HTML defines `.spot` but no element uses it.
  */
 export function SpotlightCard({
   className = "",

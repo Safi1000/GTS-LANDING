@@ -37,7 +37,7 @@ export function GtsLevelsChart({
   const x = (i: number) => PL + i * cw + cw / 2;
   const right = w - PR + 2;
 
-  // level lines (labels at the right) — computed first so grid labels can avoid them
+  // level lines (labels at the right) - computed first so grid labels can avoid them
   const levels: [number, string, string, string][] = [
     [entry, "#C99A4B", "ENTRY " + entry.toFixed(1), "0"],
     [sl, "#9A3247", "SL " + sl.toFixed(1), "3 3"],

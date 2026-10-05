@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-/** ms until the next Thursday 20:00 UTC — same maths as the HTML. */
+/** ms until the next Thursday 20:00 UTC - same maths as the HTML. */
 function untilNextSession(now: Date) {
   const t = new Date(now);
   t.setUTCHours(20, 0, 0, 0);

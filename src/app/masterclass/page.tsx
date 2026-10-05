@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description:
     "The entire GTS method, free. Six modules and twelve lessons, from risk management and market structure to the Glitch Models and a full gold backtest.",
   alternates: { canonical: "/masterclass" },
-  openGraph: { title: "Masterclass — GLITCHERS" },
+  openGraph: { title: "Masterclass | GLITCHERS" },
 };
 
 /* Curriculum lives in lib/content.ts (CURRICULUM); it moves to Payload in Phase 5. */
@@ -62,7 +62,7 @@ export default function MasterclassPage() {
           <div data-rv>
             <h2>Thursdays, with your mentors.</h2>
             <p className="lede">
-              A live chart session every Thursday — the week&apos;s charts broken down, mistakes explained, and
+              A live chart session every Thursday: the week&apos;s charts broken down, mistakes explained, and
               whatever the room asks. Recorded and added to the library afterwards.
             </p>
           </div>

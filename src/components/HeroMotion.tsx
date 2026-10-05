@@ -15,8 +15,8 @@ import { INTRO_KEY, navState } from "@/lib/nav-state";
  * visits and client-side navigations to `/` show the hero as-is.
  *
  * `useHeroRevealed()` tells children (the animated logo) when the hero is
- * actually visible — after the preloader curtain lifts, or immediately when
- * there is no preloader — so the logo intro never plays behind the curtain.
+ * actually visible - after the preloader curtain lifts, or immediately when
+ * there is no preloader - so the logo intro never plays behind the curtain.
  */
 const RevealedCtx = createContext(false);
 export const useHeroRevealed = () => useContext(RevealedCtx);

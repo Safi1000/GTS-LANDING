@@ -63,7 +63,7 @@ export function SiteHeader() {
       <nav className={`nav${stuck ? " stuck" : ""}`}>
         <div className="wrap nav-in">
           <Link href="/" className="mark">
-            <Crest w={26} h={31} alt="GLITCHERS" eager />
+            <Crest size={32} alt="GLITCHERS" eager />
             <b>GLITCHERS</b>
           </Link>
           <div className="nav-links">

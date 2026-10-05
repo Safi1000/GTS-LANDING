@@ -31,27 +31,6 @@ export const PlayIcon = () => (
   </svg>
 );
 
-export const XIcon = () => (
-  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.9 2H22l-7 8 8.2 12h-6.4l-5-7.3-5.8 7.3H2.9l7.5-8.6L2.5 2h6.6l4.5 6.7L18.9 2z" />
-  </svg>
-);
-
-export const YouTubeIcon = () => (
-  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6}>
-    <rect x="2" y="5" width="20" height="14" rx="4" />
-    <path d="M10 9l5 3-5 3z" fill="currentColor" />
-  </svg>
-);
-
-export const InstagramIcon = () => (
-  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6}>
-    <rect x="3" y="3" width="18" height="18" rx="5" />
-    <circle cx="12" cy="12" r="4" />
-    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
-  </svg>
-);
-
 export const DiscordIcon = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6}>
     <circle cx="9" cy="12" r="1.2" fill="currentColor" />

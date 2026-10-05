@@ -32,7 +32,7 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
-  title: { default: SITE.title, template: `%s — ${SITE.name}` },
+  title: { default: SITE.title, template: `%s | ${SITE.name}` },
   description: SITE.description,
   openGraph: {
     type: "website",
@@ -41,7 +41,6 @@ export const metadata: Metadata = {
     description: SITE.description,
   },
   twitter: { card: "summary_large_image" },
-  icons: { icon: "/crest.png" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

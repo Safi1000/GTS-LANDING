@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description:
     "Our own charting terminal for gold and crypto: GTS Levels, GTS Reversals, a liquidation heatmap and orderflow confirmations on one chart, bar replay, and a journal that tracks every trade automatically.",
   alternates: { canonical: "/terminal" },
-  openGraph: { title: "The GTS Terminal — GLITCHERS" },
+  openGraph: { title: "The GTS Terminal | GLITCHERS" },
 };
 
 const BONE_B = { color: "var(--bone)" };
@@ -35,7 +35,7 @@ export default function TerminalPage() {
   return (
     <Reveal>
       <header className="wrap phero">
-        <Crest w={58} h={69} style={{ margin: "0 auto 20px" }} eager />
+        <Crest size={72} style={{ margin: "0 auto 20px" }} eager />
         <Orn style={{ marginBottom: 18 }} />
         <div className="eyebrow">The GTS Terminal</div>
         <h1 className="d-lg" style={{ marginTop: 18 }}>
@@ -102,7 +102,7 @@ export default function TerminalPage() {
             </span>
           </div>
           <h3 style={{ fontSize: 25 }}>Where the numbers come from</h3>
-          {/* PLACEHOLDER figures — as flagged in the HTML */}
+          {/* PLACEHOLDER figures - as flagged in the HTML */}
           <div className="grid-4" style={{ marginTop: 28 }}>
             <div><div className="mono" style={{ fontSize: 25, color: "var(--gold-300)" }}>1,240</div><p className="small" style={{ marginTop: 6 }}>Setups in sample</p></div>
             <div><div className="mono" style={{ fontSize: 25, color: "var(--gold-300)" }}>18 mo</div><p className="small" style={{ marginTop: 6 }}>Date range tested</p></div>
@@ -113,7 +113,7 @@ export default function TerminalPage() {
             <b>Read this before you subscribe.</b> These are backtested results, not a live track record. Backtests
             benefit from hindsight, do not model slippage perfectly, and cannot reproduce the psychological cost of a
             losing streak. The full breakdown is pinned in the server.{" "}
-            <span style={{ color: "var(--gold-400)" }}>Placeholder figures — replace with your real backtest data.</span>
+            <span style={{ color: "var(--gold-400)" }}>Placeholder figures: replace with your real backtest data.</span>
           </p>
         </div>
       </section>

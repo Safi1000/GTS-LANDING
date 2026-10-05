@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Crest } from "@/components/Crest";
 import { NewsletterForm } from "@/components/NewsletterForm";
-import { DiscordIcon, InstagramIcon, XIcon, YouTubeIcon } from "@/components/icons";
+import { DiscordIcon } from "@/components/icons";
 import { RISK_WARNING } from "@/lib/content";
 import { LINKS } from "@/lib/site";
 
@@ -40,17 +40,14 @@ export function Footer() {
         <div className="fgrid">
           <div>
             <Link href="/" className="mark">
-              <Crest w={26} h={31} />
+              <Crest size={32} />
               <b>GLITCHERS</b>
             </Link>
             <p className="small" style={{ marginTop: 16, maxWidth: "34ch" }}>
               A gold and crypto trading education community that runs in Discord. Teaching the method, selling the tool.
             </p>
             <div className="socials">
-              <a href={LINKS.social.x} aria-label="X"><XIcon /></a>
-              <a href={LINKS.social.youtube} aria-label="YouTube"><YouTubeIcon /></a>
-              <a href={LINKS.social.instagram} aria-label="Instagram"><InstagramIcon /></a>
-              <a href={LINKS.social.discord} aria-label="Discord"><DiscordIcon /></a>
+              <a href={LINKS.discordInvite} target="_blank" rel="noopener noreferrer" aria-label="Discord"><DiscordIcon /></a>
             </div>
           </div>
           {COLS.map(([h, links]) => (
@@ -62,17 +59,17 @@ export function Footer() {
             </div>
           ))}
         </div>
-        {/* LEGALLY LOAD-BEARING — verbatim from gts-site-v2.html */}
+        {/* LEGALLY LOAD-BEARING - verbatim from gts-site-v2.html */}
         <div className="disc">
           <b>Risk warning.</b> {RISK_WARNING}
         </div>
         <div className="fbot">
           <span>© {year} GLITCHERS (GTS)</span>
           <div className="r">
-            <a href="#">Terms</a>
-            <a href="#">Privacy</a>
-            <a href="#">Refund policy</a>
-            <a href="#">Risk disclosure</a>
+            <Link href="/terms">Terms</Link>
+            <Link href="/privacy">Privacy</Link>
+            <Link href="/refund-policy">Refund policy</Link>
+            <Link href="/risk-disclosure">Risk disclosure</Link>
           </div>
         </div>
       </div>

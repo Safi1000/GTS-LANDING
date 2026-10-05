@@ -3,7 +3,7 @@ import { Reveal } from "@/components/Reveal";
 import { Hero } from "@/components/home/Hero";
 import {
   Anatomy, Faq, HomeCta, HowItWorks, MasterclassSection, Partners, ReplaySection, Rooms,
-  TerminalSection, Trust, Voices,
+  TerminalSection, Trust,
 } from "@/components/home/Sections";
 import { SITE } from "@/lib/site";
 
@@ -25,7 +25,6 @@ export default function Home() {
       <MasterclassSection />
       <ReplaySection />
       <Partners />
-      <Voices />
       <Faq />
       <HomeCta />
     </Reveal>

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description:
     "One subscription for the GTS Terminal. The Discord, the masterclass, the live sessions and the partner perks stay free.",
   alternates: { canonical: "/pricing" },
-  openGraph: { title: "Pricing — GLITCHERS" },
+  openGraph: { title: "Pricing | GLITCHERS" },
 };
 
 const COMMUNITY = [
@@ -48,7 +48,7 @@ export default function PricingPage() {
             The GTS Terminal.
           </h1>
           <p className="lede" style={{ marginInline: "auto" }}>
-            Everything else — the Discord, the masterclass, the live sessions and the partner perks — stays free.
+            The Discord, the masterclass, the live sessions and the partner perks all stay free.
           </p>
           <div style={{ display: "flex", justifyContent: "center", marginTop: 34 }}>
             <BillingToggle />
@@ -93,7 +93,7 @@ export default function PricingPage() {
           </div>
           <p className="small" data-rv style={{ textAlign: "center", marginTop: 26 }}>
             Card via Stripe, or pay in USDT, BTC and ETH. Crypto payments are a fixed-term purchase and do not renew
-            automatically — we send a reminder before access ends. After paying, open a ticket in our Discord with
+            automatically, so we send a reminder before access ends. After paying, open a ticket in our Discord with
             your invoice ID and we give your Google email access to the terminal.
           </p>
         </section>
@@ -129,7 +129,7 @@ export default function PricingPage() {
 
         <section className="wrap band-t">
           <Rail n="II" label="Billing questions" />
-          <Accordion items={BILLING_FAQ} data-rv style={{ maxWidth: 780 }} />
+          <Accordion items={BILLING_FAQ} columns={2} data-rv />
         </section>
       </Reveal>
     </BillingProvider>

@@ -5,7 +5,7 @@ import { InlineScript } from "@/components/InlineScript";
 import { INTRO_KEY } from "@/lib/nav-state";
 
 /**
- * The crest preloader. Markup only — HeroMotion owns the timeline.
+ * The crest preloader. Markup only - HeroMotion owns the timeline.
  *
  * It runs once per browser session, on a hard load of `/`. Three safety nets
  * keep it from ever hiding the page:
@@ -19,7 +19,7 @@ export function Preloader() {
     <>
       <div id="pre" suppressHydrationWarning>
         <div className="box">
-          <Crest w={74} h={88} eager />
+          <Crest size={88} eager />
           <div className="wm">GLITCHERS</div>
           <div className="bar">
             <i />

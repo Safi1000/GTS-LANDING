@@ -3,6 +3,7 @@
 import { preload } from "react-dom";
 import AnimatedLogo from "@/components/gts-logo/AnimatedLogo";
 import { LAYER_ORDER } from "@/components/gts-logo/layers";
+import { LOGO_SRC } from "@/components/Crest";
 import { useHeroRevealed } from "@/components/HeroMotion";
 
 /**
@@ -26,7 +27,7 @@ export function HeroLogo() {
       ) : (
         <noscript>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/crest.png" alt="GLITCHERS crest" className="logo-fallback" />
+          <img src={LOGO_SRC} alt="GLITCHERS logo" className="logo-fallback" />
         </noscript>
       )}
     </div>
