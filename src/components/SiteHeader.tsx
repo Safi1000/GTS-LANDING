@@ -16,7 +16,7 @@ const DROPS = {
     ["/terminal#methodology", "Methodology", "How the win rates were measured"],
   ],
   masterclass: [
-    ["/masterclass", "All lessons", "The full free curriculum"],
+    ["/masterclass", "All lessons", "The full curriculum"],
     ["/masterclass", "Start here", "Foundations for new traders"],
     ["/masterclass", "Live sessions", "Thursdays with your mentors"],
     ["/terminal#access", "Getting access", "Pay, open a ticket, you are in"],

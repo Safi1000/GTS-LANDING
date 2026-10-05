@@ -4,14 +4,22 @@ import { createContext, useContext, useLayoutEffect, useRef, useState, type Reac
 import { gsap } from "@/lib/gsap";
 
 /**
- * Monthly/annual billing. The toggle, the "Save 20%" badge and the Member
- * price sit in different parts of the page, so they share state through
+ * Monthly/annual billing. The toggle, the "Save 20%" badge and the plan
+ * prices sit in different parts of the page, so they share state through
  * context. The plan cards' feature lists between them stay server-rendered.
  */
 type Bill = "m" | "y";
 const Ctx = createContext<{ bill: Bill; setBill: (b: Bill) => void }>({ bill: "m", setBill: () => {} });
 
-export const PRICES = { m: 39, y: 31, yTotal: 374 } as const;
+/**
+ * Paid plans. Annual is 20% off the monthly price: `y` is the per-month figure
+ * shown, `yTotal` the amount billed once a year (round(m × 12 × 0.8)).
+ */
+export const PRICES = {
+  education: { m: 29, y: 23, yTotal: 278 },
+  pro: { m: 49, y: 39, yTotal: 470 },
+} as const;
+export type Plan = keyof typeof PRICES;
 
 export function BillingProvider({ children }: { children: ReactNode }) {
   const [bill, setBill] = useState<Bill>("m");
@@ -63,8 +71,10 @@ export function SaveBadge() {
   );
 }
 
-export function MemberPrice() {
+/** One plan's price; it animates between monthly and annual with the shared toggle. */
+export function PlanPrice({ plan, highlight = false }: { plan: Plan; highlight?: boolean }) {
   const { bill } = useContext(Ctx);
+  const price = PRICES[plan];
   const num = useRef<HTMLSpanElement>(null);
   const mounted = useRef(false);
 
@@ -74,9 +84,9 @@ export function MemberPrice() {
       return;
     }
     const el = num.current!;
-    const o = { v: +(el.textContent || PRICES.m) };
+    const o = { v: +(el.textContent || price.m) };
     const tw = gsap.to(o, {
-      v: PRICES[bill],
+      v: price[bill],
       duration: 0.5,
       ease: "power2.out",
       onUpdate: () => {
@@ -86,16 +96,16 @@ export function MemberPrice() {
     return () => {
       tw.kill();
     };
-  }, [bill]);
+  }, [bill, price]);
 
   return (
     <>
-      <div className="price hi" style={{ marginTop: 22 }}>
+      <div className={`price${highlight ? " hi" : ""}`} style={{ marginTop: 22 }}>
         <sup>$</sup>
-        <span ref={num}>{PRICES.m}</span>
+        <span ref={num}>{price.m}</span>
       </div>
       <p className="per">
-        {bill === "y" ? `per month, billed annually at $${PRICES.yTotal}` : "per month, billed monthly"}
+        {bill === "y" ? `per month, billed annually at $${price.yTotal}` : "per month, billed monthly"}
       </p>
     </>
   );

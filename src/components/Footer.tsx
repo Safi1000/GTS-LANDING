@@ -44,7 +44,7 @@ export function Footer() {
               <b>GLITCHERS</b>
             </Link>
             <p className="small" style={{ marginTop: 16, maxWidth: "34ch" }}>
-              A gold and crypto trading education community that runs in Discord. Teaching the method, selling the tool.
+              A gold and crypto trading education community that runs in Discord. Free to join; the method and the tools are for members.
             </p>
             <div className="socials">
               <a href={LINKS.discordInvite} target="_blank" rel="noopener noreferrer" aria-label="Discord"><DiscordIcon /></a>

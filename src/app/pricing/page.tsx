@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Accordion } from "@/components/Accordion";
-import { BillingProvider, BillingToggle, MemberPrice, SaveBadge } from "@/components/BillingToggle";
+import { BillingProvider, BillingToggle, PlanPrice, SaveBadge } from "@/components/BillingToggle";
 import { MagneticButton } from "@/components/MagneticButton";
 import { Reveal } from "@/components/Reveal";
 import { CheckIcon, DashIcon } from "@/components/icons";
@@ -11,30 +11,45 @@ import { LINKS } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "One subscription for the GTS Terminal. The Discord, the masterclass, the live sessions and the partner perks stay free.",
+    "The Discord community is free. Education ($29/mo) covers the masterclass and weekly live sessions; Pro ($49/mo) adds the GTS Terminal.",
   alternates: { canonical: "/pricing" },
   openGraph: { title: "Pricing | GLITCHERS" },
 };
 
-const COMMUNITY = [
-  "The complete masterclass", "Live sessions with mentors", "Prop firm and exchange perks",
-  "Both account challenges, followed live",
+const COMMUNITY = ["The Discord community", "Prop firm and exchange perks", "Both account challenges, followed live"];
+const COMMUNITY_OFF = ["The masterclass", "Weekly live sessions", "The GTS Terminal"];
+const EDUCATION = [
+  "Everything in Community",
+  "The complete masterclass: 6 modules, 12 lessons",
+  "Weekly live sessions with mentors",
+  "Member-only Discord channels",
+  "Cancel any time",
 ];
-const MEMBER = [
-  "Everything in Community", "The GTS Terminal", "GTS Levels and GTS Reversals", "Liquidation heatmap",
-  "Orderflow confirmations", "Bar replay on a consolidated feed", "Auto-tracking trade journal", "Member-only Discord channels", "Priority support",
+const PRO = [
+  "Everything in Education",
+  "The GTS Terminal",
+  "GTS Levels and GTS Reversals",
+  "Liquidation heatmap",
+  "Orderflow confirmations",
+  "Bar replay on a consolidated feed",
+  "Auto-tracking trade journal",
+  "Priority support",
   "Cancel any time",
 ];
 const WITH = [
-  "Education is free and complete",
-  "Win rates come with a sample size", "One price, no upsells inside the server",
+  "The Discord community is free, for everyone",
+  "Win rates come with a sample size",
+  "Two clear plans, no hidden VIP tiers",
   "Affiliate relationships disclosed up front",
 ];
 const ELSEWHERE = [
-  "Course locked behind a second payment",
-  "90% win rate, no methodology anywhere", "VIP tier, then a VIP+ tier", "Broker referral links with no disclosure",
+  "The community itself locked behind a paywall",
+  "90% win rate, no methodology anywhere",
+  "VIP tier, then a VIP+ tier, then another",
+  "Broker referral links with no disclosure",
 ];
 const LI = { display: "flex", gap: 12, fontSize: 14.5 } as const;
+const BTN = { width: "100%", marginTop: 26 } as const;
 
 export default function PricingPage() {
   return (
@@ -43,12 +58,13 @@ export default function PricingPage() {
         <header className="wrap phero">
           <div className="eyebrow">Pricing</div>
           <h1 className="d-lg" style={{ marginTop: 18 }}>
-            One subscription.
+            Learn the method.
             <br />
-            The GTS Terminal.
+            Or get everything.
           </h1>
           <p className="lede" style={{ marginInline: "auto" }}>
-            The Discord, the masterclass, the live sessions and the partner perks all stay free.
+            The Discord community is free. Education covers the masterclass and weekly live sessions, and Pro adds
+            the GTS Terminal.
           </p>
           <div style={{ display: "flex", justifyContent: "center", marginTop: 34 }}>
             <BillingToggle />
@@ -59,47 +75,68 @@ export default function PricingPage() {
         </header>
 
         <section className="wrap">
-          <div className="grid-2" style={{ gap: 20, maxWidth: 860, marginInline: "auto" }}>
+          <div className="grid-3 plans" style={{ gap: 20 }}>
             <div className="card plan frame" data-rv>
-              <span className="badge badge-muted">Free forever</span>
+              <span className="badge badge-muted">Free</span>
               <h3 style={{ marginTop: 20, fontSize: 23 }}>Community</h3>
               <div className="price" style={{ marginTop: 22 }}>$0</div>
               <p className="per">No card required</p>
-              <MagneticButton href={LINKS.discordInvite} className="btn btn-secondary" style={{ width: "100%", marginTop: 26 }}>
+              <MagneticButton href={LINKS.discordInvite} className="btn btn-secondary" style={BTN}>
                 Join the Discord
               </MagneticButton>
               <ul>
                 {COMMUNITY.map((f) => (
                   <li key={f}><CheckIcon color="#C99A4B" />{f}</li>
                 ))}
+                {COMMUNITY_OFF.map((f) => (
+                  <li className="off" key={f}><DashIcon />{f}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="card plan frame" data-rv>
+              <span className="badge">Learn the method</span>
+              <h3 style={{ marginTop: 20, fontSize: 23 }}>Education</h3>
+              <PlanPrice plan="education" />
+              {/* points at the payment steps until Stripe checkout links exist */}
+              <MagneticButton href="#how-to-pay" className="btn btn-secondary" style={BTN}>
+                Get Education
+              </MagneticButton>
+              <ul>
+                {EDUCATION.map((f) => (
+                  <li key={f}><CheckIcon color="#C99A4B" />{f}</li>
+                ))}
                 <li className="off"><DashIcon />The GTS Terminal</li>
-                <li className="off"><DashIcon />Bar replay and backtesting</li>
               </ul>
             </div>
             <div className="card card-glow plan feature frame" data-rv>
               <span className="badge badge-ox">Most popular</span>
-              <h3 style={{ marginTop: 20, fontSize: 23 }}>Member</h3>
-              <MemberPrice />
-              {/* points at the access steps until a Stripe checkout link exists */}
-              <MagneticButton href="/terminal#access" className="btn btn-primary" style={{ width: "100%", marginTop: 26 }}>
-                Get access
+              <h3 style={{ marginTop: 20, fontSize: 23 }}>Pro</h3>
+              <PlanPrice plan="pro" highlight />
+              <MagneticButton href="#how-to-pay" className="btn btn-primary" style={BTN}>
+                Get Pro
               </MagneticButton>
               <ul>
-                {MEMBER.map((f) => (
+                {PRO.map((f) => (
                   <li key={f}><CheckIcon color="#F5E3A3" />{f}</li>
                 ))}
               </ul>
             </div>
           </div>
-          <p className="small" data-rv style={{ textAlign: "center", marginTop: 26 }}>
+          <p
+            className="small"
+            id="how-to-pay"
+            data-rv
+            style={{ textAlign: "center", marginTop: 26, maxWidth: "78ch", marginInline: "auto" }}
+          >
             Card via Stripe, or pay in USDT, BTC and ETH. Crypto payments are a fixed-term purchase and do not renew
             automatically, so we send a reminder before access ends. After paying, open a ticket in our Discord with
-            your invoice ID and we give your Google email access to the terminal.
+            your invoice ID: we unlock the masterclass and live sessions on your Discord account and, on Pro, give your
+            Google email access to the terminal.
           </p>
         </section>
 
         <section className="wrap band">
-          <Rail n="I" label="What you are not paying for" />
+          <Rail n="I" label="How we are different" />
           <div className="grid-2" style={{ gap: 20 }}>
             <div
               className="card frame"

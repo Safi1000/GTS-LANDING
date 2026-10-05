@@ -38,12 +38,14 @@ export default function TermsPage() {
       <h2>3. What we provide</h2>
       <ul>
         <li>
-          <b>Free:</b> the Discord community, the masterclass, live sessions, our public account challenges and partner
-          perks.
+          <b>Free:</b> the Discord community, our public account challenges and partner perks.
         </li>
         <li>
-          <b>Paid:</b> a subscription to the GTS Terminal, our charting terminal with GTS Levels, GTS Reversals, a
-          liquidation heatmap, orderflow confirmations, bar replay and a trade journal.
+          <b>Education (paid):</b> the masterclass and weekly live sessions.
+        </li>
+        <li>
+          <b>Pro (paid):</b> everything in Education plus the GTS Terminal, our charting terminal with GTS Levels, GTS
+          Reversals, a liquidation heatmap, orderflow confirmations, bar replay and a trade journal.
         </li>
       </ul>
       <p>
@@ -60,10 +62,13 @@ export default function TermsPage() {
         <Link href="/risk-disclosure">Risk Disclosure</Link> before you trade.
       </p>
 
-      <h2>5. Access to the GTS Terminal</h2>
+      <h2>5. Access to paid plans</h2>
       <ul>
         <li>After paying by card or crypto, open <Ticket /> with your invoice ID.</li>
-        <li>Once we verify the payment, we grant terminal access to the Google email address you give us.</li>
+        <li>
+          Once we verify the payment, we unlock the masterclass and live sessions on your Discord account and, on
+          Pro, grant terminal access to the Google email address you give us.
+        </li>
         <li>
           A subscription is for one person. You must not share your login, give others access, or resell or
           redistribute access in any form.
@@ -79,7 +84,7 @@ export default function TermsPage() {
         <li>
           <b>Card payments</b> are processed by Stripe and renew automatically, monthly or annually, until you cancel.
           If a payment fails, Stripe retries it over roughly two weeks and you stay in a grace period during that time.
-          Access is removed only if the subscription finally fails.
+          Paid access is removed only if the subscription finally fails.
         </li>
         <li>
           <b>Crypto payments</b> (USDT, BTC and ETH) buy a fixed term of 30 or 365 days. They do not renew

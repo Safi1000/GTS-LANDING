@@ -10,7 +10,7 @@ import { LINKS } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Masterclass",
   description:
-    "The entire GTS method, free. Six modules and twelve lessons, from risk management and market structure to the Glitch Models and a full gold backtest.",
+    "The entire GTS method in six modules and twelve lessons, from risk management and market structure to the Glitch Models and a full gold backtest. Included in Education and Pro.",
   alternates: { canonical: "/masterclass" },
   openGraph: { title: "Masterclass | GLITCHERS" },
 };
@@ -22,15 +22,16 @@ export default function MasterclassPage() {
   return (
     <Reveal>
       <header className="wrap phero">
-        <div className="free-tag" style={{ marginInline: "auto" }}>Free · No paywall</div>
+        <div className="free-tag" style={{ marginInline: "auto" }}>Education plan</div>
         <h1 className="d-lg">
           The entire method.
           <br />
-          <span className="foil">No paywall.</span>
+          <span className="foil">In order.</span>
         </h1>
         <p className="lede" style={{ marginInline: "auto" }}>
           Six modules and twelve lessons, from risk management and market structure to the Glitch Models and a
-          full gold backtest. Sign in with Discord to track progress and watch the videos.
+          full gold backtest. Included in the Education and Pro plans; sign in with Discord to watch the videos and
+          track your progress.
         </p>
       </header>
 
@@ -43,11 +44,14 @@ export default function MasterclassPage() {
             imbalances, supply and demand, the trading models, and a full gold backtest that ties it all together.
           </p>
           <div className="mono small" style={{ marginTop: 22, color: "var(--faint)" }}>
-            {CURRICULUM.length} modules · {LESSON_COUNT} lessons · Free
+            {CURRICULUM.length} modules · {LESSON_COUNT} lessons · Education and Pro
           </div>
           <div className="btn-row" style={{ marginTop: 26 }}>
-            <MagneticButton href="#curriculum" className="btn btn-primary">
-              Start the masterclass
+            <MagneticButton href="/pricing" className="btn btn-primary">
+              Get Education
+            </MagneticButton>
+            <MagneticButton href="#curriculum" className="btn btn-secondary">
+              See the curriculum
             </MagneticButton>
           </div>
         </div>
@@ -72,7 +76,7 @@ export default function MasterclassPage() {
               <span className="mono small" style={{ color: "var(--gold-400)" }}>NEXT SESSION</span>
             </div>
             <Countdown />
-            <p className="small" style={{ marginTop: 8 }}>Thursday 20:00 UTC · Weekly chart review</p>
+            <p className="small" style={{ marginTop: 8 }}>Thursday 20:00 UTC · Weekly chart review · Education and Pro</p>
             <div className="btn-row" style={{ marginTop: 22 }}>
               <MagneticButton href={LINKS.calendar} className="btn btn-secondary btn-sm">Add to calendar</MagneticButton>
               <a href={LINKS.pastRecordings} className="btn btn-ghost btn-sm">Past recordings</a>

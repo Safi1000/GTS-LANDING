@@ -523,6 +523,8 @@
 .plan li{display:flex;gap:11px;font-size:14px;align-items:flex-start}
 .plan li svg{flex:none;margin-top:3px}
 .plan li.off{color:var(--faint)}
+/* pricing: three plan cards side by side */
+.plans{max-width:1120px;margin-inline:auto;align-items:stretch}
 
 /* ─── misc ─── */
 .free-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-crest);font-size:11px;

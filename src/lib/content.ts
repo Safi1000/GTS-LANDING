@@ -27,21 +27,21 @@ export const PERKS = [
 ] as const;
 
 export const HOME_FAQ: AccItem[] = [
-  { q: "Is the masterclass really free?", a: "Yes, all of it. Written lessons, chart breakdowns, video and the live sessions. No card, no subscription. We make money on the terminal, and people who understand the method get more out of it, so teaching first is in our interest as much as yours." },
-  { q: "How do I get access to the terminal?", a: "Pay by card through Stripe or in crypto, then open a ticket in our Discord with the invoice ID you receive after paying. We verify the payment and give your Google email access to the terminal." },
+  { q: "What is free, and what is paid?", a: "The Discord community is free: the discussion channels, partner perks and our public account challenges. The masterclass and weekly live sessions are in the Education plan, and Pro adds the GTS Terminal. Both plans are on the pricing page." },
+  { q: "How do I get access after paying?", a: "Pay by card through Stripe or in crypto, then open a ticket in our Discord with the invoice ID you receive. We verify the payment, unlock the masterclass and live sessions on your Discord account and, on Pro, give your Google email access to the terminal." },
   { q: "What is the win rate, really?", a: "80% at 1R and 70% at 2R across our own backtests. Those are backtested figures, not live account statements, and the full methodology (pairs, date range, sample size and the worst losing streak) is posted in the server. A win rate without a sample size attached is marketing, not data." },
   { q: "Do you offer refunds?", a: "Card subscriptions can be cancelled any time and you keep access to the end of the paid period. Crypto payments are a fixed-term purchase and cannot be refunded, which is why we say so plainly at checkout rather than burying it in the terms." },
-  { q: "Do I need experience to join?", a: "No. The masterclass starts with risk management and basic market structure and assumes nothing. Most people spend a few weeks in the free material before they think about the terminal, and we would rather you did it in that order." },
+  { q: "Do I need experience to join?", a: "No. The masterclass starts with risk management and basic market structure and assumes nothing. Most people work through it before relying on the terminal, and we would rather you did it in that order." },
   { q: "Which markets do you cover?", a: "Gold and crypto. Gold on the London and New York sessions, crypto around the clock with a focus on majors and a small rotation of liquid alts. We do not teach equities, indices or FX pairs, because that is not where our edge is." },
   { q: "Is any of this financial advice?", a: "No. Everything we publish is educational, and we have no idea what your account size or risk tolerance is. GLITCHERS is not a broker, adviser or asset manager and never handles anyone's funds." },
-  { q: "What happens if I cancel?", a: "Terminal access ends when the paid period does. You keep your Discord membership, the masterclass, the live sessions and the partner perks. Those never depended on paying." },
+  { q: "What happens if I cancel?", a: "Paid access (the masterclass, live sessions and, on Pro, the terminal) ends when the paid period does. You keep your Discord membership, the partner perks and the public challenges. Those never depended on paying." },
 ];
 
 export const BILLING_FAQ: AccItem[] = [
-  { q: "Can I cancel any time?", a: "Yes, by opening a ticket in our Discord. Access continues to the end of the period you have already paid for, then terminal access is removed from your Google account." },
-  { q: "What happens if my card fails?", a: "Nothing immediately. Stripe retries over roughly two weeks and you stay in a grace period the whole time. We only revoke terminal access once the subscription has actually failed, not on the first decline." },
+  { q: "Can I cancel any time?", a: "Yes, by opening a ticket in our Discord. Access continues to the end of the period you have already paid for, then paid access is removed." },
+  { q: "What happens if my card fails?", a: "Nothing immediately. Stripe retries over roughly two weeks and you stay in a grace period the whole time. We only remove paid access once the subscription has actually failed, not on the first decline." },
   { q: "How do crypto payments work?", a: "They buy a fixed term of 30 or 365 days rather than a subscription. There is no auto-renew, so we message you at seven days, three days and one day before access ends. Crypto payments cannot be refunded." },
-  { q: "Do I lose the free stuff if I cancel?", a: "No. The Discord, masterclass, live sessions and partner perks were never tied to paying, and they stay exactly as they were." },
+  { q: "Do I lose the Discord if I cancel?", a: "No. The Discord community, partner perks and public challenges are free, and they stay exactly as they were. Only your paid plan's access ends." },
 ];
 
 /** The GTS Terminal's tools (terminal page tabs). */

@@ -28,8 +28,8 @@ export function Hero() {
           </span>
         </h1>
         <p className="lede" data-hero="lede">
-          A trading education community that runs in Discord. A free masterclass, live mentorship, and a
-          charting terminal we built ourselves.
+          A trading education community that runs in Discord. Free to join, with a full masterclass, weekly live
+          sessions and a charting terminal we built ourselves for members.
         </p>
         <div className="btn-row center hero-gap-l" data-hero="btns">
           <MagneticButton href={LINKS.discordInvite} className="btn btn-primary btn-lg">

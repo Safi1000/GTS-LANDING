@@ -50,7 +50,7 @@ export default function TerminalPage() {
         </p>
         <div className="btn-row center" style={{ marginTop: 32 }}>
           <MagneticButton href="/pricing" className="btn btn-primary btn-lg">Get access</MagneticButton>
-          <MagneticButton href="/masterclass" className="btn btn-secondary btn-lg">Learn it free first</MagneticButton>
+          <MagneticButton href="/masterclass" className="btn btn-secondary btn-lg">See the masterclass</MagneticButton>
         </div>
         <p className="small" style={{ marginTop: 18 }}>
           Already a member?{" "}
@@ -261,7 +261,7 @@ export default function TerminalPage() {
         <div className="cta-band" data-rv>
           <h2>Learn it first. Then get the terminal.</h2>
           <p className="lede" style={{ margin: "20px auto 0", textAlign: "center" }}>
-            The masterclass teaches the method behind the terminal for free. If it turns out you do not need it, that is a
+            The masterclass teaches the method behind the terminal, and Pro includes both. If the method alone is enough, that is a
             good outcome.
           </p>
           <div className="btn-row center" style={{ marginTop: 32 }}>

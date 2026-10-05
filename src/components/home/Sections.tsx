@@ -96,8 +96,8 @@ export function Rooms() {
 /* ══════════ III. HOW IT WORKS ══════════ */
 const STEPS = [
   ["I", "Join the Discord", "Discussion, mentorship and partner perks. Nothing behind a card.", "Free"],
-  ["II", "Take the masterclass", "The complete method, from risk and market structure to the Glitch Models.", "Free"],
-  ["III", "Add the terminal", "Once you know the method, the terminal that marks it saves you the screen time.", "From $39/mo"],
+  ["II", "Take the masterclass", "The complete method, from risk and market structure to the Glitch Models, plus weekly live sessions.", "Education · $29/mo"],
+  ["III", "Add the terminal", "Once you know the method, the terminal that marks it saves you the screen time.", "Pro · $49/mo"],
 ];
 
 export function HowItWorks() {
@@ -105,9 +105,9 @@ export function HowItWorks() {
     <section className="wrap band">
       <Rail n="III" label="How it works" />
       <h2 data-rv style={{ marginBottom: 52 }}>
-        Free, free, then paid.
+        Join free. Then learn.
         <br />
-        <span className="dim">In that order, deliberately.</span>
+        <span className="dim">Then add the tools.</span>
       </h2>
       <div className="steps">
         <StepsTrack />
@@ -139,7 +139,7 @@ export function TerminalSection() {
           <p className="lede">
             Our own charting terminal, built in-house for gold and crypto. GTS Levels, GTS Reversals, a liquidation
             heatmap and orderflow confirmations on one chart, a journal that tracks every trade for you, and the
-            method behind it taught free in the masterclass.
+            method behind it taught in the masterclass.
           </p>
           <p className="lede">
             It is not a bot. It will not save bad risk management. It marks the level and gets out of your way.
@@ -189,11 +189,11 @@ export function MasterclassSection() {
       <Rail n="V" label="The masterclass" />
       <div className="split stretch">
         <div data-rv>
-          <div className="free-tag">Free · No paywall</div>
+          <div className="free-tag">Education plan</div>
           <h2>
-            We teach the method
+            The complete method,
             <br />
-            and sell the tool.
+            in order.
           </h2>
           <p className="lede">
             Not a funnel with the good parts removed. The curriculum runs from risk management and market structure
@@ -315,11 +315,11 @@ export function HomeCta() {
         <h2>
           The server is free.
           <br />
-          So is the masterclass.
+          The method is for members.
         </h2>
         <p className="lede" style={{ margin: "20px auto 0", textAlign: "center" }}>
-          Come in, take the course, join the live sessions, and decide about the terminal afterwards. That order works
-          better for everyone.
+          Come in, meet the community and follow the challenges. When you are ready, Education covers the masterclass
+          and live sessions, and Pro adds the terminal.
         </p>
         <div className="btn-row center" style={{ marginTop: 36 }}>
           <MagneticButton href={LINKS.discordInvite} className="btn btn-primary btn-lg">
@@ -327,7 +327,7 @@ export function HomeCta() {
             <ArrowIcon />
           </MagneticButton>
           <MagneticButton href="/pricing" className="btn btn-secondary btn-lg">
-            Terminal pricing
+            See pricing
           </MagneticButton>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { LINKS } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Refund Policy",
-  description: "How cancellations and refunds work for GTS Terminal subscriptions paid by card or crypto.",
+  description: "How cancellations and refunds work for the Education and Pro plans, paid by card or crypto.",
   alternates: { canonical: "/refund-policy" },
 };
 
@@ -19,16 +19,15 @@ export default function RefundPolicyPage() {
   return (
     <LegalPage
       title="Refund Policy"
-      intro="How cancellations and refunds work for GTS Terminal subscriptions, paid by card or crypto."
+      intro="How cancellations and refunds work for the Education and Pro plans, paid by card or crypto."
     >
       <h2>1. Free services</h2>
       <p>
-        The Discord community, the masterclass, live sessions, public account challenges and partner perks are free,
-        so there is nothing to refund. Learning the method for free before paying for anything is exactly why they
-        exist.
+        The Discord community, public account challenges and partner perks are free, so there is nothing to refund.
+        You can spend as long as you like in the community before deciding on a paid plan.
       </p>
 
-      <h2>2. Card subscriptions</h2>
+      <h2>2. Card subscriptions (Education and Pro)</h2>
       <ul>
         <li>Card payments are not refundable, including unused days of a monthly or annual period.</li>
         <li>
@@ -52,7 +51,7 @@ export default function RefundPolicyPage() {
       <h2>5. Chargebacks</h2>
       <p>
         Please contact us before disputing a payment with your bank, as most problems can be solved through a ticket.
-        If a chargeback is filed, terminal access is suspended while it is open, and access may be removed if the
+        If a chargeback is filed, paid access is suspended while it is open, and access may be removed if the
         chargeback is unjustified.
       </p>
 
